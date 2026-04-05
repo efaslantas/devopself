@@ -3,10 +3,10 @@ import { ArrowRight, Star } from "lucide-react";
 import type { Tool } from "@/lib/data";
 
 const pricingStyles: Record<string, string> = {
-  free: "border-[#30d158]/30 bg-[#30d158]/10 text-[#30d158]",
-  freemium: "border-[#00f0ff]/30 bg-[#00f0ff]/10 text-[#00f0ff]",
-  paid: "border-[#bf5af2]/30 bg-[#bf5af2]/10 text-[#bf5af2]",
-  "open-source": "border-[#ff2d55]/30 bg-[#ff2d55]/10 text-[#ff2d55]",
+  free: "border-[#00f0ff]/30 bg-[#00f0ff]/10 text-[#00f0ff]",
+  freemium: "border-[#67e8f9]/30 bg-[#67e8f9]/10 text-[#67e8f9]",
+  paid: "border-[#94a3b8]/30 bg-[#94a3b8]/10 text-[#94a3b8]",
+  "open-source": "border-[#00f0ff]/30 bg-[#00f0ff]/10 text-[#00f0ff]",
 };
 
 const pricingLabels: Record<string, string> = {
@@ -17,19 +17,9 @@ const pricingLabels: Record<string, string> = {
 };
 
 export function ToolCard({ tool }: { tool: Tool }) {
-  const scoreColor =
-    tool.score >= 8
-      ? "text-[#30d158] drop-shadow-[0_0_6px_#30d158]"
-      : tool.score >= 6
-        ? "text-[#00f0ff] drop-shadow-[0_0_6px_#00f0ff]"
-        : "text-[#ff2d55] drop-shadow-[0_0_6px_#ff2d55]";
+  const scoreColor = "text-[#00f0ff] drop-shadow-[0_0_6px_#00f0ff]";
 
-  const scoreBarColor =
-    tool.score >= 8
-      ? "bg-[#30d158]"
-      : tool.score >= 6
-        ? "bg-[#00f0ff]"
-        : "bg-[#ff2d55]";
+  const scoreBarColor = "bg-[#00f0ff]";
 
   return (
     <Link

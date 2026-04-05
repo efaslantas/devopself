@@ -7,15 +7,15 @@ import { AdSlot } from "@/components/ad-slot";
 import { tools, blogPosts, categories } from "@/lib/data";
 
 const features = [
-  { icon: Brain, title: "AI-Powered Insights", desc: "Yapay zeka destekli tool önerileri ve karşılaştırma analizleri.", color: "text-[#bf5af2]" },
-  { icon: BarChart3, title: "Detaylı Karşılaştırma", desc: "Yan yana feature comparison tabloları ile doğru tool'u seç.", color: "text-[#00f0ff]" },
-  { icon: Shield, title: "Security-First", desc: "DevSecOps odaklı incelemeler ve güvenlik skorları.", color: "text-[#30d158]" },
-  { icon: Zap, title: "Performans Analizi", desc: "Benchmark sonuçları ve gerçek dünya performans verileri.", color: "text-[#ff2d55]" },
+  { icon: Brain, title: "AI-Powered Insights", desc: "Yapay zeka destekli tool önerileri ve karşılaştırma analizleri.", color: "text-[#00f0ff]" },
+  { icon: BarChart3, title: "Detaylı Karşılaştırma", desc: "Yan yana feature comparison tabloları ile doğru tool'u seç.", color: "text-[#67e8f9]" },
+  { icon: Shield, title: "Security-First", desc: "DevSecOps odaklı incelemeler ve güvenlik skorları.", color: "text-[#00f0ff]" },
+  { icon: Zap, title: "Performans Analizi", desc: "Benchmark sonuçları ve gerçek dünya performans verileri.", color: "text-[#67e8f9]" },
   { icon: GitBranch, title: "Pipeline Rehberleri", desc: "CI/CD pipeline tasarım şablonları ve best practice'ler.", color: "text-[#00f0ff]" },
-  { icon: Layers, title: "Stack Önerileri", desc: "Use-case bazlı teknoloji stack önerileri ve mimari rehberler.", color: "text-[#bf5af2]" },
+  { icon: Layers, title: "Stack Önerileri", desc: "Use-case bazlı teknoloji stack önerileri ve mimari rehberler.", color: "text-[#67e8f9]" },
 ];
 
-const neonColors = ["#00f0ff", "#bf5af2", "#ff2d55", "#30d158", "#00f0ff", "#bf5af2"];
+const neonColors = ["#00f0ff", "#67e8f9", "#00f0ff", "#67e8f9", "#00f0ff", "#67e8f9"];
 
 export default function Home() {
   return (
@@ -25,14 +25,14 @@ export default function Home() {
         {/* Floating orbs */}
         <div className="pointer-events-none absolute inset-0">
           <div className="absolute -top-20 left-1/4 h-[400px] w-[400px] rounded-full bg-[#00f0ff]/[0.07] blur-[150px]" />
-          <div className="absolute top-1/3 right-1/4 h-[350px] w-[350px] rounded-full bg-[#bf5af2]/[0.08] blur-[130px]" />
-          <div className="absolute -bottom-20 left-1/2 h-[300px] w-[300px] rounded-full bg-[#ff2d55]/[0.06] blur-[120px]" />
+          <div className="absolute top-1/3 right-1/4 h-[350px] w-[350px] rounded-full bg-[#67e8f9]/[0.06] blur-[130px]" />
+          <div className="absolute -bottom-20 left-1/2 h-[300px] w-[300px] rounded-full bg-[#00f0ff]/[0.04] blur-[120px]" />
         </div>
 
         <div className="relative mx-auto max-w-7xl px-4 pb-20 pt-24 sm:px-6 sm:pt-32 lg:px-8 lg:pt-40">
           <div className="mx-auto max-w-3xl text-center">
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#00f0ff]/20 bg-[#00f0ff]/10 px-4 py-1.5 text-xs font-semibold text-[#00f0ff]">
-              <span className="h-1.5 w-1.5 rounded-full bg-[#30d158] animate-pulse" />
+              <span className="h-1.5 w-1.5 rounded-full bg-[#00f0ff] animate-pulse" />
               Yeni Tool İncelemeleri Eklendi
             </div>
 
@@ -59,7 +59,7 @@ export default function Home() {
               </Link>
               <Link
                 href="/blog"
-                className="flex items-center gap-2 rounded-xl border border-[#bf5af2]/20 bg-[#bf5af2]/5 px-6 py-3.5 text-sm font-semibold text-[#bf5af2] transition-all hover:bg-[#bf5af2]/10 hover:text-white"
+                className="flex items-center gap-2 rounded-xl border border-[#67e8f9]/20 bg-[#67e8f9]/5 px-6 py-3.5 text-sm font-semibold text-[#67e8f9] transition-all hover:bg-[#67e8f9]/10 hover:text-white"
               >
                 Blog Yazıları
               </Link>
@@ -70,9 +70,9 @@ export default function Home() {
           <div className="mx-auto mt-20 grid max-w-2xl grid-cols-2 gap-4 sm:grid-cols-4">
             {[
               { num: "80+", label: "Tool İnceleme", color: "#00f0ff" },
-              { num: "12", label: "Kategori", color: "#bf5af2" },
-              { num: "30+", label: "Karşılaştırma", color: "#ff2d55" },
-              { num: "Free", label: "Erişim", color: "#30d158" },
+              { num: "12", label: "Kategori", color: "#67e8f9" },
+              { num: "30+", label: "Karşılaştırma", color: "#00f0ff" },
+              { num: "Free", label: "Erişim", color: "#67e8f9" },
             ].map((s) => (
               <div key={s.label} className="holo-card rounded-xl p-4 text-center">
                 <div className="text-2xl font-black" style={{ color: s.color, textShadow: `0 0 20px ${s.color}40` }}>{s.num}</div>
@@ -138,7 +138,7 @@ export default function Home() {
       </section>
 
       {/* Categories */}
-      <section className="border-t border-[#bf5af2]/10">
+      <section className="border-t border-[#00f0ff]/10">
         <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
           <div className="mb-8 text-center">
             <h2 className="neon-glow text-3xl font-bold">Kategoriler</h2>
@@ -194,7 +194,7 @@ export default function Home() {
       </section>
 
       {/* Newsletter */}
-      <section className="border-t border-[#bf5af2]/10">
+      <section className="border-t border-[#00f0ff]/10">
         <div className="mx-auto max-w-3xl px-4 py-20 sm:px-6 lg:px-8">
           <Newsletter />
         </div>

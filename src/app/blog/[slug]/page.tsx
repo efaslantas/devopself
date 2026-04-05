@@ -28,7 +28,7 @@ export default async function BlogPostPage({ params }: Props) {
         <ArrowLeft className="h-4 w-4" /> Tüm Yazılar
       </Link>
 
-      <span className="neon-border mb-4 inline-block rounded-full bg-[#bf5af2]/10 px-3 py-1 text-xs font-semibold text-[#bf5af2]">
+      <span className="neon-border mb-4 inline-block rounded-full bg-[#00f0ff]/10 px-3 py-1 text-xs font-semibold text-[#00f0ff]">
         {post.category}
       </span>
 

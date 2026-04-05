@@ -2,13 +2,10 @@
 
 @theme {
   --color-neon-cyan: #00f0ff;
-  --color-neon-purple: #bf5af2;
-  --color-neon-pink: #ff2d55;
-  --color-neon-green: #30d158;
+  --color-neon-secondary: #67e8f9;
+  --color-neon-muted: #94a3b8;
   --color-neon-blue: #0a84ff;
   --color-holo-1: #00f0ff;
-  --color-holo-2: #bf5af2;
-  --color-holo-3: #ff2d55;
   --color-surface: #05080f;
   --color-surface-2: #0a0f1a;
   --color-surface-3: #111827;
@@ -31,7 +28,7 @@ body {
 
 /* ===== HOLOGRAPHIC GRADIENT TEXT ===== */
 .holo-text {
-  background: linear-gradient(90deg, #00f0ff, #bf5af2, #ff2d55, #30d158, #00f0ff);
+  background: linear-gradient(90deg, #00f0ff, #67e8f9, #ffffff, #67e8f9, #00f0ff);
   background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -84,7 +81,7 @@ body {
 .holo-card::before {
   content: '';
   position: absolute; inset: 0;
-  background: conic-gradient(from var(--angle, 0deg), transparent, rgba(0,240,255,0.05), transparent, rgba(191,90,242,0.05), transparent);
+  background: conic-gradient(from var(--angle, 0deg), transparent, rgba(0,240,255,0.05), transparent, rgba(103,232,249,0.05), transparent);
   animation: cardSpin 8s linear infinite;
   pointer-events: none;
 }
@@ -113,7 +110,7 @@ body {
   pointer-events: none;
 }
 .glitch::before {
-  color: #ff2d55;
+  color: #67e8f9;
   animation: glitch1 3s infinite;
   clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
 }
@@ -144,7 +141,7 @@ body {
   position: absolute; inset: -1px;
   border-radius: inherit;
   padding: 1px;
-  background: linear-gradient(135deg, rgba(0,240,255,0.3), transparent 40%, transparent 60%, rgba(191,90,242,0.3));
+  background: linear-gradient(135deg, rgba(0,240,255,0.3), transparent 40%, transparent 60%, rgba(103,232,249,0.3));
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;

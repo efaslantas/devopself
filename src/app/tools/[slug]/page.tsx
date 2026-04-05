@@ -36,10 +36,10 @@ export default async function ToolDetail({ params }: Props) {
           <span className="text-xl font-bold text-[#00f0ff]" style={{ textShadow: "0 0 20px #00f0ff40" }}>{tool.score}</span>
           <span className="text-sm text-slate-500">/10</span>
         </div>
-        <div className="flex items-center gap-2 rounded-xl border border-[#bf5af2]/20 bg-[#bf5af2]/5 px-4 py-2 text-sm text-[#bf5af2]">
+        <div className="flex items-center gap-2 rounded-xl border border-[#67e8f9]/20 bg-[#67e8f9]/5 px-4 py-2 text-sm text-[#67e8f9]">
           {tool.category}
         </div>
-        <div className="flex items-center gap-2 rounded-xl bg-[#30d158]/10 px-4 py-2 text-sm font-semibold text-[#30d158]">
+        <div className="flex items-center gap-2 rounded-xl bg-[#00f0ff]/10 px-4 py-2 text-sm font-semibold text-[#00f0ff]">
           {tool.pricing}
         </div>
       </div>
@@ -50,26 +50,26 @@ export default async function ToolDetail({ params }: Props) {
       </div>
 
       <div className="grid gap-6 md:grid-cols-2">
-        <div className="rounded-2xl border border-[#30d158]/20 bg-[#30d158]/[0.03] p-6 backdrop-blur-sm">
-          <h3 className="mb-4 flex items-center gap-2 font-bold text-[#30d158]" style={{ textShadow: "0 0 10px #30d15840" }}>
+        <div className="rounded-2xl border border-[#00f0ff]/20 bg-[#00f0ff]/[0.03] p-6 backdrop-blur-sm">
+          <h3 className="mb-4 flex items-center gap-2 font-bold text-[#00f0ff]" style={{ textShadow: "0 0 10px #00f0ff40" }}>
             <Check className="h-5 w-5" /> Avantajlar
           </h3>
           <ul className="space-y-2">
             {tool.pros.map((p) => (
               <li key={p} className="flex items-start gap-2 text-sm text-slate-300">
-                <Check className="mt-0.5 h-4 w-4 shrink-0 text-[#30d158]" /> {p}
+                <Check className="mt-0.5 h-4 w-4 shrink-0 text-[#00f0ff]" /> {p}
               </li>
             ))}
           </ul>
         </div>
-        <div className="rounded-2xl border border-[#ff2d55]/20 bg-[#ff2d55]/[0.03] p-6 backdrop-blur-sm">
-          <h3 className="mb-4 flex items-center gap-2 font-bold text-[#ff2d55]" style={{ textShadow: "0 0 10px #ff2d5540" }}>
+        <div className="rounded-2xl border border-[#94a3b8]/20 bg-[#94a3b8]/[0.03] p-6 backdrop-blur-sm">
+          <h3 className="mb-4 flex items-center gap-2 font-bold text-[#94a3b8]" style={{ textShadow: "0 0 10px #94a3b840" }}>
             <X className="h-5 w-5" /> Dezavantajlar
           </h3>
           <ul className="space-y-2">
             {tool.cons.map((c) => (
               <li key={c} className="flex items-start gap-2 text-sm text-slate-300">
-                <X className="mt-0.5 h-4 w-4 shrink-0 text-[#ff2d55]" /> {c}
+                <X className="mt-0.5 h-4 w-4 shrink-0 text-[#94a3b8]" /> {c}
               </li>
             ))}
           </ul>

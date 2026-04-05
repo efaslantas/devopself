@@ -6,8 +6,8 @@ export const metadata: Metadata = { title: "Hakkımızda" };
 
 const cards = [
   { icon: Target, title: "Misyon", desc: "DevOps tool seçim sürecini veriye dayalı, tarafsız ve erişilebilir kılmak.", color: "#00f0ff" },
-  { icon: Eye, title: "Vizyon", desc: "Dünyanın en kapsamlı DevOps ve AI tool karşılaştırma platformu olmak.", color: "#bf5af2" },
-  { icon: Lightbulb, title: "Değerler", desc: "Tarafsızlık, şeffaflık, topluluk odaklılık ve sürekli öğrenme.", color: "#ff2d55" },
+  { icon: Eye, title: "Vizyon", desc: "Dünyanın en kapsamlı DevOps ve AI tool karşılaştırma platformu olmak.", color: "#67e8f9" },
+  { icon: Lightbulb, title: "Değerler", desc: "Tarafsızlık, şeffaflık, topluluk odaklılık ve sürekli öğrenme.", color: "#00f0ff" },
 ];
 
 export default function AboutPage() {

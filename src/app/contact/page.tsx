@@ -15,8 +15,8 @@ export default function ContactPage() {
       </p>
 
       {sent ? (
-        <div className="rounded-2xl border border-[#30d158]/20 bg-[#30d158]/[0.05] p-8 text-center backdrop-blur-sm">
-          <Check className="mx-auto mb-4 h-12 w-12 text-[#30d158]" style={{ filter: "drop-shadow(0 0 12px #30d15860)" }} />
+        <div className="rounded-2xl border border-[#00f0ff]/20 bg-[#00f0ff]/[0.05] p-8 text-center backdrop-blur-sm">
+          <Check className="mx-auto mb-4 h-12 w-12 text-[#00f0ff]" style={{ filter: "drop-shadow(0 0 12px #00f0ff60)" }} />
           <h3 className="mb-2 text-xl font-bold text-white">Mesajınız Alındı!</h3>
           <p className="text-slate-400">En kısa sürede size döneceğiz.</p>
         </div>

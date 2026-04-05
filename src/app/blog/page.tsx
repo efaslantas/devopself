@@ -22,7 +22,7 @@ export default function BlogPage() {
 
       {featured.length > 0 && (
         <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-          <h2 className="mb-6 text-xl font-bold text-[#bf5af2]" style={{ textShadow: "0 0 15px #bf5af240" }}>Öne Çıkan Yazılar</h2>
+          <h2 className="mb-6 text-xl font-bold text-[#00f0ff]" style={{ textShadow: "0 0 15px #00f0ff40" }}>Öne Çıkan Yazılar</h2>
           <div className="grid gap-4 sm:grid-cols-2">
             {featured.map((post) => (
               <BlogCard key={post.slug} post={post} />

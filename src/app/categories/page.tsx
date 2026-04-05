@@ -11,7 +11,7 @@ const iconMap: Record<string, typeof Brain> = {
   "git-branch": GitBranch, activity: Activity,
 };
 
-const neonAccents = ["#00f0ff", "#bf5af2", "#ff2d55", "#30d158", "#00f0ff", "#bf5af2"];
+const neonAccents = ["#00f0ff", "#67e8f9", "#00f0ff", "#67e8f9", "#00f0ff", "#67e8f9"];
 
 export default function CategoriesPage() {
   return (

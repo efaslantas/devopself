@@ -31,14 +31,14 @@ export function Footer() {
               </a>
               <a
                 href="#"
-                className="rounded-lg border border-[#bf5af2]/10 bg-[#bf5af2]/5 p-2 text-slate-500 transition-all duration-300 hover:border-[#bf5af2]/30 hover:text-[#bf5af2] hover:shadow-[0_0_12px_#bf5af220]"
+                className="rounded-lg border border-[#00f0ff]/10 bg-[#00f0ff]/5 p-2 text-slate-500 transition-all duration-300 hover:border-[#00f0ff]/30 hover:text-[#00f0ff] hover:shadow-[0_0_12px_#00f0ff20]"
                 aria-label="Twitter"
               >
                 <Twitter className="h-4 w-4" />
               </a>
               <a
                 href="#"
-                className="rounded-lg border border-[#ff2d55]/10 bg-[#ff2d55]/5 p-2 text-slate-500 transition-all duration-300 hover:border-[#ff2d55]/30 hover:text-[#ff2d55] hover:shadow-[0_0_12px_#ff2d5520]"
+                className="rounded-lg border border-[#00f0ff]/10 bg-[#00f0ff]/5 p-2 text-slate-500 transition-all duration-300 hover:border-[#00f0ff]/30 hover:text-[#00f0ff] hover:shadow-[0_0_12px_#00f0ff20]"
                 aria-label="LinkedIn"
               >
                 <Linkedin className="h-4 w-4" />
@@ -56,19 +56,19 @@ export function Footer() {
             </ul>
           </div>
           <div>
-            <h4 className="mb-3 text-sm font-semibold text-[#bf5af2] drop-shadow-[0_0_4px_#bf5af260]">Kategoriler</h4>
+            <h4 className="mb-3 text-sm font-semibold text-[#67e8f9] drop-shadow-[0_0_4px_#67e8f960]">Kategoriler</h4>
             <ul className="space-y-2">
-              <li><Link href="/categories" className="text-sm text-slate-500 transition-colors duration-300 hover:text-[#bf5af2]">AI in DevOps</Link></li>
-              <li><Link href="/categories" className="text-sm text-slate-500 transition-colors duration-300 hover:text-[#bf5af2]">DevSecOps</Link></li>
-              <li><Link href="/categories" className="text-sm text-slate-500 transition-colors duration-300 hover:text-[#bf5af2]">Platform Engineering</Link></li>
-              <li><Link href="/categories" className="text-sm text-slate-500 transition-colors duration-300 hover:text-[#bf5af2]">Observability</Link></li>
+              <li><Link href="/categories" className="text-sm text-slate-500 transition-colors duration-300 hover:text-[#67e8f9]">AI in DevOps</Link></li>
+              <li><Link href="/categories" className="text-sm text-slate-500 transition-colors duration-300 hover:text-[#67e8f9]">DevSecOps</Link></li>
+              <li><Link href="/categories" className="text-sm text-slate-500 transition-colors duration-300 hover:text-[#67e8f9]">Platform Engineering</Link></li>
+              <li><Link href="/categories" className="text-sm text-slate-500 transition-colors duration-300 hover:text-[#67e8f9]">Observability</Link></li>
             </ul>
           </div>
           <div>
-            <h4 className="mb-3 text-sm font-semibold text-[#ff2d55] drop-shadow-[0_0_4px_#ff2d5560]">Şirket</h4>
+            <h4 className="mb-3 text-sm font-semibold text-[#94a3b8] drop-shadow-[0_0_4px_#94a3b860]">Şirket</h4>
             <ul className="space-y-2">
-              <li><Link href="/about" className="text-sm text-slate-500 transition-colors duration-300 hover:text-[#ff2d55]">Hakkımızda</Link></li>
-              <li><Link href="/contact" className="text-sm text-slate-500 transition-colors duration-300 hover:text-[#ff2d55]">İletişim</Link></li>
+              <li><Link href="/about" className="text-sm text-slate-500 transition-colors duration-300 hover:text-[#00f0ff]">Hakkımızda</Link></li>
+              <li><Link href="/contact" className="text-sm text-slate-500 transition-colors duration-300 hover:text-[#00f0ff]">İletişim</Link></li>
             </ul>
           </div>
         </div>
