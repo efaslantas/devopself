@@ -22,6 +22,14 @@ jobs:
       - name: Build static export
         run: npm run build
 
+      - name: Fix _next directory for LiteSpeed
+        run: |
+          cd out
+          mv _next assets
+          find . -name '*.html' -exec sed -i 's|/_next/|/assets/|g' {} +
+          find . -name '*.js' -exec sed -i 's|/_next/|/assets/|g' {} +
+          echo "Renamed _next to assets"
+
       - name: FTP Deploy
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
