@@ -7,28 +7,30 @@ export function Newsletter() {
   const [submitted, setSubmitted] = useState(false);
 
   return (
-    <section className="relative overflow-hidden rounded-2xl border border-white/[0.06] bg-gradient-to-br from-[#111827] to-[#0f172a] p-8 sm:p-12">
-      {/* Glow */}
-      <div className="pointer-events-none absolute -top-24 left-1/2 h-48 w-96 -translate-x-1/2 rounded-full bg-indigo-500/10 blur-3xl" />
+    <section className="holo-card relative overflow-hidden rounded-2xl border border-[#00f0ff]/15 bg-[#0a0f1c]/80 p-8 backdrop-blur-sm sm:p-12">
+      {/* Animated glow effects */}
+      <div className="pointer-events-none absolute -top-24 left-1/2 h-48 w-96 -translate-x-1/2 rounded-full bg-[#00f0ff]/8 blur-3xl" />
+      <div className="pointer-events-none absolute -bottom-12 right-0 h-32 w-64 rounded-full bg-[#bf5af2]/8 blur-3xl" />
+      <div className="scanline pointer-events-none absolute inset-0 opacity-30" />
 
       <div className="relative text-center">
-        <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-indigo-500/10">
-          <Mail className="h-6 w-6 text-indigo-400" />
+        <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl border border-[#00f0ff]/20 bg-[#00f0ff]/10 shadow-[0_0_20px_#00f0ff15]">
+          <Mail className="h-6 w-6 text-[#00f0ff] drop-shadow-[0_0_6px_#00f0ff]" />
         </div>
-        <h3 className="mb-2 text-2xl font-bold text-white">Haftalık DevOps Bülteni</h3>
+        <h3 className="neon-glow mb-2 text-2xl font-bold text-[#00f0ff]">Haftalık DevOps Bülteni</h3>
         <p className="mb-6 text-sm text-slate-400">
           Yeni tool incelemeleri, karşılaştırmalar ve DevOps trendleri haftada bir kutuna gelsin.
         </p>
 
         {submitted ? (
-          <div className="flex items-center justify-center gap-2 rounded-xl bg-emerald-500/10 p-4 text-emerald-400">
-            <Check className="h-5 w-5" />
+          <div className="flex items-center justify-center gap-2 rounded-xl border border-[#30d158]/20 bg-[#30d158]/10 p-4 text-[#30d158] shadow-[0_0_20px_#30d15815]">
+            <Check className="h-5 w-5 drop-shadow-[0_0_4px_#30d158]" />
             <span className="font-semibold">Kayıt başarılı! Erken erişim listesine eklendiniz.</span>
           </div>
         ) : (
           <form
             onSubmit={(e) => { e.preventDefault(); setSubmitted(true); }}
-            className="mx-auto flex max-w-md overflow-hidden rounded-xl border border-white/[0.08] bg-black/30"
+            className="mx-auto flex max-w-md overflow-hidden rounded-xl border border-[#00f0ff]/15 bg-[#05080f]/60 backdrop-blur-sm transition-all duration-300 focus-within:border-[#00f0ff]/40 focus-within:shadow-[0_0_20px_#00f0ff15]"
           >
             <input
               type="email"
@@ -38,7 +40,7 @@ export function Newsletter() {
             />
             <button
               type="submit"
-              className="bg-indigo-600 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-indigo-500"
+              className="neon-border bg-[#00f0ff]/15 px-6 py-3 text-sm font-semibold text-[#00f0ff] transition-all duration-300 hover:bg-[#00f0ff]/25 hover:shadow-[0_0_20px_#00f0ff30]"
             >
               Abone Ol
             </button>

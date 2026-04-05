@@ -1,48 +1,176 @@
 @import "tailwindcss";
 
 @theme {
-  --color-brand: #6366f1;
-  --color-brand-light: #818cf8;
-  --color-brand-dark: #4f46e5;
-  --color-surface: #0a0e1a;
-  --color-surface-2: #111827;
-  --color-surface-3: #1e293b;
-  --color-accent-green: #10b981;
-  --color-accent-purple: #a855f7;
-  --color-accent-blue: #3b82f6;
-  --color-border: rgba(255, 255, 255, 0.06);
+  --color-neon-cyan: #00f0ff;
+  --color-neon-purple: #bf5af2;
+  --color-neon-pink: #ff2d55;
+  --color-neon-green: #30d158;
+  --color-neon-blue: #0a84ff;
+  --color-holo-1: #00f0ff;
+  --color-holo-2: #bf5af2;
+  --color-holo-3: #ff2d55;
+  --color-surface: #05080f;
+  --color-surface-2: #0a0f1a;
+  --color-surface-3: #111827;
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-heading: "Inter", ui-sans-serif, system-ui, sans-serif;
 }
 
-html {
-  scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
 body {
   font-family: var(--font-sans);
-  background-color: var(--color-surface);
-  color: #e2e8f0;
+  background: #05080f;
+  color: #c8d6e5;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 ::selection {
-  background: rgba(99, 102, 241, 0.3);
+  background: rgba(0, 240, 255, 0.2);
   color: #fff;
 }
 
-/* Animated gradient for hero text */
-.gradient-text {
-  background: linear-gradient(135deg, #818cf8, #22d3ee, #a855f7, #818cf8);
-  background-size: 300% 300%;
+/* ===== HOLOGRAPHIC GRADIENT TEXT ===== */
+.holo-text {
+  background: linear-gradient(90deg, #00f0ff, #bf5af2, #ff2d55, #30d158, #00f0ff);
+  background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: gradientShift 5s ease-in-out infinite;
+  animation: holoShift 3s linear infinite;
+}
+@keyframes holoShift {
+  to { background-position: 200% center; }
 }
 
-@keyframes gradientShift {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
+/* ===== NEON GLOW ===== */
+.neon-glow {
+  text-shadow: 0 0 7px rgba(0, 240, 255, 0.5), 0 0 20px rgba(0, 240, 255, 0.2);
+}
+
+/* ===== ANIMATED GRID BG ===== */
+.grid-bg {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(0, 240, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 240, 255, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 30%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 30%, transparent 100%);
+}
+
+/* ===== SCAN LINE ===== */
+.scanline::after {
+  content: '';
+  position: fixed; top: 0; left: 0; right: 0; height: 2px; z-index: 999;
+  background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.4), transparent);
+  animation: scanDown 6s linear infinite;
+  pointer-events: none;
+}
+@keyframes scanDown {
+  0% { top: -2px; }
+  100% { top: 100vh; }
+}
+
+/* ===== HOLO CARD ===== */
+.holo-card {
+  position: relative;
+  background: rgba(10, 15, 26, 0.8);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 240, 255, 0.08);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.holo-card::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: conic-gradient(from var(--angle, 0deg), transparent, rgba(0,240,255,0.05), transparent, rgba(191,90,242,0.05), transparent);
+  animation: cardSpin 8s linear infinite;
+  pointer-events: none;
+}
+@keyframes cardSpin {
+  to { --angle: 360deg; }
+}
+@property --angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+.holo-card:hover {
+  border-color: rgba(0, 240, 255, 0.25);
+  box-shadow: 0 0 30px rgba(0, 240, 255, 0.08), 0 20px 60px rgba(0, 0, 0, 0.4);
+  transform: translateY(-4px);
+}
+
+/* ===== GLITCH TEXT ===== */
+.glitch {
+  position: relative;
+}
+.glitch::before, .glitch::after {
+  content: attr(data-text);
+  position: absolute; left: 0; top: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+}
+.glitch::before {
+  color: #ff2d55;
+  animation: glitch1 3s infinite;
+  clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
+}
+.glitch::after {
+  color: #00f0ff;
+  animation: glitch2 3s infinite;
+  clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
+}
+@keyframes glitch1 {
+  0%,92%,100% { transform: translate(0); }
+  93% { transform: translate(-3px, 1px); }
+  95% { transform: translate(2px, -1px); }
+  97% { transform: translate(-1px, 2px); }
+}
+@keyframes glitch2 {
+  0%,92%,100% { transform: translate(0); }
+  94% { transform: translate(3px, -1px); }
+  96% { transform: translate(-2px, 1px); }
+  98% { transform: translate(1px, -2px); }
+}
+
+/* ===== NEON BORDER ===== */
+.neon-border {
+  position: relative;
+}
+.neon-border::after {
+  content: '';
+  position: absolute; inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(0,240,255,0.3), transparent 40%, transparent 60%, rgba(191,90,242,0.3));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* ===== FLOAT ANIMATION ===== */
+.float { animation: float 6s ease-in-out infinite; }
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+/* ===== AD CONTAINER ===== */
+.ad-container {
+  border: 1px dashed rgba(0, 240, 255, 0.1);
+  border-radius: 12px;
+  padding: 1rem;
+  text-align: center;
+  background: rgba(0, 240, 255, 0.02);
+  min-height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(0, 240, 255, 0.2);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }

@@ -22,10 +22,13 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="tr" className="dark">
-      <body className="min-h-screen bg-[#080b14] antialiased">
-        <Navbar />
-        <main className="pt-16">{children}</main>
-        <Footer />
+      <body className="scanline min-h-screen bg-[#05080f] antialiased">
+        <div className="grid-bg pointer-events-none fixed inset-0 z-0" />
+        <div className="relative z-10">
+          <Navbar />
+          <main className="pt-16">{children}</main>
+          <Footer />
+        </div>
       </body>
     </html>
   );
