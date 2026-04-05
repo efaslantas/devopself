@@ -28,6 +28,6 @@ jobs:
           server: ${{ secrets.FTP_HOST }}
           username: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASS }}
-          server-dir: /public_html/
+          server-dir: /
           local-dir: ./out/
           dangerous-clean-slate: true
