@@ -2,12 +2,28 @@ import type { Metadata } from "next";
 import { BlogCard } from "@/components/blog-card";
 import { AdSlot } from "@/components/ad-slot";
 import { blogPosts } from "@/lib/data";
+import { getAllMarkdownPosts } from "@/lib/markdown";
 
 export const metadata: Metadata = { title: "Blog" };
 
 export default function BlogPage() {
-  const featured = blogPosts.filter((p) => p.featured);
-  const rest = blogPosts.filter((p) => !p.featured);
+  // Combine static + markdown posts
+  const mdPosts = getAllMarkdownPosts().map((p) => ({
+    slug: p.slug,
+    title: p.title,
+    excerpt: p.excerpt,
+    category: p.category,
+    date: p.date,
+    readTime: p.readTime,
+    featured: p.featured,
+  }));
+
+  const allPosts = [...mdPosts, ...blogPosts].sort(
+    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+  );
+
+  const featured = allPosts.filter((p) => p.featured);
+  const rest = allPosts.filter((p) => !p.featured);
 
   return (
     <>
@@ -16,6 +32,9 @@ export default function BlogPage() {
           <h1 className="neon-glow text-4xl font-black">Blog</h1>
           <p className="mt-3 max-w-2xl text-lg text-slate-400">
             DevOps, AI, platform engineering ve daha fazlası hakkında derinlemesine yazılar.
+          </p>
+          <p className="mt-2 text-sm text-[#00f0ff]/50 font-mono">
+            {allPosts.length} makale yayında
           </p>
         </div>
       </section>
@@ -31,7 +50,6 @@ export default function BlogPage() {
         </section>
       )}
 
-      {/* Ad: Between sections */}
       <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
         <AdSlot size="banner" />
       </div>
@@ -45,7 +63,6 @@ export default function BlogPage() {
         </div>
       </section>
 
-      {/* Ad: Bottom */}
       <div className="mx-auto max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
         <AdSlot size="leaderboard" />
       </div>
