@@ -73,7 +73,7 @@ export default function ToolsPage() {
 
       <section className="border-t border-[#00f0ff]/10">
         <div className="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8">
-          <Newsletter />
+          <Newsletter locale={locale} />
         </div>
       </section>
     </>

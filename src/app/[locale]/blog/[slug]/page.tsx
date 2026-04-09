@@ -160,7 +160,7 @@ export default async function BlogPostPage({ params }: Props) {
           </div>
         )}
 
-        <div className="mt-12"><Newsletter /></div>
+        <div className="mt-12"><Newsletter locale={locale} /></div>
       </div>
     );
   }
@@ -211,7 +211,7 @@ export default async function BlogPostPage({ params }: Props) {
         </div>
       )}
 
-      <div className="mt-12"><Newsletter /></div>
+      <div className="mt-12"><Newsletter locale={locale} /></div>
     </div>
   );
 }

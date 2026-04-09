@@ -89,7 +89,7 @@ export default async function CategoryDetail({ params }: Props) {
 
       <AdSlot size="banner" className="mt-10 mb-10" />
 
-      <Newsletter />
+      <Newsletter locale={locale} />
     </div>
   );
 }

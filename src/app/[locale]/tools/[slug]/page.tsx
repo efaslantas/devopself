@@ -186,7 +186,7 @@ export default async function ToolDetail({ params }: Props) {
       )}
 
       {/* Newsletter */}
-      <div className="mt-12"><Newsletter /></div>
+      <div className="mt-12"><Newsletter locale={locale} /></div>
     </div>
   );
 }
