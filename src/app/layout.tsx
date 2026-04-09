@@ -80,16 +80,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body className="scanline min-h-screen bg-[#05080f] antialiased">
-        {/* Google Analytics - Replace GA_MEASUREMENT_ID when available */}
-        {/*
-        <Script src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX" strategy="afterInteractive" />
+        <Script src="https://www.googletagmanager.com/gtag/js?id=G-TS2QNVMM3N" strategy="afterInteractive" />
         <Script id="google-analytics" strategy="afterInteractive">
           {`window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
-          gtag('config', 'G-XXXXXXXXXX');`}
+          gtag('config', 'G-TS2QNVMM3N');`}
         </Script>
-        */}
 
         <div className="grid-bg pointer-events-none fixed inset-0 z-0" />
         <div className="relative z-10">
