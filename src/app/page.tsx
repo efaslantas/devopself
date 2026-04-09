@@ -33,16 +33,22 @@ export default function Home() {
     };
     window.addEventListener("mousemove", handleMouse);
 
-    // Scroll reveal
+    // Scroll reveal - generous margins so elements appear early
     const observer = new IntersectionObserver(
       (entries) => entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("visible"); observer.unobserve(e.target); } }),
-      { threshold: 0.1, rootMargin: "0px 0px -60px 0px" }
+      { threshold: 0.01, rootMargin: "50px 0px 0px 0px" }
     );
     document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+
+    // Fallback: make all reveals visible after 2s (ensures nothing stays hidden)
+    const fallback = setTimeout(() => {
+      document.querySelectorAll(".reveal:not(.visible)").forEach((el) => el.classList.add("visible"));
+    }, 2000);
 
     return () => {
       window.removeEventListener("mousemove", handleMouse);
       observer.disconnect();
+      clearTimeout(fallback);
     };
   }, []);
 
