@@ -9,16 +9,16 @@
   },
   "home": {
     "badge": "v2.0 — 80+ tool eklendi",
-    "title": "DevOps Tool'larını",
+    "title": "Dev, Ops & AI Araçlarını",
     "titleHighlight": "Keşfet & Karşılaştır",
-    "description": "CI/CD, monitoring, IaC, container, security — tüm DevOps ekosistemini tek platformda incele. Bağımsız, tarafsız, ücretsiz.",
+    "description": "CI/CD, monitoring, IaC, security, AI ve daha fazlası — tüm yazılım ekosistemini tek platformda incele. Bağımsız, tarafsız, ücretsiz.",
     "ctaPrimary": "Karşılaştırmaları Gör",
     "ctaSecondary": "Blog",
     "statTool": "Tool",
     "statCategory": "Kategori",
     "statComparison": "Karşılaştırma",
     "whyTitle": "Neden DevOpSelf?",
-    "whySubtitle": "DevOps tool seçimini kolaylaştıran kapsamlı bir kaynak merkezi.",
+    "whySubtitle": "Yazılım dünyasındaki araç seçimini kolaylaştıran kapsamlı bir kaynak merkezi.",
     "whyRight": "Doğru Tool'u Seçmenin",
     "whyFastest": "En Hızlı Yolu",
     "howTitle": "Nasıl Çalışır?",
@@ -154,9 +154,9 @@
     "copyright": "DevOps ecosystem discovery & comparison platform"
   },
   "meta": {
-    "siteTitle": "DevOpSelf - DevOps, AI & Software Tool Karşılaştırma Platformu",
-    "siteDescription": "DevOps, AI ve Software araçlarını keşfet, karşılaştır ve doğru tooling kararını ver. 65+ tool, 10 kategori, bağımsız incelemeler.",
-    "ogTitle": "DevOpSelf - DevOps, AI & Software Tool Karşılaştırma Platformu",
-    "ogDescription": "65+ DevOps, AI ve Software aracını keşfet, karşılaştır. Bağımsız incelemeler, detaylı analizler."
+    "siteTitle": "DevOpSelf - Dev, Ops & AI Araç Karşılaştırma Platformu",
+    "siteDescription": "Yazılım geliştirme, operasyon ve AI araçlarını keşfet, karşılaştır ve doğru tooling kararını ver. 65+ tool, 10 kategori, bağımsız incelemeler.",
+    "ogTitle": "DevOpSelf - Dev, Ops & AI Araç Karşılaştırma Platformu",
+    "ogDescription": "65+ yazılım, operasyon ve AI aracını keşfet ve karşılaştır. Bağımsız incelemeler, detaylı analizler."
   }
 }

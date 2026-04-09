@@ -9,9 +9,9 @@
   },
   "home": {
     "badge": "v2.0 — 80+ tools added",
-    "title": "DevOps Tools",
+    "title": "Dev, Ops & AI Tools",
     "titleHighlight": "Discover & Compare",
-    "description": "CI/CD, monitoring, IaC, container, security — explore the entire DevOps ecosystem on one platform. Independent, unbiased, free.",
+    "description": "CI/CD, monitoring, IaC, security, AI and more — explore the entire software ecosystem on one platform. Independent, unbiased, free.",
     "ctaPrimary": "View Comparisons",
     "ctaSecondary": "Blog",
     "statTool": "Tools",
@@ -154,9 +154,9 @@
     "copyright": "DevOps ecosystem discovery & comparison platform"
   },
   "meta": {
-    "siteTitle": "DevOpSelf - DevOps, AI & Software Tool Comparison Platform",
-    "siteDescription": "Discover and compare DevOps, AI and Software tools. Make the right tooling decision. 65+ tools, 10 categories, independent reviews.",
-    "ogTitle": "DevOpSelf - DevOps, AI & Software Tool Comparison Platform",
-    "ogDescription": "Discover and compare 65+ DevOps, AI and Software tools. Independent reviews, detailed analyses."
+    "siteTitle": "DevOpSelf - Dev, Ops & AI Tool Comparison Platform",
+    "siteDescription": "Discover and compare development, operations and AI tools. Make the right tooling decision. 65+ tools, 10 categories, independent reviews.",
+    "ogTitle": "DevOpSelf - Dev, Ops & AI Tool Comparison Platform",
+    "ogDescription": "Discover and compare 65+ dev, ops and AI tools. Independent reviews, detailed analyses."
   }
 }
