@@ -23,8 +23,8 @@ export function Navbar({ locale }: { locale: string }) {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
-          <Link href={`/${locale}`} className="group flex items-center gap-1.5 text-xl font-black tracking-tight">
-            <Terminal className="h-5 w-5 text-[#00f0ff] drop-shadow-[0_0_6px_#00f0ff]" />
+          <Link href={`/${locale}`} className="group flex items-center gap-2 text-xl font-black tracking-tight">
+            <img src="/logo.jpg" alt="DevOpSelf" className="h-8 w-8 rounded-lg object-cover" style={{ filter: "drop-shadow(0 0 6px #00f0ff60)" }} />
             <span className="holo-text" data-text="Dev">Dev</span>
             <span className="text-[#00f0ff] drop-shadow-[0_0_4px_#00f0ff]">Op</span>
             <span className="text-white">Self</span>

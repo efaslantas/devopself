@@ -12,8 +12,8 @@ export function Footer({ locale }: { locale: string }) {
         <div className="grid gap-8 md:grid-cols-4">
           {/* Brand */}
           <div className="md:col-span-1">
-            <Link href={`/${locale}`} className="flex items-center gap-1 text-lg font-black">
-              <Terminal className="h-4 w-4 text-[#00f0ff] drop-shadow-[0_0_6px_#00f0ff]" />
+            <Link href={`/${locale}`} className="flex items-center gap-2 text-lg font-black">
+              <img src="/logo.jpg" alt="DevOpSelf" className="h-7 w-7 rounded-lg object-cover" style={{ filter: "drop-shadow(0 0 6px #00f0ff60)" }} />
               <span className="holo-text">Dev</span>
               <span className="text-[#00f0ff] drop-shadow-[0_0_4px_#00f0ff]">Op</span>
               <span className="text-white">Self</span>
