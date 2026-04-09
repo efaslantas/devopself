@@ -3,6 +3,7 @@ import path from "path";
 import matter from "gray-matter";
 import { remark } from "remark";
 import html from "remark-html";
+import rehypeSanitize from "rehype-sanitize";
 
 const postsDir = path.join(process.cwd(), "src/content/posts");
 
@@ -66,6 +67,20 @@ export function getMarkdownPostBySlug(slug: string): MarkdownPost | null {
 }
 
 export async function renderMarkdown(content: string): Promise<string> {
-  const result = await remark().use(html).process(content);
-  return result.toString();
+  const result = await remark()
+    .use(html, { sanitize: false })
+    .process(content);
+
+  // Sanitize HTML output to prevent XSS
+  const { unified } = await import("unified");
+  const rehypeParse = (await import("rehype-parse")).default;
+  const rehypeStringify = (await import("rehype-stringify")).default;
+
+  const sanitized = await unified()
+    .use(rehypeParse, { fragment: true })
+    .use(rehypeSanitize)
+    .use(rehypeStringify)
+    .process(result.toString());
+
+  return sanitized.toString();
 }
