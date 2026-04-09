@@ -43,8 +43,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="tr" className="dark">
       <head>
-        {/* Google AdSense - Replace with your publisher ID when approved */}
-        {/* <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossOrigin="anonymous"></script> */}
+        {/* Google AdSense */}
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1080501458617699" crossOrigin="anonymous"></script>
 
         {/* Structured Data - Organization */}
         <script

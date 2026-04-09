@@ -16,8 +16,8 @@ const sizeConfig: Record<AdSize, { height: string; adFormat: string; adSlot: str
 };
 
 // Set to true and fill in your AdSense publisher ID + slot IDs to enable real ads
-const ADSENSE_ENABLED = false;
-const ADSENSE_CLIENT = "ca-pub-XXXXXXXXXXXXXXXX";
+const ADSENSE_ENABLED = true;
+const ADSENSE_CLIENT = "ca-pub-1080501458617699";
 
 export function AdSlot({ size, className = "" }: AdSlotProps) {
   const config = sizeConfig[size];
