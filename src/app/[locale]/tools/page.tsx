@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 import { ToolCard } from "@/components/tool-card";
 import { Newsletter } from "@/components/newsletter";
 import { AdSlot } from "@/components/ad-slot";
@@ -8,6 +9,7 @@ import { tools, categories } from "@/lib/data";
 
 export default function ToolsPage() {
   const [active, setActive] = useState("all");
+  const locale = usePathname().split("/")[1] || "tr";
 
   const filtered = active === "all" ? tools : tools.filter((t) => t.category === active);
 
@@ -50,7 +52,7 @@ export default function ToolsPage() {
 
       <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {filtered.map((t) => (<ToolCard key={t.slug} tool={t} />))}
+          {filtered.map((t) => (<ToolCard key={t.slug} tool={t} locale={locale} />))}
         </div>
         {filtered.length === 0 && (
           <div className="py-20 text-center text-slate-500">Bu kategoride araç bulunamadı.</div>

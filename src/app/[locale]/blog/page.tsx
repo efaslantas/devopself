@@ -3,10 +3,18 @@ import { BlogCard } from "@/components/blog-card";
 import { AdSlot } from "@/components/ad-slot";
 import { blogPosts } from "@/lib/data";
 import { getAllMarkdownPosts } from "@/lib/markdown";
+import { locales } from "@/lib/i18n";
+
+type Props = { params: Promise<{ locale: string }> };
+
+export function generateStaticParams() {
+  return locales.map((locale) => ({ locale }));
+}
 
 export const metadata: Metadata = { title: "Blog" };
 
-export default function BlogPage() {
+export default async function BlogPage({ params }: Props) {
+  const { locale } = await params;
   // Combine static + markdown posts
   const mdPosts = getAllMarkdownPosts().map((p) => ({
     slug: p.slug,
@@ -44,7 +52,7 @@ export default function BlogPage() {
           <h2 className="mb-6 text-xl font-bold text-[#00f0ff]" style={{ textShadow: "0 0 15px #00f0ff40" }}>Öne Çıkan Yazılar</h2>
           <div className="grid gap-4 sm:grid-cols-2">
             {featured.map((post) => (
-              <BlogCard key={post.slug} post={post} />
+              <BlogCard key={post.slug} post={post} locale={locale} />
             ))}
           </div>
         </section>
@@ -58,7 +66,7 @@ export default function BlogPage() {
         <h2 className="mb-6 text-xl font-bold text-[#00f0ff]" style={{ textShadow: "0 0 15px #00f0ff40" }}>Tüm Yazılar</h2>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {rest.map((post) => (
-            <BlogCard key={post.slug} post={post} />
+            <BlogCard key={post.slug} post={post} locale={locale} />
           ))}
         </div>
       </section>

@@ -6,13 +6,17 @@ import { AdSlot } from "@/components/ad-slot";
 import { BlogCard } from "@/components/blog-card";
 import { blogPosts } from "@/lib/data";
 import { getAllMarkdownPosts, getMarkdownPostBySlug, renderMarkdown } from "@/lib/markdown";
+import { locales } from "@/lib/i18n";
 
-type Props = { params: Promise<{ slug: string }> };
+type Props = { params: Promise<{ locale: string; slug: string }> };
 
 export function generateStaticParams() {
-  const staticSlugs = blogPosts.map((p) => ({ slug: p.slug }));
-  const mdSlugs = getAllMarkdownPosts().map((p) => ({ slug: p.slug }));
-  return [...staticSlugs, ...mdSlugs];
+  const staticSlugs = blogPosts.map((p) => p.slug);
+  const mdSlugs = getAllMarkdownPosts().map((p) => p.slug);
+  const allSlugs = [...new Set([...staticSlugs, ...mdSlugs])];
+  return locales.flatMap((locale) =>
+    allSlugs.map((slug) => ({ locale, slug }))
+  );
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -24,7 +28,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function BlogPostPage({ params }: Props) {
-  const { slug } = await params;
+  const { locale, slug } = await params;
 
   // Get all posts for "related" section
   const allMdPosts = getAllMarkdownPosts();
@@ -43,9 +47,9 @@ export default async function BlogPostPage({ params }: Props) {
       <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:px-8">
         {/* Breadcrumb */}
         <div className="mb-8 flex items-center gap-2 text-sm text-slate-500">
-          <Link href="/" className="hover:text-[#00f0ff]">Ana Sayfa</Link>
+          <Link href={`/${locale}`} className="hover:text-[#00f0ff]">Ana Sayfa</Link>
           <ChevronRight className="h-3 w-3" />
-          <Link href="/blog" className="hover:text-[#00f0ff]">Blog</Link>
+          <Link href={`/${locale}/blog`} className="hover:text-[#00f0ff]">Blog</Link>
           <ChevronRight className="h-3 w-3" />
           <span className="text-slate-300 truncate max-w-[200px]">{mdPost.title}</span>
         </div>
@@ -119,7 +123,7 @@ export default async function BlogPostPage({ params }: Props) {
 
               <div className="border-t border-white/5 pt-4">
                 <h4 className="text-[10px] font-mono uppercase tracking-wider text-slate-600 mb-3">Kategori</h4>
-                <Link href="/categories" className="flex items-center gap-2 text-sm text-[#00f0ff] hover:text-white">
+                <Link href={`/${locale}/categories`} className="flex items-center gap-2 text-sm text-[#00f0ff] hover:text-white">
                   {mdPost.category} <ArrowRight className="h-3 w-3" />
                 </Link>
               </div>
@@ -143,12 +147,12 @@ export default async function BlogPostPage({ params }: Props) {
           <div className="mt-16">
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-xl font-bold text-white">Benzer Yazılar</h2>
-              <Link href="/blog" className="text-sm text-[#00f0ff] hover:text-white flex items-center gap-1">
+              <Link href={`/${locale}/blog`} className="text-sm text-[#00f0ff] hover:text-white flex items-center gap-1">
                 Tümünü Gör <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {related.map((p) => (<BlogCard key={p.slug} post={p} />))}
+              {related.map((p) => (<BlogCard key={p.slug} post={p} locale={locale} />))}
             </div>
           </div>
         )}
@@ -167,9 +171,9 @@ export default async function BlogPostPage({ params }: Props) {
   return (
     <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:px-8">
       <div className="mb-8 flex items-center gap-2 text-sm text-slate-500">
-        <Link href="/" className="hover:text-[#00f0ff]">Ana Sayfa</Link>
+        <Link href={`/${locale}`} className="hover:text-[#00f0ff]">Ana Sayfa</Link>
         <ChevronRight className="h-3 w-3" />
-        <Link href="/blog" className="hover:text-[#00f0ff]">Blog</Link>
+        <Link href={`/${locale}/blog`} className="hover:text-[#00f0ff]">Blog</Link>
         <ChevronRight className="h-3 w-3" />
         <span className="text-slate-300 truncate max-w-[200px]">{post.title}</span>
       </div>
@@ -199,7 +203,7 @@ export default async function BlogPostPage({ params }: Props) {
         <div className="mt-12">
           <h2 className="text-xl font-bold text-white mb-6">Benzer Yazılar</h2>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {related.map((p) => (<BlogCard key={p.slug} post={p} />))}
+            {related.map((p) => (<BlogCard key={p.slug} post={p} locale={locale} />))}
           </div>
         </div>
       )}

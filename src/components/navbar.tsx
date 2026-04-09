@@ -3,15 +3,16 @@
 import { useState } from "react";
 import Link from "next/link";
 import { Menu, X, Search, Terminal } from "lucide-react";
+import { LanguageSwitcher } from "./language-switcher";
 
-export function Navbar() {
+export function Navbar({ locale }: { locale: string }) {
   const [open, setOpen] = useState(false);
 
   const links = [
-    { href: "/tools", label: "Tool Karşılaştırma" },
-    { href: "/blog", label: "Blog" },
-    { href: "/categories", label: "Kategoriler" },
-    { href: "/about", label: "Hakkımızda" },
+    { href: `/${locale}/tools`, label: "Tool Karşılaştırma" },
+    { href: `/${locale}/blog`, label: "Blog" },
+    { href: `/${locale}/categories`, label: "Kategoriler" },
+    { href: `/${locale}/about`, label: "Hakkımızda" },
   ];
 
   return (
@@ -22,7 +23,7 @@ export function Navbar() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="group flex items-center gap-1.5 text-xl font-black tracking-tight">
+          <Link href={`/${locale}`} className="group flex items-center gap-1.5 text-xl font-black tracking-tight">
             <Terminal className="h-5 w-5 text-[#00f0ff] drop-shadow-[0_0_6px_#00f0ff]" />
             <span className="holo-text" data-text="Dev">Dev</span>
             <span className="text-[#00f0ff] drop-shadow-[0_0_4px_#00f0ff]">Op</span>
@@ -46,8 +47,9 @@ export function Navbar() {
             >
               <Search className="h-4 w-4" />
             </button>
+            <LanguageSwitcher locale={locale} />
             <Link
-              href="/contact"
+              href={`/${locale}/contact`}
               className="neon-border rounded-lg bg-[#00f0ff]/10 px-4 py-2 text-sm font-semibold text-[#00f0ff] transition-all duration-300 hover:bg-[#00f0ff]/20 hover:shadow-[0_0_20px_#00f0ff30]"
             >
               İletişim
@@ -84,7 +86,7 @@ export function Navbar() {
               </Link>
             ))}
             <Link
-              href="/contact"
+              href={`/${locale}/contact`}
               onClick={() => setOpen(false)}
               className="mt-2 block rounded-lg border border-[#00f0ff]/20 bg-[#00f0ff]/10 px-3 py-2.5 text-center text-sm font-semibold text-[#00f0ff]"
             >

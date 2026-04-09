@@ -6,11 +6,14 @@ import { AdSlot } from "@/components/ad-slot";
 import { Newsletter } from "@/components/newsletter";
 import { categories, tools, blogPosts } from "@/lib/data";
 import { getAllMarkdownPosts } from "@/lib/markdown";
+import { locales } from "@/lib/i18n";
 
-type Props = { params: Promise<{ slug: string }> };
+type Props = { params: Promise<{ locale: string; slug: string }> };
 
 export function generateStaticParams() {
-  return categories.map((c) => ({ slug: c.slug }));
+  return locales.flatMap((locale) =>
+    categories.map((c) => ({ locale, slug: c.slug }))
+  );
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -20,7 +23,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function CategoryDetail({ params }: Props) {
-  const { slug } = await params;
+  const { locale, slug } = await params;
   const cat = categories.find((c) => c.slug === slug);
   if (!cat) return <div className="py-40 text-center text-slate-400">Bulunamadı.</div>;
 
@@ -43,9 +46,9 @@ export default async function CategoryDetail({ params }: Props) {
     <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
       {/* Breadcrumb */}
       <div className="mb-8 flex items-center gap-2 text-sm text-slate-500">
-        <Link href="/" className="hover:text-[#00f0ff]">Ana Sayfa</Link>
+        <Link href={`/${locale}`} className="hover:text-[#00f0ff]">Ana Sayfa</Link>
         <ChevronRight className="h-3 w-3" />
-        <Link href="/categories" className="hover:text-[#00f0ff]">Kategoriler</Link>
+        <Link href={`/${locale}/categories`} className="hover:text-[#00f0ff]">Kategoriler</Link>
         <ChevronRight className="h-3 w-3" />
         <span className="text-slate-300">{cat.name}</span>
       </div>
@@ -59,7 +62,7 @@ export default async function CategoryDetail({ params }: Props) {
             <BookOpen className="inline h-3 w-3 mr-1" />{catPosts.length} yazı
           </span>
           {toolCount > 0 && (
-            <Link href={`/tools`} className="rounded-full border border-[#67e8f9]/20 bg-[#67e8f9]/5 px-3 py-1 font-mono text-xs text-[#67e8f9] hover:bg-[#67e8f9]/10 transition-colors">
+            <Link href={`/${locale}/tools`} className="rounded-full border border-[#67e8f9]/20 bg-[#67e8f9]/5 px-3 py-1 font-mono text-xs text-[#67e8f9] hover:bg-[#67e8f9]/10 transition-colors">
               {toolCount} araç →
             </Link>
           )}
@@ -71,7 +74,7 @@ export default async function CategoryDetail({ params }: Props) {
       {/* Blog posts */}
       {catPosts.length > 0 ? (
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {catPosts.map((p) => (<BlogCard key={p.slug} post={p} />))}
+          {catPosts.map((p) => (<BlogCard key={p.slug} post={p} locale={locale} />))}
         </div>
       ) : (
         <div className="holo-card rounded-2xl p-8 text-center mb-12">

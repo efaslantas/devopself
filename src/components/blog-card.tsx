@@ -2,10 +2,10 @@ import Link from "next/link";
 import { ArrowRight, Clock, Calendar } from "lucide-react";
 import type { BlogPost } from "@/lib/data";
 
-export function BlogCard({ post }: { post: BlogPost }) {
+export function BlogCard({ post, locale }: { post: BlogPost; locale: string }) {
   return (
     <Link
-      href={`/blog/${post.slug}`}
+      href={`/${locale}/blog/${post.slug}`}
       className="holo-card group flex flex-col rounded-2xl border border-[#00f0ff]/10 bg-[#0a0f1c]/80 p-6 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#00f0ff]/30 hover:shadow-[0_0_30px_#00f0ff15]"
     >
       <span className="mb-3 inline-block self-start rounded-full border border-[#00f0ff]/30 bg-[#00f0ff]/10 px-3 py-1 text-xs font-semibold text-[#00f0ff]">

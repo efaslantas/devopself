@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Terminal, Github, Twitter, Linkedin } from "lucide-react";
 
-export function Footer() {
+export function Footer({ locale }: { locale: string }) {
   return (
     <footer className="relative border-t border-[#00f0ff]/15 bg-[#05080f]/90 backdrop-blur-md">
       {/* Neon divider glow */}
@@ -12,7 +12,7 @@ export function Footer() {
         <div className="grid gap-8 md:grid-cols-4">
           {/* Brand */}
           <div className="md:col-span-1">
-            <Link href="/" className="flex items-center gap-1 text-lg font-black">
+            <Link href={`/${locale}`} className="flex items-center gap-1 text-lg font-black">
               <Terminal className="h-4 w-4 text-[#00f0ff] drop-shadow-[0_0_6px_#00f0ff]" />
               <span className="holo-text">Dev</span>
               <span className="text-[#00f0ff] drop-shadow-[0_0_4px_#00f0ff]">Op</span>
@@ -50,25 +50,25 @@ export function Footer() {
           <div>
             <h4 className="mb-3 text-sm font-semibold text-[#00f0ff] drop-shadow-[0_0_4px_#00f0ff60]">Platform</h4>
             <ul className="space-y-2">
-              <li><Link href="/tools" className="text-sm text-slate-500 transition-colors duration-300 hover:text-[#00f0ff]">Tool Karşılaştırma</Link></li>
-              <li><Link href="/blog" className="text-sm text-slate-500 transition-colors duration-300 hover:text-[#00f0ff]">Blog</Link></li>
-              <li><Link href="/categories" className="text-sm text-slate-500 transition-colors duration-300 hover:text-[#00f0ff]">Kategoriler</Link></li>
+              <li><Link href={`/${locale}/tools`} className="text-sm text-slate-500 transition-colors duration-300 hover:text-[#00f0ff]">Tool Karşılaştırma</Link></li>
+              <li><Link href={`/${locale}/blog`} className="text-sm text-slate-500 transition-colors duration-300 hover:text-[#00f0ff]">Blog</Link></li>
+              <li><Link href={`/${locale}/categories`} className="text-sm text-slate-500 transition-colors duration-300 hover:text-[#00f0ff]">Kategoriler</Link></li>
             </ul>
           </div>
           <div>
             <h4 className="mb-3 text-sm font-semibold text-[#67e8f9] drop-shadow-[0_0_4px_#67e8f960]">Kategoriler</h4>
             <ul className="space-y-2">
-              <li><Link href="/categories" className="text-sm text-slate-500 transition-colors duration-300 hover:text-[#67e8f9]">AI in DevOps</Link></li>
-              <li><Link href="/categories" className="text-sm text-slate-500 transition-colors duration-300 hover:text-[#67e8f9]">DevSecOps</Link></li>
-              <li><Link href="/categories" className="text-sm text-slate-500 transition-colors duration-300 hover:text-[#67e8f9]">Platform Engineering</Link></li>
-              <li><Link href="/categories" className="text-sm text-slate-500 transition-colors duration-300 hover:text-[#67e8f9]">Observability</Link></li>
+              <li><Link href={`/${locale}/categories`} className="text-sm text-slate-500 transition-colors duration-300 hover:text-[#67e8f9]">AI in DevOps</Link></li>
+              <li><Link href={`/${locale}/categories`} className="text-sm text-slate-500 transition-colors duration-300 hover:text-[#67e8f9]">DevSecOps</Link></li>
+              <li><Link href={`/${locale}/categories`} className="text-sm text-slate-500 transition-colors duration-300 hover:text-[#67e8f9]">Platform Engineering</Link></li>
+              <li><Link href={`/${locale}/categories`} className="text-sm text-slate-500 transition-colors duration-300 hover:text-[#67e8f9]">Observability</Link></li>
             </ul>
           </div>
           <div>
             <h4 className="mb-3 text-sm font-semibold text-[#94a3b8] drop-shadow-[0_0_4px_#94a3b860]">Şirket</h4>
             <ul className="space-y-2">
-              <li><Link href="/about" className="text-sm text-slate-500 transition-colors duration-300 hover:text-[#00f0ff]">Hakkımızda</Link></li>
-              <li><Link href="/contact" className="text-sm text-slate-500 transition-colors duration-300 hover:text-[#00f0ff]">İletişim</Link></li>
+              <li><Link href={`/${locale}/about`} className="text-sm text-slate-500 transition-colors duration-300 hover:text-[#00f0ff]">Hakkımızda</Link></li>
+              <li><Link href={`/${locale}/contact`} className="text-sm text-slate-500 transition-colors duration-300 hover:text-[#00f0ff]">İletişim</Link></li>
             </ul>
           </div>
         </div>

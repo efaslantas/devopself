@@ -16,14 +16,14 @@ const pricingLabels: Record<string, string> = {
   "open-source": "Open Source",
 };
 
-export function ToolCard({ tool }: { tool: Tool }) {
+export function ToolCard({ tool, locale }: { tool: Tool; locale: string }) {
   const scoreColor = "text-[#00f0ff] drop-shadow-[0_0_6px_#00f0ff]";
 
   const scoreBarColor = "bg-[#00f0ff]";
 
   return (
     <Link
-      href={`/tools/${tool.slug}`}
+      href={`/${locale}/tools/${tool.slug}`}
       className="holo-card group relative flex flex-col rounded-2xl border border-[#00f0ff]/10 bg-[#0a0f1c]/80 p-6 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#00f0ff]/30 hover:shadow-[0_0_30px_#00f0ff15]"
     >
       {/* Header */}

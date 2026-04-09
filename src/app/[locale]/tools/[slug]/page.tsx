@@ -5,11 +5,14 @@ import { AdSlot } from "@/components/ad-slot";
 import { ToolCard } from "@/components/tool-card";
 import { Newsletter } from "@/components/newsletter";
 import { tools, categories } from "@/lib/data";
+import { locales } from "@/lib/i18n";
 
-type Props = { params: Promise<{ slug: string }> };
+type Props = { params: Promise<{ locale: string; slug: string }> };
 
 export function generateStaticParams() {
-  return tools.map((t) => ({ slug: t.slug }));
+  return locales.flatMap((locale) =>
+    tools.map((t) => ({ locale, slug: t.slug }))
+  );
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -22,7 +25,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function ToolDetail({ params }: Props) {
-  const { slug } = await params;
+  const { locale, slug } = await params;
   const tool = tools.find((t) => t.slug === slug);
   if (!tool) return <div className="py-40 text-center text-slate-400">Bulunamadı.</div>;
 
@@ -51,9 +54,9 @@ export default async function ToolDetail({ params }: Props) {
     <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:px-8">
       {/* Breadcrumb */}
       <div className="mb-8 flex items-center gap-2 text-sm text-slate-500">
-        <Link href="/" className="hover:text-[#00f0ff]">Ana Sayfa</Link>
+        <Link href={`/${locale}`} className="hover:text-[#00f0ff]">Ana Sayfa</Link>
         <span>/</span>
-        <Link href="/tools" className="hover:text-[#00f0ff]">Tool Karşılaştırma</Link>
+        <Link href={`/${locale}/tools`} className="hover:text-[#00f0ff]">Tool Karşılaştırma</Link>
         <span>/</span>
         <span className="text-slate-300">{tool.name}</span>
       </div>
@@ -81,7 +84,7 @@ export default async function ToolDetail({ params }: Props) {
               className="flex items-center gap-2 rounded-xl bg-[#00f0ff] px-5 py-3 text-sm font-bold text-[#05080f] transition-all hover:shadow-[0_0_30px_#00f0ff40]">
               Resmi Siteyi Ziyaret Et <ExternalLink className="h-4 w-4" />
             </a>
-            <Link href="/tools" className="flex items-center gap-2 rounded-xl border border-white/10 px-5 py-3 text-sm font-semibold text-slate-300 hover:bg-white/5">
+            <Link href={`/${locale}/tools`} className="flex items-center gap-2 rounded-xl border border-white/10 px-5 py-3 text-sm font-semibold text-slate-300 hover:bg-white/5">
               <ArrowLeft className="h-4 w-4" /> Tüm Araçlar
             </Link>
           </div>
@@ -169,12 +172,12 @@ export default async function ToolDetail({ params }: Props) {
         <div className="mt-10">
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-xl font-bold text-white">Benzer Araçlar</h2>
-            <Link href="/tools" className="text-sm text-[#00f0ff] hover:text-white flex items-center gap-1">
+            <Link href={`/${locale}/tools`} className="text-sm text-[#00f0ff] hover:text-white flex items-center gap-1">
               Tümünü Gör <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {related.map((t) => (<ToolCard key={t.slug} tool={t} />))}
+            {related.map((t) => (<ToolCard key={t.slug} tool={t} locale={locale} />))}
           </div>
         </div>
       )}

@@ -4,6 +4,13 @@ import { Brain, Shield, Layers, Users, GitBranch, Activity, ArrowRight, Server, 
 import { AdSlot } from "@/components/ad-slot";
 import { categories, blogPosts } from "@/lib/data";
 import { getAllMarkdownPosts } from "@/lib/markdown";
+import { locales } from "@/lib/i18n";
+
+type Props = { params: Promise<{ locale: string }> };
+
+export function generateStaticParams() {
+  return locales.map((locale) => ({ locale }));
+}
 
 export const metadata: Metadata = { title: "Kategoriler" };
 
@@ -13,7 +20,8 @@ const iconMap: Record<string, typeof Brain> = {
   cloud: Cloud, code: Code, database: Database,
 };
 
-export default function CategoriesPage() {
+export default async function CategoriesPage({ params }: Props) {
+  const { locale } = await params;
   const mdPosts = getAllMarkdownPosts().map((p) => ({ category: p.category }));
   const allBlog = [...mdPosts, ...blogPosts.map((p) => ({ category: p.category }))];
 
@@ -43,7 +51,7 @@ export default function CategoriesPage() {
             return (
               <Link
                 key={cat.slug}
-                href={`/categories/${cat.slug}`}
+                href={`/${locale}/categories/${cat.slug}`}
                 className="group rounded-2xl border border-[#00f0ff]/10 bg-white/[0.02] p-6 backdrop-blur-sm transition-all hover:scale-[1.02] hover:border-[#00f0ff]/25 hover:shadow-[0_0_30px_#00f0ff08]"
               >
                 <Icon className="mb-4 h-8 w-8 text-[#00f0ff]" style={{ filter: "drop-shadow(0 0 8px #00f0ff60)" }} />
