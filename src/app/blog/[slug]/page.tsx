@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowLeft, Calendar, Clock, Tag } from "lucide-react";
+import { ArrowLeft, Calendar, Clock, Tag, Share2, BookOpen, ArrowRight, ChevronRight } from "lucide-react";
 import { Newsletter } from "@/components/newsletter";
 import { AdSlot } from "@/components/ad-slot";
+import { BlogCard } from "@/components/blog-card";
 import { blogPosts } from "@/lib/data";
 import { getAllMarkdownPosts, getMarkdownPostBySlug, renderMarkdown } from "@/lib/markdown";
 
@@ -25,112 +26,185 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function BlogPostPage({ params }: Props) {
   const { slug } = await params;
 
+  // Get all posts for "related" section
+  const allMdPosts = getAllMarkdownPosts();
+  const allPosts = [
+    ...allMdPosts.map((p) => ({ slug: p.slug, title: p.title, excerpt: p.excerpt, category: p.category, date: p.date, readTime: p.readTime, featured: p.featured })),
+    ...blogPosts,
+  ];
+
   // Try markdown first
   const mdPost = getMarkdownPostBySlug(slug);
   if (mdPost) {
     const htmlContent = await renderMarkdown(mdPost.content);
+    const related = allPosts.filter((p) => p.category === mdPost.category && p.slug !== slug).slice(0, 3);
+
     return (
-      <article className="mx-auto max-w-3xl px-4 py-20 sm:px-6 lg:px-8">
-        <Link href="/blog" className="mb-8 inline-flex items-center gap-2 text-sm text-[#00f0ff]/70 hover:text-[#00f0ff]">
-          <ArrowLeft className="h-4 w-4" /> Tüm Yazılar
-        </Link>
-
-        <span className="neon-border mb-4 inline-block rounded-full bg-[#00f0ff]/10 px-3 py-1 text-xs font-semibold text-[#00f0ff]">
-          {mdPost.category}
-        </span>
-
-        <h1 className="mb-4 text-3xl sm:text-4xl font-black leading-tight text-white">{mdPost.title}</h1>
-
-        <div className="mb-6 flex flex-wrap items-center gap-4 text-sm text-slate-500">
-          <span className="flex items-center gap-1">
-            <Calendar className="h-4 w-4 text-[#00f0ff]/50" />
-            {new Date(mdPost.date).toLocaleDateString("tr-TR", { day: "numeric", month: "long", year: "numeric" })}
-          </span>
-          <span className="flex items-center gap-1">
-            <Clock className="h-4 w-4 text-[#00f0ff]/50" />
-            {mdPost.readTime}
-          </span>
+      <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:px-8">
+        {/* Breadcrumb */}
+        <div className="mb-8 flex items-center gap-2 text-sm text-slate-500">
+          <Link href="/" className="hover:text-[#00f0ff]">Ana Sayfa</Link>
+          <ChevronRight className="h-3 w-3" />
+          <Link href="/blog" className="hover:text-[#00f0ff]">Blog</Link>
+          <ChevronRight className="h-3 w-3" />
+          <span className="text-slate-300 truncate max-w-[200px]">{mdPost.title}</span>
         </div>
 
-        {mdPost.tags.length > 0 && (
-          <div className="mb-8 flex flex-wrap gap-2">
-            {mdPost.tags.map((tag) => (
-              <span key={tag} className="flex items-center gap-1 rounded-md border border-[#00f0ff]/10 bg-[#00f0ff]/5 px-2 py-0.5 font-mono text-xs text-slate-400">
-                <Tag className="h-3 w-3" /> {tag}
+        <div className="grid lg:grid-cols-3 gap-10">
+          {/* Main content */}
+          <article className="lg:col-span-2">
+            <span className="neon-border mb-4 inline-block rounded-full bg-[#00f0ff]/10 px-3 py-1 text-xs font-semibold text-[#00f0ff]">
+              {mdPost.category}
+            </span>
+
+            <h1 className="mb-4 text-3xl sm:text-4xl font-black leading-tight text-white">{mdPost.title}</h1>
+
+            <div className="mb-6 flex flex-wrap items-center gap-4 text-sm text-slate-500">
+              <span className="flex items-center gap-1.5">
+                <Calendar className="h-4 w-4 text-[#00f0ff]/50" />
+                {new Date(mdPost.date).toLocaleDateString("tr-TR", { day: "numeric", month: "long", year: "numeric" })}
               </span>
-            ))}
+              <span className="flex items-center gap-1.5">
+                <Clock className="h-4 w-4 text-[#00f0ff]/50" />
+                {mdPost.readTime}
+              </span>
+              <span className="flex items-center gap-1.5">
+                <BookOpen className="h-4 w-4 text-[#00f0ff]/50" />
+                Makale
+              </span>
+            </div>
+
+            {mdPost.tags.length > 0 && (
+              <div className="mb-8 flex flex-wrap gap-2">
+                {mdPost.tags.map((tag) => (
+                  <span key={tag} className="flex items-center gap-1 rounded-md border border-[#00f0ff]/10 bg-[#00f0ff]/5 px-2 py-0.5 font-mono text-xs text-slate-400">
+                    <Tag className="h-3 w-3" /> {tag}
+                  </span>
+                ))}
+              </div>
+            )}
+
+            <AdSlot size="leaderboard" className="mb-8" />
+
+            {/* Article body */}
+            <div
+              className="prose prose-invert max-w-none
+                prose-headings:text-white prose-headings:font-bold
+                prose-h2:text-2xl prose-h2:mt-10 prose-h2:mb-4 prose-h2:pb-2 prose-h2:border-b prose-h2:border-[#00f0ff]/10
+                prose-h3:text-lg prose-h3:mt-8 prose-h3:mb-3
+                prose-p:text-slate-300 prose-p:leading-relaxed prose-p:mb-4
+                prose-a:text-[#00f0ff] prose-a:no-underline hover:prose-a:underline
+                prose-strong:text-white
+                prose-code:text-[#00f0ff] prose-code:bg-[#00f0ff]/5 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:text-sm prose-code:font-mono prose-code:before:content-none prose-code:after:content-none
+                prose-pre:bg-[#0a0f1a] prose-pre:border prose-pre:border-[#00f0ff]/10 prose-pre:rounded-xl prose-pre:shadow-lg
+                prose-li:text-slate-300 prose-li:marker:text-[#00f0ff]/40
+                prose-ul:my-4 prose-ol:my-4
+                prose-hr:border-[#00f0ff]/10
+                prose-blockquote:border-l-[#00f0ff]/30 prose-blockquote:bg-[#00f0ff]/[0.02] prose-blockquote:rounded-r-xl prose-blockquote:py-1 prose-blockquote:text-slate-400
+                prose-img:rounded-xl"
+              dangerouslySetInnerHTML={{ __html: htmlContent }}
+            />
+
+            <div className="my-10"><AdSlot size="banner" /></div>
+          </article>
+
+          {/* Sidebar */}
+          <aside className="lg:col-span-1 space-y-6">
+            {/* Table of contents placeholder */}
+            <div className="holo-card rounded-2xl p-5 sticky top-24">
+              <h3 className="text-sm font-bold text-white mb-3 flex items-center gap-2">
+                <BookOpen className="h-4 w-4 text-[#00f0ff]" /> Bu Yaz\u0131da
+              </h3>
+              <p className="text-xs text-slate-500 leading-relaxed mb-4">{mdPost.excerpt}</p>
+
+              <div className="border-t border-white/5 pt-4">
+                <h4 className="text-[10px] font-mono uppercase tracking-wider text-slate-600 mb-3">Kategori</h4>
+                <Link href="/categories" className="flex items-center gap-2 text-sm text-[#00f0ff] hover:text-white">
+                  {mdPost.category} <ArrowRight className="h-3 w-3" />
+                </Link>
+              </div>
+
+              <div className="border-t border-white/5 pt-4 mt-4">
+                <h4 className="text-[10px] font-mono uppercase tracking-wider text-slate-600 mb-3">Etiketler</h4>
+                <div className="flex flex-wrap gap-1.5">
+                  {mdPost.tags.map((tag) => (
+                    <span key={tag} className="rounded bg-white/[0.04] px-2 py-0.5 font-mono text-[10px] text-slate-500">{tag}</span>
+                  ))}
+                </div>
+              </div>
+
+              <AdSlot size="sidebar" className="mt-5" />
+            </div>
+          </aside>
+        </div>
+
+        {/* Related posts */}
+        {related.length > 0 && (
+          <div className="mt-16">
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="text-xl font-bold text-white">Benzer Yaz\u0131lar</h2>
+              <Link href="/blog" className="text-sm text-[#00f0ff] hover:text-white flex items-center gap-1">
+                T\u00fcm\u00fcn\u00fc G\u00f6r <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {related.map((p) => (<BlogCard key={p.slug} post={p} />))}
+            </div>
           </div>
         )}
 
-        <div className="mb-8"><AdSlot size="leaderboard" /></div>
-
-        {/* Rendered markdown content */}
-        <div
-          className="prose prose-invert max-w-none
-            prose-headings:text-white prose-headings:font-bold
-            prose-h2:text-2xl prose-h2:mt-10 prose-h2:mb-4 prose-h2:text-[#00f0ff]
-            prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-3
-            prose-p:text-slate-300 prose-p:leading-relaxed
-            prose-a:text-[#00f0ff] prose-a:no-underline hover:prose-a:underline
-            prose-strong:text-white
-            prose-code:text-[#00f0ff] prose-code:bg-[#00f0ff]/5 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:text-sm prose-code:font-mono
-            prose-pre:bg-[#0a0f1a] prose-pre:border prose-pre:border-[#00f0ff]/10 prose-pre:rounded-xl
-            prose-li:text-slate-300
-            prose-hr:border-[#00f0ff]/10
-            prose-blockquote:border-[#00f0ff]/30 prose-blockquote:text-slate-400
-            prose-img:rounded-xl"
-          dangerouslySetInnerHTML={{ __html: htmlContent }}
-        />
-
-        <div className="my-10"><AdSlot size="banner" /></div>
-
-        <div className="mt-12">
-          <Newsletter />
-        </div>
-      </article>
+        <div className="mt-12"><Newsletter /></div>
+      </div>
     );
   }
 
-  // Fallback to static blog post
+  // Fallback: static post (excerpt only)
   const post = blogPosts.find((p) => p.slug === slug);
-  if (!post) return <div className="py-40 text-center text-slate-400">Bulunamadı.</div>;
+  if (!post) return <div className="py-40 text-center text-slate-400">Bulunamad\u0131.</div>;
+
+  const related = allPosts.filter((p) => p.category === post.category && p.slug !== slug).slice(0, 3);
 
   return (
-    <article className="mx-auto max-w-3xl px-4 py-20 sm:px-6 lg:px-8">
-      <Link href="/blog" className="mb-8 inline-flex items-center gap-2 text-sm text-[#00f0ff]/70 hover:text-[#00f0ff]">
-        <ArrowLeft className="h-4 w-4" /> Tüm Yazılar
-      </Link>
+    <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:px-8">
+      <div className="mb-8 flex items-center gap-2 text-sm text-slate-500">
+        <Link href="/" className="hover:text-[#00f0ff]">Ana Sayfa</Link>
+        <ChevronRight className="h-3 w-3" />
+        <Link href="/blog" className="hover:text-[#00f0ff]">Blog</Link>
+        <ChevronRight className="h-3 w-3" />
+        <span className="text-slate-300 truncate max-w-[200px]">{post.title}</span>
+      </div>
 
-      <span className="neon-border mb-4 inline-block rounded-full bg-[#00f0ff]/10 px-3 py-1 text-xs font-semibold text-[#00f0ff]">
-        {post.category}
-      </span>
-
-      <h1 className="mb-4 text-4xl font-black leading-tight text-white">{post.title}</h1>
-
-      <div className="mb-8 flex items-center gap-4 text-sm text-slate-500">
-        <span className="flex items-center gap-1">
-          <Calendar className="h-4 w-4 text-[#00f0ff]/50" />
-          {new Date(post.date).toLocaleDateString("tr-TR", { day: "numeric", month: "short", year: "numeric" })}
+      <article className="mx-auto max-w-3xl">
+        <span className="neon-border mb-4 inline-block rounded-full bg-[#00f0ff]/10 px-3 py-1 text-xs font-semibold text-[#00f0ff]">
+          {post.category}
         </span>
-        <span className="flex items-center gap-1">
-          <Clock className="h-4 w-4 text-[#00f0ff]/50" />
-          {post.readTime}
-        </span>
-      </div>
+        <h1 className="mb-4 text-4xl font-black leading-tight text-white">{post.title}</h1>
+        <div className="mb-8 flex items-center gap-4 text-sm text-slate-500">
+          <span className="flex items-center gap-1"><Calendar className="h-4 w-4 text-[#00f0ff]/50" />{new Date(post.date).toLocaleDateString("tr-TR", { day: "numeric", month: "long", year: "numeric" })}</span>
+          <span className="flex items-center gap-1"><Clock className="h-4 w-4 text-[#00f0ff]/50" />{post.readTime}</span>
+        </div>
 
-      <div className="holo-card rounded-2xl p-8 text-slate-300">
-        <p className="text-lg leading-relaxed">{post.excerpt}</p>
-        <hr className="my-6 border-[#00f0ff]/10" />
-        <p className="text-slate-400">
-          Bu yazı yakında tam haliyle yayınlanacak. Bültenimize abone olarak yayınlandığında haberdar olabilirsiniz.
-        </p>
-      </div>
+        <div className="holo-card rounded-2xl p-8 text-slate-300">
+          <p className="text-lg leading-relaxed mb-6">{post.excerpt}</p>
+          <div className="rounded-xl border border-[#00f0ff]/10 bg-[#00f0ff]/[0.03] p-4 text-center">
+            <p className="text-sm text-slate-400">Bu yaz\u0131 yak\u0131nda tam haliyle yay\u0131nlanacak.</p>
+            <p className="mt-1 text-xs text-[#00f0ff]/50">B\u00fcltenimize abone olarak haberdar olun.</p>
+          </div>
+        </div>
 
-      <div className="my-8"><AdSlot size="banner" /></div>
+        <div className="my-8"><AdSlot size="banner" /></div>
+      </article>
 
-      <div className="mt-12">
-        <Newsletter />
-      </div>
-    </article>
+      {related.length > 0 && (
+        <div className="mt-12">
+          <h2 className="text-xl font-bold text-white mb-6">Benzer Yaz\u0131lar</h2>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {related.map((p) => (<BlogCard key={p.slug} post={p} />))}
+          </div>
+        </div>
+      )}
+
+      <div className="mt-12"><Newsletter /></div>
+    </div>
   );
 }
