@@ -268,7 +268,7 @@ export default function Home() {
               <h2 className="text-2xl font-bold text-white mb-6">İlgi Alanına Göre Keşfet</h2>
               <div className="space-y-2">
                 {categories.map((cat) => (
-                  <Link key={cat.slug} href="/categories" className="group flex items-center justify-between rounded-xl border border-white/[0.04] bg-white/[0.02] p-3.5 transition-all hover:border-[#00f0ff]/15 hover:bg-white/[0.03]">
+                  <Link key={cat.slug} href={`/categories/${cat.slug}`} className="group flex items-center justify-between rounded-xl border border-white/[0.04] bg-white/[0.02] p-3.5 transition-all hover:border-[#00f0ff]/15 hover:bg-white/[0.03]">
                     <div className="min-w-0">
                       <h3 className="text-sm font-bold text-white group-hover:text-[#00f0ff] transition-colors truncate">{cat.name}</h3>
                       <p className="text-[11px] text-slate-500 truncate">{cat.description}</p>
