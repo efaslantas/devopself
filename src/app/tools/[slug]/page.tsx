@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const tool = tools.find((t) => t.slug === slug);
   return {
-    title: tool ? `${tool.name} - Detayl\u0131 \u0130nceleme` : "Tool Kar\u015f\u0131la\u015ft\u0131rma",
+    title: tool ? `${tool.name} - Detaylı İnceleme` : "Tool Karşılaştırma",
     description: tool?.description,
   };
 }
@@ -24,25 +24,25 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function ToolDetail({ params }: Props) {
   const { slug } = await params;
   const tool = tools.find((t) => t.slug === slug);
-  if (!tool) return <div className="py-40 text-center text-slate-400">Bulunamad\u0131.</div>;
+  if (!tool) return <div className="py-40 text-center text-slate-400">Bulunamadı.</div>;
 
   // Related tools from same category
   const related = tools.filter((t) => t.category === tool.category && t.slug !== tool.slug).slice(0, 3);
 
   // Score breakdown (simulated based on overall score)
   const scoreBreaks = [
-    { label: "Kullan\u0131m Kolayl\u0131\u011f\u0131", score: Math.min(10, tool.score + (Math.random() > 0.5 ? 0.3 : -0.2)), icon: Zap },
-    { label: "Dok\u00fcmantasyon", score: Math.min(10, tool.score + (Math.random() > 0.5 ? 0.2 : -0.3)), icon: BarChart3 },
+    { label: "Kullanım Kolaylığı", score: Math.min(10, tool.score + (Math.random() > 0.5 ? 0.3 : -0.2)), icon: Zap },
+    { label: "Dokümantasyon", score: Math.min(10, tool.score + (Math.random() > 0.5 ? 0.2 : -0.3)), icon: BarChart3 },
     { label: "Topluluk", score: Math.min(10, tool.score + (Math.random() > 0.5 ? 0.4 : -0.5)), icon: Users },
-    { label: "G\u00fcvenlik", score: Math.min(10, tool.score + (Math.random() > 0.5 ? 0.1 : -0.4)), icon: Shield },
+    { label: "Güvenlik", score: Math.min(10, tool.score + (Math.random() > 0.5 ? 0.1 : -0.4)), icon: Shield },
     { label: "Fiyat/Performans", score: Math.min(10, tool.score + (Math.random() > 0.5 ? 0.5 : -0.1)), icon: DollarSign },
   ].map((s) => ({ ...s, score: Math.round(s.score * 10) / 10 }));
 
   const pricingInfo: Record<string, { label: string; desc: string }> = {
-    free: { label: "Tamamen \u00dccretsiz", desc: "T\u00fcm \u00f6zellikler \u00fccretsiz kullan\u0131labilir." },
-    freemium: { label: "Freemium", desc: "\u00dccretsiz plan mevcut, geli\u015fmi\u015f \u00f6zellikler i\u00e7in \u00f6deme gerekli." },
-    paid: { label: "\u00dccretli", desc: "Kullan\u0131m i\u00e7in \u00f6deme plan\u0131 gerekli." },
-    "open-source": { label: "A\u00e7\u0131k Kaynak", desc: "Kaynak kodu a\u00e7\u0131k, \u00fccretsiz kullan\u0131labilir ve katk\u0131da bulunulabilir." },
+    free: { label: "Tamamen Ücretsiz", desc: "Tüm özellikler ücretsiz kullanılabilir." },
+    freemium: { label: "Freemium", desc: "Ücretsiz plan mevcut, gelişmiş özellikler için ödeme gerekli." },
+    paid: { label: "Ücretli", desc: "Kullanım için ödeme planı gerekli." },
+    "open-source": { label: "Açık Kaynak", desc: "Kaynak kodu açık, ücretsiz kullanılabilir ve katkıda bulunulabilir." },
   };
 
   const pi = pricingInfo[tool.pricing] || pricingInfo.free;
@@ -53,7 +53,7 @@ export default async function ToolDetail({ params }: Props) {
       <div className="mb-8 flex items-center gap-2 text-sm text-slate-500">
         <Link href="/" className="hover:text-[#00f0ff]">Ana Sayfa</Link>
         <span>/</span>
-        <Link href="/tools" className="hover:text-[#00f0ff]">Tool Kar\u015f\u0131la\u015ft\u0131rma</Link>
+        <Link href="/tools" className="hover:text-[#00f0ff]">Tool Karşılaştırma</Link>
         <span>/</span>
         <span className="text-slate-300">{tool.name}</span>
       </div>
@@ -82,7 +82,7 @@ export default async function ToolDetail({ params }: Props) {
               Resmi Siteyi Ziyaret Et <ExternalLink className="h-4 w-4" />
             </a>
             <Link href="/tools" className="flex items-center gap-2 rounded-xl border border-white/10 px-5 py-3 text-sm font-semibold text-slate-300 hover:bg-white/5">
-              <ArrowLeft className="h-4 w-4" /> T\u00fcm Ara\u00e7lar
+              <ArrowLeft className="h-4 w-4" /> Tüm Araçlar
             </Link>
           </div>
         </div>
@@ -149,7 +149,7 @@ export default async function ToolDetail({ params }: Props) {
       {/* Pricing info */}
       <div className="mt-10 holo-card rounded-2xl p-6">
         <h2 className="flex items-center gap-2 text-lg font-bold text-white mb-4">
-          <DollarSign className="h-5 w-5 text-[#00f0ff]" /> Fiyatland\u0131rma
+          <DollarSign className="h-5 w-5 text-[#00f0ff]" /> Fiyatlandırma
         </h2>
         <div className="flex items-center gap-4 rounded-xl bg-white/[0.02] border border-white/[0.04] p-4">
           <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-[#00f0ff]/15 bg-[#00f0ff]/5">
@@ -168,9 +168,9 @@ export default async function ToolDetail({ params }: Props) {
       {related.length > 0 && (
         <div className="mt-10">
           <div className="flex items-center justify-between mb-6">
-            <h2 className="text-xl font-bold text-white">Benzer Ara\u00e7lar</h2>
+            <h2 className="text-xl font-bold text-white">Benzer Araçlar</h2>
             <Link href="/tools" className="text-sm text-[#00f0ff] hover:text-white flex items-center gap-1">
-              T\u00fcm\u00fcn\u00fc G\u00f6r <ArrowRight className="h-4 w-4" />
+              Tümünü Gör <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

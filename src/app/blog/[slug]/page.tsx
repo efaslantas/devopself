@@ -113,7 +113,7 @@ export default async function BlogPostPage({ params }: Props) {
             {/* Table of contents placeholder */}
             <div className="holo-card rounded-2xl p-5 sticky top-24">
               <h3 className="text-sm font-bold text-white mb-3 flex items-center gap-2">
-                <BookOpen className="h-4 w-4 text-[#00f0ff]" /> Bu Yaz\u0131da
+                <BookOpen className="h-4 w-4 text-[#00f0ff]" /> Bu Yazıda
               </h3>
               <p className="text-xs text-slate-500 leading-relaxed mb-4">{mdPost.excerpt}</p>
 
@@ -142,9 +142,9 @@ export default async function BlogPostPage({ params }: Props) {
         {related.length > 0 && (
           <div className="mt-16">
             <div className="flex items-center justify-between mb-6">
-              <h2 className="text-xl font-bold text-white">Benzer Yaz\u0131lar</h2>
+              <h2 className="text-xl font-bold text-white">Benzer Yazılar</h2>
               <Link href="/blog" className="text-sm text-[#00f0ff] hover:text-white flex items-center gap-1">
-                T\u00fcm\u00fcn\u00fc G\u00f6r <ArrowRight className="h-4 w-4" />
+                Tümünü Gör <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -160,7 +160,7 @@ export default async function BlogPostPage({ params }: Props) {
 
   // Fallback: static post (excerpt only)
   const post = blogPosts.find((p) => p.slug === slug);
-  if (!post) return <div className="py-40 text-center text-slate-400">Bulunamad\u0131.</div>;
+  if (!post) return <div className="py-40 text-center text-slate-400">Bulunamadı.</div>;
 
   const related = allPosts.filter((p) => p.category === post.category && p.slug !== slug).slice(0, 3);
 
@@ -187,8 +187,8 @@ export default async function BlogPostPage({ params }: Props) {
         <div className="holo-card rounded-2xl p-8 text-slate-300">
           <p className="text-lg leading-relaxed mb-6">{post.excerpt}</p>
           <div className="rounded-xl border border-[#00f0ff]/10 bg-[#00f0ff]/[0.03] p-4 text-center">
-            <p className="text-sm text-slate-400">Bu yaz\u0131 yak\u0131nda tam haliyle yay\u0131nlanacak.</p>
-            <p className="mt-1 text-xs text-[#00f0ff]/50">B\u00fcltenimize abone olarak haberdar olun.</p>
+            <p className="text-sm text-slate-400">Bu yazı yakında tam haliyle yayınlanacak.</p>
+            <p className="mt-1 text-xs text-[#00f0ff]/50">Bültenimize abone olarak haberdar olun.</p>
           </div>
         </div>
 
@@ -197,7 +197,7 @@ export default async function BlogPostPage({ params }: Props) {
 
       {related.length > 0 && (
         <div className="mt-12">
-          <h2 className="text-xl font-bold text-white mb-6">Benzer Yaz\u0131lar</h2>
+          <h2 className="text-xl font-bold text-white mb-6">Benzer Yazılar</h2>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {related.map((p) => (<BlogCard key={p.slug} post={p} />))}
           </div>
