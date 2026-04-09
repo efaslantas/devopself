@@ -24,6 +24,9 @@ export default function Home() {
   const cursorRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    // Scroll to top on load
+    window.scrollTo(0, 0);
+
     // Cursor glow follower
     const handleMouse = (e: MouseEvent) => {
       if (cursorRef.current) {
