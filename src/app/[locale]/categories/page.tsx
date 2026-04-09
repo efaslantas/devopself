@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Brain, Shield, Layers, Users, GitBranch, Activity, ArrowRight, Server, Cloud, Code, Database, BookOpen } from "lucide-react";
 import { AdSlot } from "@/components/ad-slot";
-import { categories, blogPosts } from "@/lib/data";
+import { categories, blogPosts, getCategories } from "@/lib/data";
 import { getAllMarkdownPosts } from "@/lib/markdown";
-import { locales } from "@/lib/i18n";
+import { locales, type Locale, getDictionary } from "@/lib/i18n";
 
 type Props = { params: Promise<{ locale: string }> };
 
@@ -12,7 +12,11 @@ export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
 }
 
-export const metadata: Metadata = { title: "Kategoriler" };
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params;
+  const dict = await getDictionary(locale as Locale);
+  return { title: dict.categories.pageTitle };
+}
 
 const iconMap: Record<string, typeof Brain> = {
   brain: Brain, shield: Shield, layers: Layers, users: Users,
@@ -22,6 +26,8 @@ const iconMap: Record<string, typeof Brain> = {
 
 export default async function CategoriesPage({ params }: Props) {
   const { locale } = await params;
+  const dict = await getDictionary(locale as Locale);
+  const localizedCategories = getCategories(locale);
   const mdPosts = getAllMarkdownPosts().map((p) => ({ category: p.category }));
   const allBlog = [...mdPosts, ...blogPosts.map((p) => ({ category: p.category }))];
 
@@ -29,9 +35,9 @@ export default async function CategoriesPage({ params }: Props) {
     <>
       <section className="border-b border-[#00f0ff]/10">
         <div className="mx-auto max-w-7xl px-4 pb-12 pt-20 sm:px-6 lg:px-8">
-          <h1 className="neon-glow text-4xl font-black">Kategoriler</h1>
+          <h1 className="neon-glow text-4xl font-black">{dict.categories.pageTitle}</h1>
           <p className="mt-3 max-w-2xl text-lg text-slate-400">
-            DevOps, AI ve software konularında rehberler, makaleler ve derinlemesine yazılar.
+            {dict.categories.pageDesc}
           </p>
         </div>
       </section>
@@ -42,7 +48,7 @@ export default async function CategoriesPage({ params }: Props) {
 
       <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {categories.map((cat) => {
+          {localizedCategories.map((cat) => {
             const Icon = iconMap[cat.icon] || Layers;
             const postCount = allBlog.filter((p) =>
               p.category === cat.name || p.category === cat.slug ||
@@ -59,10 +65,10 @@ export default async function CategoriesPage({ params }: Props) {
                 <p className="mb-4 text-sm leading-relaxed text-slate-400">{cat.description}</p>
                 <div className="flex items-center justify-between">
                   <span className="flex items-center gap-1.5 rounded-lg bg-[#00f0ff]/10 px-2.5 py-1 text-xs font-semibold text-[#00f0ff]">
-                    <BookOpen className="h-3 w-3" /> {postCount} yazı
+                    <BookOpen className="h-3 w-3" /> {postCount} {dict.categories.posts}
                   </span>
                   <span className="flex items-center gap-1 text-sm font-semibold text-[#00f0ff] transition-all group-hover:gap-2">
-                    Keşfet <ArrowRight className="h-4 w-4" />
+                    {dict.categories.explore} <ArrowRight className="h-4 w-4" />
                   </span>
                 </div>
               </Link>

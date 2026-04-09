@@ -8,16 +8,12 @@ import { ToolCard } from "@/components/tool-card";
 import { BlogCard } from "@/components/blog-card";
 import { Newsletter } from "@/components/newsletter";
 import { AdSlot } from "@/components/ad-slot";
-import { tools, blogPosts, categories } from "@/lib/data";
+import { tools, blogPosts, categories, getTools, getBlogPosts, getCategories } from "@/lib/data";
+import trDict from "@/lib/dictionaries/tr.json";
+import enDict from "@/lib/dictionaries/en.json";
+import ruDict from "@/lib/dictionaries/ru.json";
 
-const features = [
-  { icon: Brain, title: "AI-Powered Insights", desc: "Yapay zeka destekli tool önerileri ve karşılaştırma analizleri." },
-  { icon: BarChart3, title: "Detaylı Karşılaştırma", desc: "Yan yana feature comparison tabloları ile doğru tool'u seç." },
-  { icon: Shield, title: "Security-First", desc: "DevSecOps odaklı incelemeler ve güvenlik skorları." },
-  { icon: Zap, title: "Performans Analizi", desc: "Benchmark sonuçları ve gerçek dünya performans verileri." },
-  { icon: GitBranch, title: "Pipeline Rehberleri", desc: "CI/CD pipeline tasarım şablonları ve best practice'ler." },
-  { icon: Layers, title: "Stack Önerileri", desc: "Use-case bazlı teknoloji stack önerileri ve mimari rehberler." },
-];
+const dicts = { tr: trDict, en: enDict, ru: ruDict };
 
 const marqueeTools = ["Kubernetes", "Terraform", "Docker", "ArgoCD", "Prometheus", "Grafana", "Jenkins", "GitLab", "Datadog", "Vault", "Ansible", "Pulumi", "Trivy", "Snyk", "Flux", "Helm"];
 
@@ -25,6 +21,19 @@ export default function Home() {
   const cursorRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
   const locale = pathname.split("/")[1] || "tr";
+  const dict = dicts[locale as keyof typeof dicts] || trDict;
+  const localizedTools = getTools(locale);
+  const localizedBlogPosts = getBlogPosts(locale);
+  const localizedCategories = getCategories(locale);
+
+  const features = [
+    { icon: Brain, title: dict.features.aiInsights, desc: dict.features.aiInsightsDesc },
+    { icon: BarChart3, title: dict.features.comparison, desc: dict.features.comparisonDesc },
+    { icon: Shield, title: dict.features.security, desc: dict.features.securityDesc },
+    { icon: Zap, title: dict.features.performance, desc: dict.features.performanceDesc },
+    { icon: GitBranch, title: dict.features.pipeline, desc: dict.features.pipelineDesc },
+    { icon: Layers, title: dict.features.stack, desc: dict.features.stackDesc },
+  ];
 
   useEffect(() => {
     // Scroll to top on load
@@ -76,30 +85,30 @@ export default function Home() {
             <div className="lg:col-span-3">
               <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#00f0ff]/15 bg-[#00f0ff]/5 px-4 py-1.5">
                 <span className="relative flex h-2 w-2"><span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#00f0ff] opacity-40" /><span className="relative inline-flex h-2 w-2 rounded-full bg-[#00f0ff]" /></span>
-                <span className="font-mono text-[11px] text-[#00f0ff]">v2.0 &mdash; 80+ tool eklendi</span>
+                <span className="font-mono text-[11px] text-[#00f0ff]">{dict.home.badge}</span>
               </div>
 
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-[1.05] tracking-tight">
-                DevOps Tool&apos;larını<br/>
-                <span className="holo-text">Keşfet &amp; Karşılaştır</span>
+                {dict.home.title}<br/>
+                <span className="holo-text">{dict.home.titleHighlight}</span>
               </h1>
 
               <p className="mt-5 text-base sm:text-lg text-slate-400 max-w-xl leading-relaxed">
-                CI/CD, monitoring, IaC, container, security &mdash; tüm DevOps ekosistemini tek platformda incele. Bağımsız, tarafsız, ücretsiz.
+                {dict.home.description}
               </p>
 
               <div className="mt-8 flex flex-wrap gap-3">
                 <Link href={`/${locale}/tools`} className="group flex items-center gap-2 rounded-xl bg-[#00f0ff] px-5 py-3 text-sm font-bold text-[#05080f] transition-all hover:shadow-[0_0_30px_#00f0ff40]">
-                  Karşılaştırmaları Gör <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  {dict.home.ctaPrimary} <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </Link>
                 <Link href={`/${locale}/blog`} className="flex items-center gap-2 rounded-xl border border-white/10 px-5 py-3 text-sm font-semibold text-slate-300 transition-all hover:bg-white/5">
-                  <Sparkles className="h-4 w-4 text-[#00f0ff]" /> Blog
+                  <Sparkles className="h-4 w-4 text-[#00f0ff]" /> {dict.home.ctaSecondary}
                 </Link>
               </div>
 
               {/* Mini stats inline */}
               <div className="mt-10 flex gap-8">
-                {[{ n: "80+", l: "Tool" }, { n: "12", l: "Kategori" }, { n: "30+", l: "Karşılaştırma" }].map((s) => (
+                {[{ n: "80+", l: dict.home.statTool }, { n: "12", l: dict.home.statCategory }, { n: "30+", l: dict.home.statComparison }].map((s) => (
                   <div key={s.l}>
                     <div className="text-2xl font-black text-white counter">{s.n}</div>
                     <div className="text-[11px] text-slate-500 uppercase tracking-wider">{s.l}</div>
@@ -130,7 +139,7 @@ export default function Home() {
                   <div className="mt-3 text-slate-600">
                     <span className="text-[#00f0ff]">$</span> devopself recommend --use-case &quot;microservices&quot;
                   </div>
-                  <div className="mt-1 text-[#00f0ff]/60">&gt; Öneri: Kubernetes + ArgoCD + Prometheus</div>
+                  <div className="mt-1 text-[#00f0ff]/60">&gt; Kubernetes + ArgoCD + Prometheus</div>
                   <div className="mt-2 text-slate-600"><span className="text-[#00f0ff]">$</span> <span className="typing-cursor">_</span></div>
                 </div>
               </div>
@@ -140,7 +149,7 @@ export default function Home() {
 
         {/* Scroll indicator */}
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
-          <span className="text-[10px] uppercase tracking-[3px] text-slate-600">Scroll</span>
+          <span className="text-[10px] uppercase tracking-[3px] text-slate-600">{dict.home.scroll}</span>
           <div className="h-8 w-[1px] bg-gradient-to-b from-[#00f0ff]/40 to-transparent animate-pulse" />
         </div>
       </section>
@@ -164,8 +173,8 @@ export default function Home() {
       <section className="border-t border-white/[0.03]">
         <div className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
           <div className="reveal mx-auto mb-16 max-w-xl text-center">
-            <p className="mb-2 font-mono text-[11px] uppercase tracking-[3px] text-[#00f0ff]">Neden DevOpSelf?</p>
-            <h2 className="text-3xl font-bold text-white">Doğru Tool&apos;u Seçmenin<br/><span className="text-slate-500">En Hızlı Yolu</span></h2>
+            <p className="mb-2 font-mono text-[11px] uppercase tracking-[3px] text-[#00f0ff]">{dict.home.whyTitle}</p>
+            <h2 className="text-3xl font-bold text-white">{dict.home.whyRight}<br/><span className="text-slate-500">{dict.home.whyFastest}</span></h2>
           </div>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {features.map((f, i) => (
@@ -185,14 +194,14 @@ export default function Home() {
       <section className="border-t border-white/[0.03] bg-white/[0.01]">
         <div className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
           <div className="reveal mx-auto mb-16 max-w-xl text-center">
-            <p className="mb-2 font-mono text-[11px] uppercase tracking-[3px] text-[#00f0ff]">Nasıl Çalışır?</p>
-            <h2 className="text-3xl font-bold text-white">3 Adımda Doğru Aracı Bul</h2>
+            <p className="mb-2 font-mono text-[11px] uppercase tracking-[3px] text-[#00f0ff]">{dict.home.howTitle}</p>
+            <h2 className="text-3xl font-bold text-white">{dict.home.howSubtitle}</h2>
           </div>
           <div className="grid md:grid-cols-3 gap-6">
             {[
-              { num: "01", icon: Search, title: "Keşfet", desc: "12 kategoride 80+ tool'u incele ve filtrele." },
-              { num: "02", icon: BarChart3, title: "Karşılaştır", desc: "Yan yana pros/cons, fiyat ve performans analizi." },
-              { num: "03", icon: Zap, title: "Karar Ver", desc: "Bağımsız skorlar ve topluluk değerlendirmeleri." },
+              { num: "01", icon: Search, title: dict.home.step1Title, desc: dict.home.step1Desc },
+              { num: "02", icon: BarChart3, title: dict.home.step2Title, desc: dict.home.step2Desc },
+              { num: "03", icon: Zap, title: dict.home.step3Title, desc: dict.home.step3Desc },
             ].map((s, i) => (
               <div key={s.num} className="reveal relative" style={{ transitionDelay: `${i * 150}ms` }}>
                 {/* Connecting line */}
@@ -218,15 +227,15 @@ export default function Home() {
         <div className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
           <div className="reveal mb-10 flex items-end justify-between">
             <div>
-              <p className="mb-2 font-mono text-[11px] uppercase tracking-[3px] text-[#00f0ff]">Popüler</p>
-              <h2 className="text-3xl font-bold text-white">Tool Karşılaştırmaları</h2>
+              <p className="mb-2 font-mono text-[11px] uppercase tracking-[3px] text-[#00f0ff]">{dict.home.popularTitle}</p>
+              <h2 className="text-3xl font-bold text-white">{dict.home.popularSubtitle}</h2>
             </div>
             <Link href={`/${locale}/tools`} className="hidden sm:flex items-center gap-1 text-sm font-semibold text-[#00f0ff] hover:text-white transition-colors">
-              Tümünü Gör <ArrowUpRight className="h-4 w-4" />
+              {dict.home.viewAll} <ArrowUpRight className="h-4 w-4" />
             </Link>
           </div>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {tools.slice(0, 6).map((tool, i) => (
+            {localizedTools.slice(0, 6).map((tool, i) => (
               <div key={tool.slug} className="reveal" style={{ transitionDelay: `${i * 80}ms` }}>
                 <ToolCard tool={tool} locale={locale} />
               </div>
@@ -267,10 +276,10 @@ export default function Home() {
 
             {/* Categories */}
             <div className="reveal">
-              <p className="mb-2 font-mono text-[11px] uppercase tracking-[3px] text-[#00f0ff]">Kategoriler</p>
-              <h2 className="text-2xl font-bold text-white mb-6">İlgi Alanına Göre Keşfet</h2>
+              <p className="mb-2 font-mono text-[11px] uppercase tracking-[3px] text-[#00f0ff]">{dict.home.categoriesTitle}</p>
+              <h2 className="text-2xl font-bold text-white mb-6">{dict.home.categoriesSubtitle}</h2>
               <div className="space-y-2">
-                {categories.map((cat) => (
+                {localizedCategories.map((cat) => (
                   <Link key={cat.slug} href={`/${locale}/categories/${cat.slug}`} className="group flex items-center justify-between rounded-xl border border-white/[0.04] bg-white/[0.02] p-3.5 transition-all hover:border-[#00f0ff]/15 hover:bg-white/[0.03]">
                     <div className="min-w-0">
                       <h3 className="text-sm font-bold text-white group-hover:text-[#00f0ff] transition-colors truncate">{cat.name}</h3>
@@ -295,15 +304,15 @@ export default function Home() {
         <div className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
           <div className="reveal mb-10 flex items-end justify-between">
             <div>
-              <p className="mb-2 font-mono text-[11px] uppercase tracking-[3px] text-[#00f0ff]">Blog</p>
-              <h2 className="text-3xl font-bold text-white">Son Yazılar</h2>
+              <p className="mb-2 font-mono text-[11px] uppercase tracking-[3px] text-[#00f0ff]">{dict.home.blogTitle}</p>
+              <h2 className="text-3xl font-bold text-white">{dict.home.blogSubtitle}</h2>
             </div>
             <Link href={`/${locale}/blog`} className="hidden sm:flex items-center gap-1 text-sm font-semibold text-[#00f0ff] hover:text-white transition-colors">
-              Tümünü Gör <ArrowUpRight className="h-4 w-4" />
+              {dict.home.viewAll} <ArrowUpRight className="h-4 w-4" />
             </Link>
           </div>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {blogPosts.slice(0, 3).map((post, i) => (
+            {localizedBlogPosts.slice(0, 3).map((post, i) => (
               <div key={post.slug} className="reveal" style={{ transitionDelay: `${i * 100}ms` }}>
                 <BlogCard post={post} locale={locale} />
               </div>

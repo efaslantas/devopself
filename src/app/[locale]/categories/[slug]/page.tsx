@@ -4,9 +4,9 @@ import { ChevronRight, ArrowRight, BookOpen } from "lucide-react";
 import { BlogCard } from "@/components/blog-card";
 import { AdSlot } from "@/components/ad-slot";
 import { Newsletter } from "@/components/newsletter";
-import { categories, tools, blogPosts } from "@/lib/data";
+import { categories, tools, blogPosts, getCategories, getBlogPosts } from "@/lib/data";
 import { getAllMarkdownPosts } from "@/lib/markdown";
-import { locales } from "@/lib/i18n";
+import { locales, type Locale, getDictionary } from "@/lib/i18n";
 
 type Props = { params: Promise<{ locale: string; slug: string }> };
 
@@ -19,20 +19,23 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const cat = categories.find((c) => c.slug === slug);
-  return { title: cat ? `${cat.name} Yazıları` : "Kategori", description: cat?.description };
+  return { title: cat ? `${cat.name}` : "Kategori", description: cat?.description };
 }
 
 export default async function CategoryDetail({ params }: Props) {
   const { locale, slug } = await params;
-  const cat = categories.find((c) => c.slug === slug);
-  if (!cat) return <div className="py-40 text-center text-slate-400">Bulunamadı.</div>;
+  const dict = await getDictionary(locale as Locale);
+  const localizedCategories = getCategories(locale);
+  const localizedBlogPosts = getBlogPosts(locale);
+  const cat = localizedCategories.find((c) => c.slug === slug);
+  if (!cat) return <div className="py-40 text-center text-slate-400">{dict.common.notFound}</div>;
 
   // Blog posts for this category
   const mdPosts = getAllMarkdownPosts().map((p) => ({
     slug: p.slug, title: p.title, excerpt: p.excerpt,
     category: p.category, date: p.date, readTime: p.readTime, featured: p.featured,
   }));
-  const allBlog = [...mdPosts, ...blogPosts];
+  const allBlog = [...mdPosts, ...localizedBlogPosts];
   const catPosts = allBlog.filter((p) =>
     p.category === cat.name || p.category === slug ||
     p.category.toLowerCase().includes(slug.replace("-", " ")) ||
@@ -46,9 +49,9 @@ export default async function CategoryDetail({ params }: Props) {
     <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
       {/* Breadcrumb */}
       <div className="mb-8 flex items-center gap-2 text-sm text-slate-500">
-        <Link href={`/${locale}`} className="hover:text-[#00f0ff]">Ana Sayfa</Link>
+        <Link href={`/${locale}`} className="hover:text-[#00f0ff]">{dict.common.home}</Link>
         <ChevronRight className="h-3 w-3" />
-        <Link href={`/${locale}/categories`} className="hover:text-[#00f0ff]">Kategoriler</Link>
+        <Link href={`/${locale}/categories`} className="hover:text-[#00f0ff]">{dict.common.breadcrumbCategories}</Link>
         <ChevronRight className="h-3 w-3" />
         <span className="text-slate-300">{cat.name}</span>
       </div>
@@ -59,11 +62,11 @@ export default async function CategoryDetail({ params }: Props) {
         <p className="text-lg text-slate-400 max-w-2xl">{cat.description}</p>
         <div className="mt-4 flex gap-3">
           <span className="rounded-full border border-[#00f0ff]/20 bg-[#00f0ff]/5 px-3 py-1 font-mono text-xs text-[#00f0ff]">
-            <BookOpen className="inline h-3 w-3 mr-1" />{catPosts.length} yazı
+            <BookOpen className="inline h-3 w-3 mr-1" />{catPosts.length} {dict.categories.posts}
           </span>
           {toolCount > 0 && (
             <Link href={`/${locale}/tools`} className="rounded-full border border-[#67e8f9]/20 bg-[#67e8f9]/5 px-3 py-1 font-mono text-xs text-[#67e8f9] hover:bg-[#67e8f9]/10 transition-colors">
-              {toolCount} araç →
+              {toolCount} {dict.categories.tools} →
             </Link>
           )}
         </div>
@@ -79,8 +82,8 @@ export default async function CategoryDetail({ params }: Props) {
       ) : (
         <div className="holo-card rounded-2xl p-8 text-center mb-12">
           <BookOpen className="mx-auto h-10 w-10 text-[#00f0ff]/30 mb-3" />
-          <p className="text-slate-400 mb-2">Bu kategoride henüz yazı bulunmuyor.</p>
-          <p className="text-xs text-slate-600">Yakında yeni içerikler eklenecek. Bültene abone olarak haberdar olun.</p>
+          <p className="text-slate-400 mb-2">{dict.categories.noPosts}</p>
+          <p className="text-xs text-slate-600">{dict.categories.comingSoon}</p>
         </div>
       )}
 

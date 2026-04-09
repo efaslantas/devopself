@@ -2,51 +2,58 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
-import { locales, type Locale } from "@/lib/i18n";
+import { locales, type Locale, getDictionary } from "@/lib/i18n";
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
 }
 
-export const metadata: Metadata = {
-  title: {
-    default: "DevOpSelf - DevOps, AI & Software Tool Karşılaştırma Platformu",
-    template: "%s | DevOpSelf",
-  },
-  description: "DevOps, AI ve Software araçlarını keşfet, karşılaştır ve doğru tooling kararını ver. 65+ tool, 10 kategori, bağımsız incelemeler. CI/CD, Monitoring, IaC, Container, Security ve daha fazlası.",
-  keywords: ["devops", "devops tools", "ai tools", "ci/cd", "kubernetes", "terraform", "docker", "monitoring", "devsecops", "tool karşılaştırma", "devops araçları"],
-  authors: [{ name: "DevOpSelf", url: "https://devopself.com" }],
-  creator: "DevOpSelf",
-  publisher: "DevOpSelf",
-  metadataBase: new URL("https://devopself.com"),
-  alternates: { canonical: "/" },
-  openGraph: {
-    title: "DevOpSelf - DevOps, AI & Software Tool Karşılaştırma Platformu",
-    description: "65+ DevOps, AI ve Software aracını keşfet, karşılaştır. Bağımsız incelemeler, detaylı analizler.",
-    url: "https://devopself.com",
-    siteName: "DevOpSelf",
-    type: "website",
-    locale: "tr_TR",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "DevOpSelf - DevOps Tool Karşılaştırma Platformu",
-    description: "65+ DevOps, AI ve Software aracını keşfet ve karşılaştır.",
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: { index: true, follow: true, "max-video-preview": -1, "max-image-preview": "large", "max-snippet": -1 },
-  },
-  verification: {
-    google: "17-xZ6tkDRDu56aFVDIBxhoHaFo7JNtpjPVMf1IaO3Y",
-  },
-};
-
 type Props = {
   params: Promise<{ locale: string }>;
   children: React.ReactNode;
 };
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  const dict = await getDictionary(locale as Locale);
+
+  const ogLocale = locale === "tr" ? "tr_TR" : locale === "ru" ? "ru_RU" : "en_US";
+
+  return {
+    title: {
+      default: dict.meta.siteTitle,
+      template: "%s | DevOpSelf",
+    },
+    description: dict.meta.siteDescription,
+    keywords: ["devops", "devops tools", "ai tools", "ci/cd", "kubernetes", "terraform", "docker", "monitoring", "devsecops", "tool karşılaştırma", "devops araçları"],
+    authors: [{ name: "DevOpSelf", url: "https://devopself.com" }],
+    creator: "DevOpSelf",
+    publisher: "DevOpSelf",
+    metadataBase: new URL("https://devopself.com"),
+    alternates: { canonical: "/" },
+    openGraph: {
+      title: dict.meta.ogTitle,
+      description: dict.meta.ogDescription,
+      url: "https://devopself.com",
+      siteName: "DevOpSelf",
+      type: "website",
+      locale: ogLocale,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: dict.meta.siteTitle,
+      description: dict.meta.ogDescription,
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: { index: true, follow: true, "max-video-preview": -1, "max-image-preview": "large", "max-snippet": -1 },
+    },
+    verification: {
+      google: "17-xZ6tkDRDu56aFVDIBxhoHaFo7JNtpjPVMf1IaO3Y",
+    },
+  };
+}
 
 export default async function LocaleLayout({ params, children }: Props) {
   const { locale } = await params;

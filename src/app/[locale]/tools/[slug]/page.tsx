@@ -4,8 +4,8 @@ import { ArrowLeft, Star, Check, X, ExternalLink, Tag, BarChart3, Shield, Zap, D
 import { AdSlot } from "@/components/ad-slot";
 import { ToolCard } from "@/components/tool-card";
 import { Newsletter } from "@/components/newsletter";
-import { tools, categories } from "@/lib/data";
-import { locales } from "@/lib/i18n";
+import { tools, categories, getTools } from "@/lib/data";
+import { locales, type Locale, getDictionary } from "@/lib/i18n";
 
 type Props = { params: Promise<{ locale: string; slug: string }> };
 
@@ -16,36 +16,39 @@ export function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug } = await params;
+  const { locale, slug } = await params;
+  const dict = await getDictionary(locale as Locale);
   const tool = tools.find((t) => t.slug === slug);
   return {
-    title: tool ? `${tool.name} - Detaylı İnceleme` : "Tool Karşılaştırma",
+    title: tool ? `${tool.name} - ${dict.tools.detailedReview}` : dict.tools.pageTitle,
     description: tool?.description,
   };
 }
 
 export default async function ToolDetail({ params }: Props) {
   const { locale, slug } = await params;
-  const tool = tools.find((t) => t.slug === slug);
-  if (!tool) return <div className="py-40 text-center text-slate-400">Bulunamadı.</div>;
+  const dict = await getDictionary(locale as Locale);
+  const localizedTools = getTools(locale);
+  const tool = localizedTools.find((t) => t.slug === slug);
+  if (!tool) return <div className="py-40 text-center text-slate-400">{dict.common.notFound}</div>;
 
   // Related tools from same category
-  const related = tools.filter((t) => t.category === tool.category && t.slug !== tool.slug).slice(0, 3);
+  const related = localizedTools.filter((t) => t.category === tool.category && t.slug !== tool.slug).slice(0, 3);
 
   // Score breakdown (simulated based on overall score)
   const scoreBreaks = [
-    { label: "Kullanım Kolaylığı", score: Math.min(10, tool.score + (Math.random() > 0.5 ? 0.3 : -0.2)), icon: Zap },
-    { label: "Dokümantasyon", score: Math.min(10, tool.score + (Math.random() > 0.5 ? 0.2 : -0.3)), icon: BarChart3 },
-    { label: "Topluluk", score: Math.min(10, tool.score + (Math.random() > 0.5 ? 0.4 : -0.5)), icon: Users },
-    { label: "Güvenlik", score: Math.min(10, tool.score + (Math.random() > 0.5 ? 0.1 : -0.4)), icon: Shield },
-    { label: "Fiyat/Performans", score: Math.min(10, tool.score + (Math.random() > 0.5 ? 0.5 : -0.1)), icon: DollarSign },
+    { label: dict.tools.usability, score: Math.min(10, tool.score + (Math.random() > 0.5 ? 0.3 : -0.2)), icon: Zap },
+    { label: dict.tools.documentation, score: Math.min(10, tool.score + (Math.random() > 0.5 ? 0.2 : -0.3)), icon: BarChart3 },
+    { label: dict.tools.community, score: Math.min(10, tool.score + (Math.random() > 0.5 ? 0.4 : -0.5)), icon: Users },
+    { label: dict.tools.securityScore, score: Math.min(10, tool.score + (Math.random() > 0.5 ? 0.1 : -0.4)), icon: Shield },
+    { label: dict.tools.pricePerformance, score: Math.min(10, tool.score + (Math.random() > 0.5 ? 0.5 : -0.1)), icon: DollarSign },
   ].map((s) => ({ ...s, score: Math.round(s.score * 10) / 10 }));
 
   const pricingInfo: Record<string, { label: string; desc: string }> = {
-    free: { label: "Tamamen Ücretsiz", desc: "Tüm özellikler ücretsiz kullanılabilir." },
-    freemium: { label: "Freemium", desc: "Ücretsiz plan mevcut, gelişmiş özellikler için ödeme gerekli." },
-    paid: { label: "Ücretli", desc: "Kullanım için ödeme planı gerekli." },
-    "open-source": { label: "Açık Kaynak", desc: "Kaynak kodu açık, ücretsiz kullanılabilir ve katkıda bulunulabilir." },
+    free: { label: dict.tools.priceFree, desc: dict.tools.priceFreeDesc },
+    freemium: { label: dict.tools.priceFreemium, desc: dict.tools.priceFreemiumDesc },
+    paid: { label: dict.tools.pricePaid, desc: dict.tools.pricePaidDesc },
+    "open-source": { label: dict.tools.priceOpenSource, desc: dict.tools.priceOpenSourceDesc },
   };
 
   const pi = pricingInfo[tool.pricing] || pricingInfo.free;
@@ -54,9 +57,9 @@ export default async function ToolDetail({ params }: Props) {
     <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:px-8">
       {/* Breadcrumb */}
       <div className="mb-8 flex items-center gap-2 text-sm text-slate-500">
-        <Link href={`/${locale}`} className="hover:text-[#00f0ff]">Ana Sayfa</Link>
+        <Link href={`/${locale}`} className="hover:text-[#00f0ff]">{dict.common.home}</Link>
         <span>/</span>
-        <Link href={`/${locale}/tools`} className="hover:text-[#00f0ff]">Tool Karşılaştırma</Link>
+        <Link href={`/${locale}/tools`} className="hover:text-[#00f0ff]">{dict.common.breadcrumbTools}</Link>
         <span>/</span>
         <span className="text-slate-300">{tool.name}</span>
       </div>
@@ -82,10 +85,10 @@ export default async function ToolDetail({ params }: Props) {
           <div className="mt-8 flex flex-wrap gap-3">
             <a href={tool.url} target="_blank" rel="noopener noreferrer"
               className="flex items-center gap-2 rounded-xl bg-[#00f0ff] px-5 py-3 text-sm font-bold text-[#05080f] transition-all hover:shadow-[0_0_30px_#00f0ff40]">
-              Resmi Siteyi Ziyaret Et <ExternalLink className="h-4 w-4" />
+              {dict.tools.visitSite} <ExternalLink className="h-4 w-4" />
             </a>
             <Link href={`/${locale}/tools`} className="flex items-center gap-2 rounded-xl border border-white/10 px-5 py-3 text-sm font-semibold text-slate-300 hover:bg-white/5">
-              <ArrowLeft className="h-4 w-4" /> Tüm Araçlar
+              <ArrowLeft className="h-4 w-4" /> {dict.tools.allTools}
             </Link>
           </div>
         </div>
@@ -96,7 +99,7 @@ export default async function ToolDetail({ params }: Props) {
             <div className="inline-flex items-center justify-center w-20 h-20 rounded-2xl border border-[#00f0ff]/20 bg-[#00f0ff]/5 mb-3">
               <span className="text-3xl font-black text-[#00f0ff]" style={{ textShadow: "0 0 30px #00f0ff50" }}>{tool.score}</span>
             </div>
-            <div className="text-sm text-slate-400">Genel Puan <span className="text-slate-600">/ 10</span></div>
+            <div className="text-sm text-slate-400">{dict.tools.overallScore} <span className="text-slate-600">/ 10</span></div>
           </div>
           {/* Score bars */}
           <div className="space-y-3">
@@ -122,7 +125,7 @@ export default async function ToolDetail({ params }: Props) {
         <div className="holo-card rounded-2xl p-6">
           <h2 className="flex items-center gap-2 text-lg font-bold text-[#00f0ff] mb-5">
             <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#00f0ff]/10"><Check className="h-4 w-4" /></div>
-            Avantajlar
+            {dict.tools.pros}
           </h2>
           <ul className="space-y-3">
             {tool.pros.map((p) => (
@@ -136,7 +139,7 @@ export default async function ToolDetail({ params }: Props) {
         <div className="holo-card rounded-2xl p-6">
           <h2 className="flex items-center gap-2 text-lg font-bold text-[#94a3b8] mb-5">
             <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#94a3b8]/10"><X className="h-4 w-4" /></div>
-            Dezavantajlar
+            {dict.tools.cons}
           </h2>
           <ul className="space-y-3">
             {tool.cons.map((c) => (
@@ -152,7 +155,7 @@ export default async function ToolDetail({ params }: Props) {
       {/* Pricing info */}
       <div className="mt-10 holo-card rounded-2xl p-6">
         <h2 className="flex items-center gap-2 text-lg font-bold text-white mb-4">
-          <DollarSign className="h-5 w-5 text-[#00f0ff]" /> Fiyatlandırma
+          <DollarSign className="h-5 w-5 text-[#00f0ff]" /> {dict.tools.pricing}
         </h2>
         <div className="flex items-center gap-4 rounded-xl bg-white/[0.02] border border-white/[0.04] p-4">
           <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-[#00f0ff]/15 bg-[#00f0ff]/5">
@@ -171,9 +174,9 @@ export default async function ToolDetail({ params }: Props) {
       {related.length > 0 && (
         <div className="mt-10">
           <div className="flex items-center justify-between mb-6">
-            <h2 className="text-xl font-bold text-white">Benzer Araçlar</h2>
+            <h2 className="text-xl font-bold text-white">{dict.tools.relatedTools}</h2>
             <Link href={`/${locale}/tools`} className="text-sm text-[#00f0ff] hover:text-white flex items-center gap-1">
-              Tümünü Gör <ArrowRight className="h-4 w-4" />
+              {dict.home.viewAll} <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

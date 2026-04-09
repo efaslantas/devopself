@@ -982,3 +982,36 @@ export const blogPosts: BlogPost[] = [
     featured: false,
   },
 ];
+
+// ─── Locale-aware data access functions ───
+import { toolDescriptions, toolPros, toolCons, categoryDescriptions, blogTranslations } from "./data-translations";
+
+export function getTools(locale: string): Tool[] {
+  if (locale === "tr") return tools;
+  return tools.map((t) => ({
+    ...t,
+    description: toolDescriptions[t.slug]?.[locale] || t.description,
+    pros: toolPros[t.slug]?.[locale] || t.pros,
+    cons: toolCons[t.slug]?.[locale] || t.cons,
+  }));
+}
+
+export function getCategories(locale: string): Category[] {
+  if (locale === "tr") return categories;
+  return categories.map((c) => ({
+    ...c,
+    description: categoryDescriptions[c.slug]?.[locale] || c.description,
+  }));
+}
+
+export function getBlogPosts(locale: string): BlogPost[] {
+  if (locale === "tr") return blogPosts;
+  return blogPosts.map((p) => {
+    const translation = blogTranslations[p.slug]?.[locale];
+    return {
+      ...p,
+      title: translation?.title || p.title,
+      excerpt: translation?.excerpt || p.excerpt,
+    };
+  });
+}

@@ -1,34 +1,40 @@
 import type { Metadata } from "next";
 import { Target, Eye, Lightbulb } from "lucide-react";
 import { AdSlot } from "@/components/ad-slot";
-import { locales } from "@/lib/i18n";
+import { locales, type Locale, getDictionary } from "@/lib/i18n";
+
+type Props = { params: Promise<{ locale: string }> };
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
 }
 
-export const metadata: Metadata = { title: "Hakkımızda" };
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params;
+  const dict = await getDictionary(locale as Locale);
+  return { title: dict.about.pageTitle };
+}
 
-const cards = [
-  { icon: Target, title: "Misyon", desc: "DevOps tool seçim sürecini veriye dayalı, tarafsız ve erişilebilir kılmak.", color: "#00f0ff" },
-  { icon: Eye, title: "Vizyon", desc: "Dünyanın en kapsamlı DevOps ve AI tool karşılaştırma platformu olmak.", color: "#67e8f9" },
-  { icon: Lightbulb, title: "Değerler", desc: "Tarafsızlık, şeffaflık, topluluk odaklılık ve sürekli öğrenme.", color: "#00f0ff" },
-];
+export default async function AboutPage({ params }: Props) {
+  const { locale } = await params;
+  const dict = await getDictionary(locale as Locale);
 
-export default function AboutPage() {
+  const cards = [
+    { icon: Target, title: dict.about.mission, desc: dict.about.missionDesc, color: "#00f0ff" },
+    { icon: Eye, title: dict.about.vision, desc: dict.about.visionDesc, color: "#67e8f9" },
+    { icon: Lightbulb, title: dict.about.values, desc: dict.about.valuesDesc, color: "#00f0ff" },
+  ];
+
   return (
     <section className="mx-auto max-w-4xl px-4 py-20 sm:px-6 lg:px-8">
-      <h1 className="glitch mb-6 text-4xl font-black text-white" data-text="Hakkımızda">Hakkımızda</h1>
+      <h1 className="glitch mb-6 text-4xl font-black text-white" data-text={dict.about.pageTitle}>{dict.about.pageTitle}</h1>
 
       <div className="holo-card mb-12 rounded-2xl p-8 text-lg leading-relaxed text-slate-400">
         <p className="mb-4">
-          DevOpSelf, DevOps, AI ve software engineering dünyasındaki araçları keşfetmeyi, karşılaştırmayı
-          ve doğru tooling kararlarını vermeyi kolaylaştıran bağımsız bir platformdur.
+          {dict.about.intro1}
         </p>
         <p>
-          Amacımız, developer ve operasyon ekiplerinin kendi kendine yetebileceği, doğru bilgiye hızla
-          ulaşabileceği bir kaynak merkezi oluşturmaktır. &quot;DevOp<em className="text-[#00f0ff]">Self</em>&quot; ismi de bu
-          felsefeden geliyor: kendi kendine yeten DevOps.
+          {dict.about.intro2}
         </p>
       </div>
 
