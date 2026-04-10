@@ -1,15 +1,25 @@
 import Link from "next/link";
 import { ArrowRight, Clock, Calendar } from "lucide-react";
 import type { BlogPost } from "@/lib/data";
+import { getCategoryDisplayName } from "@/lib/utils";
+import trDict from "@/lib/dictionaries/tr.json";
+import enDict from "@/lib/dictionaries/en.json";
+import ruDict from "@/lib/dictionaries/ru.json";
+
+const dicts = { tr: trDict, en: enDict, ru: ruDict };
+const dateLocales: Record<string, string> = { tr: "tr-TR", en: "en-US", ru: "ru-RU" };
 
 export function BlogCard({ post, locale }: { post: BlogPost; locale: string }) {
+  const dict = dicts[locale as keyof typeof dicts] || trDict;
+  const displayCategory = getCategoryDisplayName(post.category);
+
   return (
     <Link
       href={`/${locale}/blog/${post.slug}`}
       className="holo-card group flex flex-col rounded-2xl border border-[#00f0ff]/10 bg-[#0a0f1c]/80 p-6 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#00f0ff]/30 hover:shadow-[0_0_30px_#00f0ff15]"
     >
       <span className="mb-3 inline-block self-start rounded-full border border-[#00f0ff]/30 bg-[#00f0ff]/10 px-3 py-1 text-xs font-semibold text-[#00f0ff]">
-        {post.category}
+        {displayCategory}
       </span>
 
       <h3 className="mb-2 text-lg font-bold text-white transition-colors duration-300 group-hover:text-[#00f0ff] group-hover:drop-shadow-[0_0_8px_#00f0ff60]">
@@ -24,7 +34,7 @@ export function BlogCard({ post, locale }: { post: BlogPost; locale: string }) {
         <div className="flex items-center gap-3 text-xs text-slate-500">
           <span className="flex items-center gap-1">
             <Calendar className="h-3 w-3 text-[#00f0ff]/50" />
-            {new Date(post.date).toLocaleDateString("tr-TR", { day: "numeric", month: "short", year: "numeric" })}
+            {new Date(post.date).toLocaleDateString(dateLocales[locale] || "tr-TR", { day: "numeric", month: "short", year: "numeric" })}
           </span>
           <span className="flex items-center gap-1">
             <Clock className="h-3 w-3 text-[#00f0ff]/50" />
@@ -32,7 +42,7 @@ export function BlogCard({ post, locale }: { post: BlogPost; locale: string }) {
           </span>
         </div>
         <span className="flex items-center gap-1 text-xs font-semibold text-[#00f0ff] transition-all duration-300 group-hover:gap-2 group-hover:drop-shadow-[0_0_8px_#00f0ff]">
-          Oku <ArrowRight className="h-3 w-3" />
+          {dict.blog.readMore} <ArrowRight className="h-3 w-3" />
         </span>
       </div>
     </Link>

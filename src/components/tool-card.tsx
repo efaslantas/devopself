@@ -1,6 +1,11 @@
 import Link from "next/link";
 import { ArrowRight, Star } from "lucide-react";
 import type { Tool } from "@/lib/data";
+import trDict from "@/lib/dictionaries/tr.json";
+import enDict from "@/lib/dictionaries/en.json";
+import ruDict from "@/lib/dictionaries/ru.json";
+
+const dicts = { tr: trDict, en: enDict, ru: ruDict };
 
 const pricingStyles: Record<string, string> = {
   free: "border-[#00f0ff]/30 bg-[#00f0ff]/10 text-[#00f0ff]",
@@ -17,8 +22,8 @@ const pricingLabels: Record<string, string> = {
 };
 
 export function ToolCard({ tool, locale }: { tool: Tool; locale: string }) {
+  const dict = dicts[locale as keyof typeof dicts] || trDict;
   const scoreColor = "text-[#00f0ff] drop-shadow-[0_0_6px_#00f0ff]";
-
   const scoreBarColor = "bg-[#00f0ff]";
 
   return (
@@ -41,7 +46,6 @@ export function ToolCard({ tool, locale }: { tool: Tool; locale: string }) {
         <Star className="h-4 w-4 fill-[#00f0ff] text-[#00f0ff] drop-shadow-[0_0_4px_#00f0ff]" />
         <span className={`text-sm font-bold ${scoreColor}`}>{tool.score}</span>
         <span className="text-xs text-slate-600">/10</span>
-        {/* Score bar */}
         <div className="ml-auto h-1 w-16 overflow-hidden rounded-full bg-white/5">
           <div
             className={`h-full rounded-full ${scoreBarColor} shadow-[0_0_6px_currentColor]`}
@@ -69,7 +73,7 @@ export function ToolCard({ tool, locale }: { tool: Tool; locale: string }) {
 
       {/* CTA */}
       <div className="flex items-center gap-1 text-sm font-semibold text-[#00f0ff] transition-all duration-300 group-hover:gap-2 group-hover:drop-shadow-[0_0_8px_#00f0ff]">
-        Karşılaştırmayı Gör <ArrowRight className="h-4 w-4" />
+        {dict.tools.viewComparison} <ArrowRight className="h-4 w-4" />
       </div>
     </Link>
   );
