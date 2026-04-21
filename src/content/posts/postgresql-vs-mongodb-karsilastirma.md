@@ -6,6 +6,9 @@ date: "2026-03-20"
 readTime: "12 dk"
 featured: true
 tags: ["postgresql", "mongodb", "veritabani", "karsilastirma"]
+author: "Emre Ferit Aslantaş"
+authorRole: "DevOps & Platform Engineer"
+updated: "2026-04-22"
 ---
 
 Veritabanı seçimi, bir projenin mimarisini ve uzun vadeli bakım maliyetini doğrudan etkileyen kritik bir karardır. PostgreSQL ve MongoDB, kendi kategorilerinin en popüler temsilcileridir ve birçok proje için karşılaştırılan iki temel alternatiftir. Bu rehberde, her iki veritabanını teknik derinlikte karşılaştırarak doğru seçimi yapmanıza yardımcı olacağız.

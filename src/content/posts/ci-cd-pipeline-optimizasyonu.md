@@ -6,6 +6,9 @@ date: "2026-03-28"
 readTime: "10 dk"
 featured: false
 tags: ["ci-cd", "pipeline", "optimizasyon", "github-actions"]
+author: "Emre Ferit Aslantaş"
+authorRole: "DevOps & Platform Engineer"
+updated: "2026-04-22"
 ---
 
 Yavaş CI/CD pipeline'ları, geliştirici deneyiminin sessiz katilidir. Her commit'te 20 dakika beklemek, günde onlarca kez tekrarlandığında saatler süren boşa geçen zamana dönüşür. Dahası, yavaş pipeline'lar geliştiricileri daha az commit yapmaya, büyük batch'ler halinde değişiklik göndermeye iter; bu da code review kalitesini düşürür ve merge conflict riskini artırır.

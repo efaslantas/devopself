@@ -6,6 +6,9 @@ date: "2026-04-06"
 readTime: "13 dk"
 featured: false
 tags: ["observability", "monitoring", "prometheus", "sli-slo"]
+author: "Emre Ferit Aslantaş"
+authorRole: "DevOps & Platform Engineer"
+updated: "2026-04-22"
 ---
 
 Monitoring ve observability arasındaki fark, sıklıkla karıştırılan ancak kritik bir ayrımdır. Monitoring, önceden bildiğiniz sorunları tespit etmenizi sağlar. Observability ise sistemin internal state'ini external output'lardan anlayabilme yeteneğidir. Bir başka deyişle, monitoring "ne bozuldu?" sorusuna cevap verirken, observability "neden bozuldu?" sorusuna cevap verir.

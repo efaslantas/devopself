@@ -6,6 +6,9 @@ date: "2026-03-30"
 readTime: "10 dk"
 featured: false
 tags: ["cloud", "finops", "aws", "maliyet-optimizasyonu"]
+author: "Emre Ferit Aslantaş"
+authorRole: "DevOps & Platform Engineer"
+updated: "2026-04-22"
 ---
 
 Cloud'a geçiş yapan birçok organizasyon, ilk faturalarını gördüklerinde şaşkına döner. On-premise altyapıda sabit olan maliyetler, cloud'da kullanım bazlı fiyatlandırma ile birlikte hızla kontrol dışına çıkabilir. Ancak doğru stratejilerle cloud harcamalarını %30-50 arasında azaltmak mümkündür. Bu rehberde, pratik maliyet optimizasyon tekniklerini ve FinOps yaklaşımını ele alacağız.

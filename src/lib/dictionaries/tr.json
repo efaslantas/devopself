@@ -96,7 +96,14 @@
     "relatedPosts": "Benzer Yazılar",
     "comingSoon": "Bu yazı yakında tam haliyle yayınlanacak.",
     "subscribeNote": "Bültenimize abone olarak haberdar olun.",
-    "publishedArticles": "makale yayında"
+    "publishedArticles": "makale yayında",
+    "publishedOn": "Yayın tarihi",
+    "updatedOn": "Son güncelleme",
+    "byAuthor": "Yazar",
+    "aboutAuthor": "Yazar Hakkında",
+    "authorBioShort": "On yılı aşkın süredir Kubernetes, CI/CD, cloud infrastructure ve observability alanlarında production ortamlarda çalışan bir mühendis. DevOpSelf platformunun kurucusu.",
+    "viewAllByAuthor": "Bu yazarın tüm yazıları",
+    "shareArticle": "Yazıyı Paylaş"
   },
   "categories": {
     "pageTitle": "Kategoriler",

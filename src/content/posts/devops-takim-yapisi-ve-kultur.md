@@ -6,6 +6,9 @@ date: "2026-03-25"
 readTime: "9 dk"
 featured: false
 tags: ["devops-kultur", "takim-yapisi", "donusum", "sre"]
+author: "Emre Ferit Aslantaş"
+authorRole: "DevOps & Platform Engineer"
+updated: "2026-04-22"
 ---
 
 DevOps dönüşümü başlatan organizasyonların büyük çoğunluğu, araç seçimiyle işe başlar. Kubernetes kurarlar, CI/CD pipeline'ları oluştururlar, monitoring stack deploy ederler. Ancak birkaç ay sonra fark ederler ki araçlar değişti ama sonuçlar aynı: deployment'lar hala riskli, takımlar arası iletişim hala kopuk, sorunlar hala birinin üstüne kalıyor. Bunun nedeni, DevOps'un bir araç seti değil bir kültürel dönüşüm olmasıdır.

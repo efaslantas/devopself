@@ -6,6 +6,9 @@ date: "2026-04-07"
 readTime: "9 dk"
 featured: false
 tags: ["kubernetes", "docker-swarm", "orchestration", "karşılaştırma"]
+author: "Emre Ferit Aslantaş"
+authorRole: "DevOps & Platform Engineer"
+updated: "2026-04-22"
 ---
 
 # Kubernetes vs Docker Swarm: Doğru Orchestration Aracını Seçin

@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowLeft, Calendar, Clock, Tag, Share2, BookOpen, ArrowRight, ChevronRight } from "lucide-react";
+import { Calendar, Clock, Tag, BookOpen, ArrowRight, ChevronRight, User, RefreshCw } from "lucide-react";
 import { Newsletter } from "@/components/newsletter";
 import { AdSlot } from "@/components/ad-slot";
 import { BlogCard } from "@/components/blog-card";
+import { AuthorBox } from "@/components/author-box";
 import { blogPosts, getBlogPosts } from "@/lib/data";
-import { getAllMarkdownPosts, getMarkdownPostBySlug, renderMarkdown } from "@/lib/markdown";
+import { getAllMarkdownPosts, getMarkdownPostBySlug, renderMarkdown, DEFAULT_AUTHOR_GITHUB } from "@/lib/markdown";
 import { locales, type Locale, getDictionary, dateLocales } from "@/lib/i18n";
 
 type Props = { params: Promise<{ locale: string; slug: string }> };
@@ -20,9 +21,25 @@ export function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug } = await params;
+  const { locale, slug } = await params;
   const mdPost = getMarkdownPostBySlug(slug);
-  if (mdPost) return { title: mdPost.title, description: mdPost.excerpt };
+  if (mdPost) {
+    return {
+      title: mdPost.title,
+      description: mdPost.excerpt,
+      authors: [{ name: mdPost.author }],
+      alternates: { canonical: `/${locale}/blog/${slug}` },
+      openGraph: {
+        title: mdPost.title,
+        description: mdPost.excerpt,
+        type: "article",
+        publishedTime: mdPost.date,
+        modifiedTime: mdPost.updated || mdPost.date,
+        authors: [mdPost.author],
+        tags: mdPost.tags,
+      },
+    };
+  }
   const post = blogPosts.find((p) => p.slug === slug);
   return { title: post?.title || "Blog", description: post?.excerpt };
 }
@@ -46,8 +63,44 @@ export default async function BlogPostPage({ params }: Props) {
     const htmlContent = await renderMarkdown(mdPost.content);
     const related = allPosts.filter((p) => p.category === mdPost.category && p.slug !== slug).slice(0, 3);
 
+    const articleSchema = {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      headline: mdPost.title,
+      description: mdPost.excerpt,
+      datePublished: mdPost.date,
+      dateModified: mdPost.updated || mdPost.date,
+      author: {
+        "@type": "Person",
+        name: mdPost.author,
+        jobTitle: mdPost.authorRole,
+        url: `https://devopself.com/${locale}/about`,
+        sameAs: [DEFAULT_AUTHOR_GITHUB],
+      },
+      publisher: {
+        "@type": "Organization",
+        name: "DevOpSelf",
+        url: "https://devopself.com",
+        logo: {
+          "@type": "ImageObject",
+          url: "https://devopself.com/logo.jpg",
+        },
+      },
+      mainEntityOfPage: {
+        "@type": "WebPage",
+        "@id": `https://devopself.com/${locale}/blog/${slug}`,
+      },
+      keywords: mdPost.tags.join(", "),
+      articleSection: mdPost.category,
+      inLanguage: locale,
+    };
+
     return (
       <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:px-8">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+        />
         {/* Breadcrumb */}
         <div className="mb-8 flex items-center gap-2 text-sm text-slate-500">
           <Link href={`/${locale}`} className="hover:text-[#00f0ff]">{dict.common.home}</Link>
@@ -66,11 +119,23 @@ export default async function BlogPostPage({ params }: Props) {
 
             <h1 className="mb-4 text-3xl sm:text-4xl font-black leading-tight text-white">{mdPost.title}</h1>
 
-            <div className="mb-6 flex flex-wrap items-center gap-4 text-sm text-slate-500">
+            <div className="mb-6 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-slate-500">
               <span className="flex items-center gap-1.5">
+                <User className="h-4 w-4 text-[#00f0ff]/60" />
+                <span className="text-slate-300">{mdPost.author}</span>
+                <span className="hidden text-slate-600 sm:inline">· {mdPost.authorRole}</span>
+              </span>
+              <span className="h-3 w-px bg-slate-700 hidden sm:block" />
+              <span className="flex items-center gap-1.5" title={dict.blog.publishedOn}>
                 <Calendar className="h-4 w-4 text-[#00f0ff]/50" />
                 {new Date(mdPost.date).toLocaleDateString(dtLocale, { day: "numeric", month: "long", year: "numeric" })}
               </span>
+              {mdPost.updated && mdPost.updated !== mdPost.date && (
+                <span className="flex items-center gap-1.5 text-[#00f0ff]/80" title={dict.blog.updatedOn}>
+                  <RefreshCw className="h-3.5 w-3.5" />
+                  {dict.blog.updatedOn}: {new Date(mdPost.updated).toLocaleDateString(dtLocale, { day: "numeric", month: "long", year: "numeric" })}
+                </span>
+              )}
               <span className="flex items-center gap-1.5">
                 <Clock className="h-4 w-4 text-[#00f0ff]/50" />
                 {mdPost.readTime}
@@ -110,6 +175,16 @@ export default async function BlogPostPage({ params }: Props) {
                 prose-blockquote:border-l-[#00f0ff]/30 prose-blockquote:bg-[#00f0ff]/[0.02] prose-blockquote:rounded-r-xl prose-blockquote:py-1 prose-blockquote:text-slate-400
                 prose-img:rounded-xl"
               dangerouslySetInnerHTML={{ __html: htmlContent }}
+            />
+
+            <AuthorBox
+              name={mdPost.author}
+              role={mdPost.authorRole}
+              bio={dict.blog.authorBioShort}
+              githubUrl={DEFAULT_AUTHOR_GITHUB}
+              aboutLabel={dict.blog.aboutAuthor}
+              locale={locale}
+              ctaLabel={dict.about.pageTitle}
             />
 
             <div className="my-10"><AdSlot size="banner" /></div>

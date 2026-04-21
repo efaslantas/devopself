@@ -6,6 +6,9 @@ date: "2026-04-12"
 readTime: "12 dk"
 featured: false
 tags: ["ansible", "konfiguerasyon-yoenetimi", "iac", "otomasyon"]
+author: "Emre Ferit Aslantaş"
+authorRole: "DevOps & Platform Engineer"
+updated: "2026-04-22"
 ---
 
 # Ansible ile Konfigürasyon Yönetimi: Sıfırdan Production'a

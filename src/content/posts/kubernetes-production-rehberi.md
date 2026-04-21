@@ -6,6 +6,9 @@ date: "2026-04-05"
 readTime: "12 dk"
 featured: true
 tags: ["kubernetes", "production", "devops", "container"]
+author: "Emre Ferit Aslantaş"
+authorRole: "DevOps & Platform Engineer"
+updated: "2026-04-22"
 ---
 
 Kubernetes cluster'ınızı development ortamından production'a taşımak, sadece `kubectl apply` komutunu çalıştırmaktan çok daha fazlasını gerektirir. Production ortamında karşılaşabileceğiniz sorunları minimize etmek için titiz bir hazırlık süreci şarttır. Bu rehberde, production'a geçmeden önce mutlaka kontrol etmeniz gereken kritik konfigürasyonları ele alıyoruz.

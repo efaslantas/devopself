@@ -6,6 +6,9 @@ date: "2026-04-04"
 readTime: "13 dk"
 featured: false
 tags: ["prometheus", "grafana", "monitoring", "kubernetes"]
+author: "Emre Ferit Aslantaş"
+authorRole: "DevOps & Platform Engineer"
+updated: "2026-04-22"
 ---
 
 # Prometheus ve Grafana ile Monitoring Kurulumu: Pratik Rehber

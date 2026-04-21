@@ -6,6 +6,9 @@ date: "2026-04-09"
 readTime: "12 dk"
 featured: true
 tags: ["github-actions", "ci-cd", "pipeline", "otomasyon"]
+author: "Emre Ferit Aslantaş"
+authorRole: "DevOps & Platform Engineer"
+updated: "2026-04-22"
 ---
 
 # GitHub Actions ile CI/CD Pipeline: Adım Adım Rehber

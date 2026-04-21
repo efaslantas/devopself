@@ -6,6 +6,9 @@ date: "2026-04-10"
 readTime: "10 dk"
 featured: true
 tags: ["docker", "podman", "container", "karşılaştırma"]
+author: "Emre Ferit Aslantaş"
+authorRole: "DevOps & Platform Engineer"
+updated: "2026-04-22"
 ---
 
 # Docker vs Podman: 2026 Karşılaştırması ve Hangisini Seçmeli?

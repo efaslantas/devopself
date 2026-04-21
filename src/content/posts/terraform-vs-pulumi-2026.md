@@ -6,6 +6,9 @@ date: "2026-04-02"
 readTime: "14 dk"
 featured: true
 tags: ["terraform", "pulumi", "iac", "karşılaştırma"]
+author: "Emre Ferit Aslantaş"
+authorRole: "DevOps & Platform Engineer"
+updated: "2026-04-22"
 ---
 
 Infrastructure as Code (IaC), modern DevOps pratiklerinin temel taşlarından biridir. Altyapınızı kod olarak tanımlamak; tekrarlanabilirlik, versiyon kontrolü ve otomasyon sağlar. Bu alanda iki büyük oyuncu öne çıkıyor: HashiCorp Terraform ve Pulumi. 2026 itibarıyla her iki araç da önemli gelişmeler kaydetti. Peki hangi durumda hangisini tercih etmelisiniz?

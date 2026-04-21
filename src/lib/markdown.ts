@@ -7,16 +7,40 @@ import rehypeSanitize from "rehype-sanitize";
 
 const postsDir = path.join(process.cwd(), "src/content/posts");
 
+export const DEFAULT_AUTHOR = "Emre Ferit Aslantaş";
+export const DEFAULT_AUTHOR_ROLE = "DevOps & Platform Engineer";
+export const DEFAULT_AUTHOR_GITHUB = "https://github.com/efaslantas";
+
 export interface MarkdownPost {
   slug: string;
   title: string;
   excerpt: string;
   category: string;
   date: string;
+  updated: string | null;
   readTime: string;
   featured: boolean;
   tags: string[];
+  author: string;
+  authorRole: string;
   content: string; // HTML rendered content
+}
+
+function mapPost(slug: string, data: Record<string, unknown>, content: string): MarkdownPost {
+  return {
+    slug,
+    title: (data.title as string) || slug,
+    excerpt: (data.excerpt as string) || "",
+    category: (data.category as string) || "Genel",
+    date: (data.date as string) || "2026-01-01",
+    updated: (data.updated as string) || null,
+    readTime: (data.readTime as string) || "5 dk",
+    featured: (data.featured as boolean) || false,
+    tags: (data.tags as string[]) || [],
+    author: (data.author as string) || DEFAULT_AUTHOR,
+    authorRole: (data.authorRole as string) || DEFAULT_AUTHOR_ROLE,
+    content,
+  };
 }
 
 export function getAllMarkdownPosts(): MarkdownPost[] {
@@ -30,18 +54,7 @@ export function getAllMarkdownPosts(): MarkdownPost[] {
       const filePath = path.join(postsDir, filename);
       const fileContent = fs.readFileSync(filePath, "utf-8");
       const { data, content } = matter(fileContent);
-
-      return {
-        slug,
-        title: data.title || slug,
-        excerpt: data.excerpt || "",
-        category: data.category || "Genel",
-        date: data.date || "2026-01-01",
-        readTime: data.readTime || "5 dk",
-        featured: data.featured || false,
-        tags: data.tags || [],
-        content,
-      };
+      return mapPost(slug, data, content);
     })
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 }
@@ -52,18 +65,7 @@ export function getMarkdownPostBySlug(slug: string): MarkdownPost | null {
 
   const fileContent = fs.readFileSync(filePath, "utf-8");
   const { data, content } = matter(fileContent);
-
-  return {
-    slug,
-    title: data.title || slug,
-    excerpt: data.excerpt || "",
-    category: data.category || "Genel",
-    date: data.date || "2026-01-01",
-    readTime: data.readTime || "5 dk",
-    featured: data.featured || false,
-    tags: data.tags || [],
-    content,
-  };
+  return mapPost(slug, data, content);
 }
 
 export async function renderMarkdown(content: string): Promise<string> {

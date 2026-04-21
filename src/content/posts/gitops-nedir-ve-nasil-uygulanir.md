@@ -6,6 +6,9 @@ date: "2026-04-08"
 readTime: "11 dk"
 featured: true
 tags: ["gitops", "argocd", "flux", "kubernetes"]
+author: "Emre Ferit Aslantaş"
+authorRole: "DevOps & Platform Engineer"
+updated: "2026-04-22"
 ---
 
 GitOps, altyapı ve uygulama dağıtımının tamamını Git repository'leri üzerinden yönetmeyi esas alan bir operasyonel framework'tür. Geleneksel CI/CD pipeline'larından farklı olarak, GitOps'ta desired state her zaman Git'te tanımlıdır ve bir operator bu state'i cluster ile sürekli olarak reconcile eder. Bu yaklaşım hem auditability hem de reproducibility açısından ciddi avantajlar sunar.

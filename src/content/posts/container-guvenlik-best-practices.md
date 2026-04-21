@@ -6,6 +6,9 @@ date: "2026-03-15"
 readTime: "9 dk"
 featured: false
 tags: ["container", "güvenlik", "docker", "kubernetes"]
+author: "Emre Ferit Aslantaş"
+authorRole: "DevOps & Platform Engineer"
+updated: "2026-04-22"
 ---
 
 Container teknolojisi uygulama dağıtımını kolaylaştırırken, beraberinde yeni güvenlik zorlukları getirdi. Yanlış yapılandırılmış bir container, tüm altyapınız için bir giriş noktası haline gelebilir. Bu yazıda, production ortamında container güvenliğini sağlamak için uygulamanız gereken 10 kritik best practice'i ele alıyoruz.

@@ -96,7 +96,14 @@
     "relatedPosts": "Related Posts",
     "comingSoon": "This post will be published in full soon.",
     "subscribeNote": "Subscribe to our newsletter to stay informed.",
-    "publishedArticles": "articles published"
+    "publishedArticles": "articles published",
+    "publishedOn": "Published on",
+    "updatedOn": "Last updated",
+    "byAuthor": "Author",
+    "aboutAuthor": "About the Author",
+    "authorBioShort": "An engineer working in Kubernetes, CI/CD, cloud infrastructure and observability in production environments for over a decade. Founder of the DevOpSelf platform.",
+    "viewAllByAuthor": "All posts by this author",
+    "shareArticle": "Share Article"
   },
   "categories": {
     "pageTitle": "Categories",

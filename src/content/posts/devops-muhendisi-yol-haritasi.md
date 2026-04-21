@@ -6,6 +6,9 @@ date: "2026-04-01"
 readTime: "11 dk"
 featured: true
 tags: ["devops", "kariyer", "yol-haritası", "mühendislik"]
+author: "Emre Ferit Aslantaş"
+authorRole: "DevOps & Platform Engineer"
+updated: "2026-04-22"
 ---
 
 # DevOps Mühendisi Yol Haritası: 2026 Kariyer Rehberi

@@ -6,6 +6,9 @@ date: "2026-03-22"
 readTime: "11 dk"
 featured: true
 tags: ["ai", "devops", "otomasyon", "aiops"]
+author: "Emre Ferit Aslantaş"
+authorRole: "DevOps & Platform Engineer"
+updated: "2026-04-22"
 ---
 
 Yapay zeka, DevOps dünyasını sessizce dönüştürüyor. Artık sadece uygulama geliştirmede değil, altyapı yönetimi, monitoring, incident response ve deployment süreçlerinde de AI destekli araçlar kritik rol oynuyor. AIOps kavramı olgunlaştıkça, DevOps mühendislerinin araç kutusuna yeni ve güçlü yetenekler ekleniyor.
