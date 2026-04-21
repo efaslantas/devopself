@@ -1,10 +1,15 @@
 import Link from "next/link";
-import { Github, Twitter, Linkedin } from "lucide-react";
+import { Github, Mail } from "lucide-react";
 import trDict from "@/lib/dictionaries/tr.json";
 import enDict from "@/lib/dictionaries/en.json";
 import ruDict from "@/lib/dictionaries/ru.json";
 
 const dicts = { tr: trDict, en: enDict, ru: ruDict };
+
+const SOCIAL_LINKS = [
+  { href: "https://github.com/efaslantas", icon: Github, label: "GitHub" },
+  { href: "mailto:emreferitaslantas@gmail.com", icon: Mail, label: "Email" },
+];
 
 export function Footer({ locale }: { locale: string }) {
   const dict = dicts[locale as keyof typeof dicts] || trDict;
@@ -24,9 +29,16 @@ export function Footer({ locale }: { locale: string }) {
             </Link>
             <p className="mt-3 text-sm leading-relaxed text-slate-500">{dict.footer.description}</p>
             <div className="mt-4 flex gap-3">
-              {[Github, Twitter, Linkedin].map((Icon, i) => (
-                <a key={i} href="#" className="rounded-lg border border-[#00f0ff]/10 bg-[#00f0ff]/5 p-2 text-slate-500 transition-all duration-300 hover:border-[#00f0ff]/30 hover:text-[#00f0ff] hover:shadow-[0_0_12px_#00f0ff20]" aria-label={["GitHub", "Twitter", "LinkedIn"][i]}>
-                  <Icon className="h-4 w-4" />
+              {SOCIAL_LINKS.map((s) => (
+                <a
+                  key={s.label}
+                  href={s.href}
+                  target={s.href.startsWith("http") ? "_blank" : undefined}
+                  rel={s.href.startsWith("http") ? "noopener" : undefined}
+                  className="rounded-lg border border-[#00f0ff]/10 bg-[#00f0ff]/5 p-2 text-slate-500 transition-all duration-300 hover:border-[#00f0ff]/30 hover:text-[#00f0ff] hover:shadow-[0_0_12px_#00f0ff20]"
+                  aria-label={s.label}
+                >
+                  <s.icon className="h-4 w-4" />
                 </a>
               ))}
             </div>
@@ -53,6 +65,13 @@ export function Footer({ locale }: { locale: string }) {
             <ul className="space-y-2">
               <li><Link href={`/${locale}/about`} className="text-sm text-slate-500 transition-colors duration-300 hover:text-[#00f0ff]">{dict.nav.about}</Link></li>
               <li><Link href={`/${locale}/contact`} className="text-sm text-slate-500 transition-colors duration-300 hover:text-[#00f0ff]">{dict.nav.contact}</Link></li>
+            </ul>
+            <h4 className="mt-5 mb-3 text-sm font-semibold text-[#94a3b8] drop-shadow-[0_0_4px_#94a3b860]">{dict.footer.legal}</h4>
+            <ul className="space-y-2">
+              <li><Link href={`/${locale}/privacy`} className="text-sm text-slate-500 transition-colors duration-300 hover:text-[#00f0ff]">{dict.legal.privacy.title}</Link></li>
+              <li><Link href={`/${locale}/terms`} className="text-sm text-slate-500 transition-colors duration-300 hover:text-[#00f0ff]">{dict.legal.terms.title}</Link></li>
+              <li><Link href={`/${locale}/cookies`} className="text-sm text-slate-500 transition-colors duration-300 hover:text-[#00f0ff]">{dict.legal.cookies.title}</Link></li>
+              <li><Link href={`/${locale}/disclaimer`} className="text-sm text-slate-500 transition-colors duration-300 hover:text-[#00f0ff]">{dict.legal.disclaimer.title}</Link></li>
             </ul>
           </div>
         </div>

@@ -15,8 +15,10 @@ const sizeConfig: Record<AdSize, { height: string; adFormat: string; adSlot: str
   leaderboard: { height: "min-h-[90px]", adFormat: "horizontal", adSlot: "LEADERBOARD_SLOT_ID" },
 };
 
-// Set to true and fill in your AdSense publisher ID + slot IDs to enable real ads
-const ADSENSE_ENABLED = true;
+// Set to true and fill in your AdSense publisher ID + slot IDs to enable real ads.
+// Keep false until AdSense approval + real slot IDs are available — rendering <ins>
+// tags with placeholder slot IDs triggers AdSense policy violations.
+const ADSENSE_ENABLED = false;
 const ADSENSE_CLIENT = "ca-pub-1080501458617699";
 
 export function AdSlot({ size, className = "" }: AdSlotProps) {

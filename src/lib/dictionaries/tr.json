@@ -109,27 +109,64 @@
   },
   "about": {
     "pageTitle": "Hakkımızda",
-    "intro1": "DevOpSelf, DevOps, AI ve software engineering dünyasındaki araçları keşfetmeyi, karşılaştırmayı ve doğru tooling kararlarını vermeyi kolaylaştıran bağımsız bir platformdur.",
-    "intro2": "Amacımız, developer ve operasyon ekiplerinin kendi kendine yetebileceği, doğru bilgiye hızla ulaşabileceği bir kaynak merkezi oluşturmaktır.",
+    "badge": "Kim biz?",
+    "intro1": "DevOpSelf; DevOps, AI ve software engineering dünyasındaki araçları keşfetmeyi, karşılaştırmayı ve doğru tooling kararlarını vermeyi kolaylaştıran bağımsız bir platformdur.",
+    "intro2": "Hedefimiz, geliştirici ve operasyon ekiplerinin ihtiyaç duyduğu doğru bilgiye hızla ulaşabileceği — satır aralarına reklam sıkıştırılmamış, vendor baskısı olmayan — bir kaynak merkezi oluşturmaktır.",
     "mission": "Misyon",
     "missionDesc": "DevOps tool seçim sürecini veriye dayalı, tarafsız ve erişilebilir kılmak.",
     "vision": "Vizyon",
-    "visionDesc": "Dünyanın en kapsamlı DevOps ve AI tool karşılaştırma platformu olmak.",
+    "visionDesc": "Türkçe teknik içerikte DevOps ve AI alanında referans gösterilen kaynak olmak.",
     "values": "Değerler",
-    "valuesDesc": "Tarafsızlık, şeffaflık, topluluk odaklılık ve sürekli öğrenme."
+    "valuesDesc": "Tarafsızlık, şeffaflık, topluluk odaklılık ve sürekli öğrenme.",
+    "founderTitle": "Kurucunun Hikayesi",
+    "founderName": "Emre Ferit Aslantaş",
+    "founderRole": "DevOps & Platform Engineer · Kurucu",
+    "founderBio1": "On yılı aşkın süredir yazılım, operasyon ve altyapı sınırlarında çalışan bir mühendis olarak; Kubernetes cluster'ları tasarladım, CI/CD pipeline'ları optimize ettim, gözlemlenebilirlik sistemleri kurdum ve birden fazla production-grade homelab/çok-bulut ortam yönettim.",
+    "founderBio2": "DevOpSelf'i başlatmamın sebebi basit: araç seçerken Türkçe kaynaklar ya çok yüzeyseldi ya da pazarlama içerikleriydi. Gerçek deneyime dayanan, karşılaştırmalı, tarafsız bir başvuru noktasına ihtiyaç vardı. İşte o boşluğu doldurmak için bu platformu kurduk.",
+    "founderBio3": "Burada okuyacağınız her içerik; production'da kullanılan, kaynak kodu okunan, benchmark edilen araçların gerçek izlenimleriyle yazılır.",
+    "editorialTitle": "Editöryel Süreç",
+    "editorialSubtitle": "İçerik nasıl üretiliyor?",
+    "editorial1Title": "Araştırma",
+    "editorial1Desc": "Her tool için resmi dokümantasyon, CHANGELOG, issue tracker ve kullanıcı feedback'i incelenir.",
+    "editorial2Title": "Hands-on Kullanım",
+    "editorial2Desc": "Araç kendi homelab/staging ortamında denenir; gerçek senaryolarda performansı ve DX'i ölçülür.",
+    "editorial3Title": "Bağımsızlık",
+    "editorial3Desc": "Hiçbir vendor yazı öncesi onay veya ödeme ile içeriği etkileyemez; affiliate ilişkileri açıkça beyan edilir.",
+    "editorial4Title": "Güncelleme",
+    "editorial4Desc": "Major sürüm değişikliklerinde makaleler revize edilir; önemli değişiklikler tarih damgasıyla belirtilir.",
+    "statsTitle": "Rakamlarla DevOpSelf",
+    "statArticles": "makale",
+    "statTools": "araç incelendi",
+    "statCategories": "kategori",
+    "statLanguages": "dil",
+    "statArticlesVal": "16",
+    "statToolsVal": "65+",
+    "statCategoriesVal": "10",
+    "statLanguagesVal": "3",
+    "contactCtaTitle": "Bir tool öner, bir hata bildir, soru sor",
+    "contactCtaDesc": "Kapımız açık — her türlü katkı, geri bildirim ve iş birliği önerisi için bize ulaşın.",
+    "contactCtaBtn": "İletişime Geç"
   },
   "contact": {
     "pageTitle": "İletişim",
-    "subtitle": "Soru, öneri veya iş birliği için bize ulaşın.",
+    "subtitle": "Soru, öneri veya iş birliği için bize ulaşın. Formu doldurun ya da doğrudan e-posta gönderin.",
     "nameLabel": "İsim",
     "namePlaceholder": "Adınız Soyadınız",
     "emailLabel": "E-posta",
     "emailPlaceholder": "ornek@email.com",
+    "subjectLabel": "Konu",
+    "subjectPlaceholder": "Kısaca konu başlığı",
     "messageLabel": "Mesaj",
     "messagePlaceholder": "Mesajınızı yazın...",
-    "send": "Gönder",
-    "successTitle": "Mesajınız Alındı!",
-    "successDesc": "En kısa sürede size döneceğiz."
+    "send": "E-posta Uygulamasıyla Gönder",
+    "successTitle": "E-posta Uygulamanız Açıldı",
+    "successDesc": "Hazırlanan mesajı gönderdiğinizde en kısa sürede size döneriz.",
+    "directEmailLabel": "Doğrudan E-posta",
+    "responseTimeLabel": "Yanıt Süresi",
+    "responseTimeValue": "Genellikle 1-3 iş günü içinde",
+    "locationLabel": "Konum",
+    "locationValue": "İstanbul, Türkiye",
+    "formDisclaimer": "Formu göndermek bilgisayarınızdaki e-posta uygulamasını açar. Tarayıcınız mail client ile ilişkilendirilmemişse aşağıdaki e-posta adresini kullanın."
   },
   "newsletter": {
     "title": "Haftalık DevOps Bülteni",
@@ -150,8 +187,155 @@
     "platform": "Platform",
     "categories": "Kategoriler",
     "company": "Şirket",
+    "legal": "Yasal",
     "description": "DevOps, AI ve Software araçlarını keşfet, karşılaştır ve doğru tooling kararını ver.",
     "copyright": "DevOps ecosystem discovery & comparison platform"
+  },
+  "legal": {
+    "lastUpdated": "Son güncelleme",
+    "effectiveDate": "20 Nisan 2026",
+    "contactPrompt": "Bu politika hakkında sorularınız için",
+    "contactEmail": "emreferitaslantas@gmail.com",
+    "privacy": {
+      "title": "Gizlilik Politikası",
+      "intro": "DevOpSelf (\"biz\", \"site\") olarak gizliliğinize saygı duyuyoruz. Bu politika, devopself.com'u ziyaret ettiğinizde hangi verilerin toplandığını, nasıl kullanıldığını ve haklarınızı açıklar.",
+      "sections": [
+        {
+          "heading": "1. Toplanan Veriler",
+          "body": "Siteyi kullandığınızda aşağıdaki veriler toplanabilir:\n\n- **Kullanım verileri:** IP adresi (anonimleştirilmiş), tarayıcı tipi, işletim sistemi, ziyaret edilen sayfalar, oturum süresi, yönlendiren URL.\n- **Cookie verileri:** Google Analytics ve Google AdSense tarafından yerleştirilen tanımlama bilgileri.\n- **Form verileri:** İletişim formu aracılığıyla bize gönüllü olarak sağladığınız isim ve e-posta adresi.\n- **Bülten aboneliği:** Aboneyseniz yalnızca e-posta adresiniz."
+        },
+        {
+          "heading": "2. Verilerin Kullanımı",
+          "body": "Toplanan veriler yalnızca şu amaçlarla kullanılır:\n\n- Site trafiğini ve kullanıcı davranışını anlamak (analitik).\n- İçeriği ve kullanıcı deneyimini iyileştirmek.\n- Bülten aboneliğiniz varsa içerik güncellemesi göndermek.\n- İletişim formuna gelen sorulara yanıt vermek.\n- Yasal yükümlülükleri yerine getirmek."
+        },
+        {
+          "heading": "3. Üçüncü Taraf Hizmetler",
+          "body": "Site, aşağıdaki üçüncü taraf servisleri kullanır:\n\n- **Google Analytics:** Trafik ölçümü. Gizlilik: https://policies.google.com/privacy\n- **Google AdSense:** Reklam gösterimi ve kişiselleştirme. Gizlilik: https://policies.google.com/technologies/ads\n- **Vercel / Hosting:** Site barındırma.\n\nBu servislerin her biri kendi gizlilik politikasına tabidir."
+        },
+        {
+          "heading": "4. Çerezler (Cookies)",
+          "body": "Site, temel işlevsellik, analitik ve reklam için çerezler kullanır. Detaylı bilgi için Çerez Politikamıza bakınız. Tarayıcı ayarlarınızdan çerezleri istediğiniz zaman reddedebilir veya silebilirsiniz."
+        },
+        {
+          "heading": "5. Haklarınız (KVKK / GDPR)",
+          "body": "İlgili mevzuat kapsamında aşağıdaki haklara sahipsiniz:\n\n- Verilerinize erişim isteme,\n- Düzeltme veya silme talep etme,\n- İşlemeye itiraz etme,\n- Veri taşınabilirliği isteme,\n- Onayınızı geri çekme.\n\nTaleplerinizi e-posta ile iletebilirsiniz."
+        },
+        {
+          "heading": "6. Veri Güvenliği",
+          "body": "Verileriniz HTTPS üzerinden şifrelenerek iletilir. Ancak hiçbir internet iletiminin veya elektronik depolamanın %100 güvenli olmadığını unutmayın."
+        },
+        {
+          "heading": "7. Çocukların Gizliliği",
+          "body": "Site 13 yaş altındaki çocuklara yönelik değildir. Bu yaş grubundan bilerek kişisel veri toplamayız."
+        },
+        {
+          "heading": "8. Politika Değişiklikleri",
+          "body": "Bu politika zaman zaman güncellenebilir. Önemli değişiklikler site üzerinden duyurulur. Güncel sürümün tarihi sayfa başında gösterilir."
+        }
+      ]
+    },
+    "terms": {
+      "title": "Kullanım Şartları",
+      "intro": "devopself.com'u (\"Site\") ziyaret ederek ve kullanarak aşağıdaki şartları kabul etmiş sayılırsınız. Lütfen dikkatle okuyunuz.",
+      "sections": [
+        {
+          "heading": "1. Hizmetin Tanımı",
+          "body": "DevOpSelf; DevOps, AI ve yazılım araçlarını tanıtan, karşılaştıran ve rehber içeriği sunan bağımsız bir yayındır. İçerik yalnızca bilgilendirme amaçlıdır."
+        },
+        {
+          "heading": "2. Kabul",
+          "body": "Siteyi kullanmanız bu şartların tamamını kabul ettiğiniz anlamına gelir. Şartları kabul etmiyorsanız siteyi kullanmamanız gerekir."
+        },
+        {
+          "heading": "3. Fikri Mülkiyet",
+          "body": "Sitedeki metinler, logolar, görseller ve kod DevOpSelf'e aittir veya lisanslıdır. İçerik, atıf verilerek ve doğrudan link eklenerek kişisel/eğitim amaçlı alıntılanabilir. Ticari yeniden yayın için önceden yazılı izin gereklidir."
+        },
+        {
+          "heading": "4. Üçüncü Taraf Markalar",
+          "body": "İncelenen araçların (Kubernetes, Docker, Terraform vb.) marka ve logoları kendi sahiplerine aittir. DevOpSelf hiçbir şirketle resmi ortaklık iddia etmez; aksi açıkça belirtilmedikçe içerikler bağımsız değerlendirmelerdir."
+        },
+        {
+          "heading": "5. Affiliate ve Reklamlar",
+          "body": "Site; Google AdSense aracılığıyla reklam gösterebilir ve bazı linkler affiliate (ortaklık) linki olabilir. Bu, sizin için ek bir maliyet yaratmaz; satın alma durumunda siteye küçük bir komisyon kazandırabilir. Bu ilişki editöryel bağımsızlığımızı etkilemez."
+        },
+        {
+          "heading": "6. Sorumluluk Reddi",
+          "body": "Site içeriği \"olduğu gibi\" sunulur. Bilgilerin doğruluğu, güncelliği veya belirli bir amaca uygunluğu konusunda açık veya zımni garanti verilmez. İçerik profesyonel danışmanlık yerine geçmez. Üretim sistemlerine uygulanan teknik kararlar için kendi doğrulamanızı yapınız."
+        },
+        {
+          "heading": "7. Kullanıcı Davranışı",
+          "body": "Siteyi yasa dışı amaçlarla, otomatik scraping ile, güvenliği tehlikeye atan şekillerde veya hizmeti bozacak biçimde kullanamazsınız."
+        },
+        {
+          "heading": "8. Sorumluluğun Sınırlandırılması",
+          "body": "DevOpSelf; siteyi kullanmanızdan kaynaklanan doğrudan, dolaylı, tesadüfi veya sonuç olarak ortaya çıkan zararlardan sorumlu tutulamaz."
+        },
+        {
+          "heading": "9. Değişiklikler",
+          "body": "Bu şartlar önceden haber verilmeksizin güncellenebilir. Güncel sürüm bu sayfada yayımlanır. Kullanımınızı sürdürmeniz güncel şartları kabul ettiğiniz anlamına gelir."
+        },
+        {
+          "heading": "10. Uygulanacak Hukuk",
+          "body": "Bu şartlar Türkiye Cumhuriyeti yasalarına tabidir. Uyuşmazlıklarda İstanbul mahkemeleri yetkilidir."
+        }
+      ]
+    },
+    "cookies": {
+      "title": "Çerez Politikası",
+      "intro": "Bu çerez politikası, devopself.com'un hangi çerezleri kullandığını, bu çerezlerin ne işe yaradığını ve tercihlerinizi nasıl yönetebileceğinizi açıklar.",
+      "sections": [
+        {
+          "heading": "1. Çerez Nedir?",
+          "body": "Çerez, bir web sitesini ziyaret ettiğinizde tarayıcınıza yerleştirilen küçük bir metin dosyasıdır. Çerezler; oturum bilgisi, tercih ve anonim kullanım istatistikleri gibi verileri saklayabilir."
+        },
+        {
+          "heading": "2. Kullandığımız Çerez Türleri",
+          "body": "**Zorunlu Çerezler:** Sitenin temel işlevleri (dil tercihi, güvenlik) için gereklidir. Bu çerezler devre dışı bırakılamaz.\n\n**Analitik Çerezler:** Google Analytics tarafından ziyaretçi sayısı, popüler sayfalar ve oturum süresini ölçmek için kullanılır. Veriler toplu ve anonimdir.\n\n**Reklam Çerezleri:** Google AdSense tarafından ilgi alanlarınıza uygun reklam göstermek, sıklığı sınırlamak ve reklam performansını ölçmek için kullanılır."
+        },
+        {
+          "heading": "3. Üçüncü Taraf Çerezleri",
+          "body": "- **Google Analytics** — _ga, _gid, _gat (analitik)\n- **Google AdSense** — __gads, IDE, NID (reklam)\n\nBu çerezlerin detayları için:\nhttps://policies.google.com/technologies/cookies"
+        },
+        {
+          "heading": "4. Çerezleri Yönetme",
+          "body": "Çerezleri tarayıcı ayarlarınızdan istediğiniz zaman reddedebilir, silebilir veya yalnızca belirli sitelere izin verebilirsiniz:\n\n- Chrome: Ayarlar → Gizlilik ve güvenlik → Çerezler\n- Firefox: Ayarlar → Gizlilik ve Güvenlik\n- Safari: Tercihler → Gizlilik\n- Edge: Ayarlar → Çerezler ve site izinleri\n\nGoogle'a özgü reklam tercihleri için: https://adssettings.google.com"
+        },
+        {
+          "heading": "5. Çerezleri Reddetmenin Etkisi",
+          "body": "Zorunlu çerezler dışındakileri reddedebilirsiniz; bu durumda temel işlevler çalışmaya devam eder ancak deneyim kişiselleştirilmemiş olur."
+        }
+      ]
+    },
+    "disclaimer": {
+      "title": "Sorumluluk Reddi",
+      "intro": "Bu sayfa, devopself.com üzerindeki içeriklerin kullanımına ilişkin yasal sorumluluk sınırlarını açıklar.",
+      "sections": [
+        {
+          "heading": "1. Genel Bilgilendirme",
+          "body": "Sitedeki tüm içerikler genel bilgilendirme amaçlıdır. İçerik hazırlanırken özen gösterilmiş olsa da bilgilerin eksiksiz, güncel veya hatasız olduğu garanti edilmez."
+        },
+        {
+          "heading": "2. Profesyonel Tavsiye Değildir",
+          "body": "Makaleler; hukuki, finansal, güvenlik veya mesleki danışmanlık yerine geçmez. Üretim ortamına uygulanacak teknik kararları kendi ekibinizle ve resmi dokümantasyonla doğrulayın."
+        },
+        {
+          "heading": "3. Harici Linkler",
+          "body": "Site, üçüncü taraf web sitelerine yönlendiren linkler içerebilir. Bu sitelerin içeriği, gizlilik uygulamaları veya güncel durumu üzerinde kontrolümüz yoktur ve bunlardan sorumlu tutulamayız."
+        },
+        {
+          "heading": "4. Affiliate ve Reklam",
+          "body": "Bazı linkler affiliate (ortaklık) linkleri olabilir ve siteye komisyon kazandırabilir. Reklamlar Google AdSense tarafından sunulur. Bu iş modelleri içeriğin editöryel bağımsızlığını etkilemez."
+        },
+        {
+          "heading": "5. Teknoloji ve Sürüm Farklılıkları",
+          "body": "Yazılım araçları hızla güncellenir. Bir makale yayımlandığı tarihte güncel olsa bile, zaman içinde sürüm farklılıkları, API değişiklikleri veya fiyatlandırma güncellemeleri nedeniyle bilgiler eskimiş olabilir."
+        },
+        {
+          "heading": "6. Zarar Sorumluluğu",
+          "body": "Bu sitedeki bilgiye dayanarak aldığınız kararların sonuçlarından DevOpSelf sorumlu değildir. Her türlü uygulama kendi riskinizdedir."
+        }
+      ]
+    }
   },
   "meta": {
     "siteTitle": "DevOpSelf - Dev, Ops & AI Araç Karşılaştırma Platformu",

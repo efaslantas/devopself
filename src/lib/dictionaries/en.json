@@ -109,27 +109,64 @@
   },
   "about": {
     "pageTitle": "About Us",
+    "badge": "Who we are",
     "intro1": "DevOpSelf is an independent platform that makes it easy to discover, compare and make the right tooling decisions in the world of DevOps, AI and software engineering.",
-    "intro2": "Our goal is to create a resource hub where developers and operations teams can be self-sufficient and quickly access the right information.",
+    "intro2": "Our goal is to build a resource hub where developers and operations teams can quickly find the right information — free of squeezed-in ads and vendor pressure.",
     "mission": "Mission",
     "missionDesc": "To make the DevOps tool selection process data-driven, unbiased and accessible.",
     "vision": "Vision",
-    "visionDesc": "To become the world's most comprehensive DevOps and AI tool comparison platform.",
+    "visionDesc": "To become a go-to reference in the DevOps and AI ecosystem.",
     "values": "Values",
-    "valuesDesc": "Impartiality, transparency, community focus and continuous learning."
+    "valuesDesc": "Impartiality, transparency, community focus and continuous learning.",
+    "founderTitle": "Founder's Story",
+    "founderName": "Emre Ferit Aslantaş",
+    "founderRole": "DevOps & Platform Engineer · Founder",
+    "founderBio1": "As an engineer who has spent over a decade at the intersection of software, operations and infrastructure, I've designed Kubernetes clusters, optimized CI/CD pipelines, set up observability systems and operated multiple production-grade homelab and multi-cloud environments.",
+    "founderBio2": "The reason I started DevOpSelf is simple: when picking tools, too many sources were either shallow or thinly veiled marketing. There was a need for a comparative, independent reference grounded in real-world use. This platform was built to fill that gap.",
+    "founderBio3": "Every piece of content you read here is written from hands-on experience with tools that are actually run in production, whose source is read, and whose behavior is benchmarked.",
+    "editorialTitle": "Editorial Process",
+    "editorialSubtitle": "How the content is produced",
+    "editorial1Title": "Research",
+    "editorial1Desc": "Official docs, CHANGELOG, issue tracker and user feedback are reviewed for every tool.",
+    "editorial2Title": "Hands-on Usage",
+    "editorial2Desc": "Each tool is tried in a homelab/staging environment; performance and developer experience are measured in real scenarios.",
+    "editorial3Title": "Independence",
+    "editorial3Desc": "No vendor can influence content through pre-publication approval or payment; affiliate relationships are disclosed openly.",
+    "editorial4Title": "Updates",
+    "editorial4Desc": "Articles are revised on major version changes; significant updates are timestamped.",
+    "statsTitle": "DevOpSelf by the Numbers",
+    "statArticles": "articles",
+    "statTools": "tools reviewed",
+    "statCategories": "categories",
+    "statLanguages": "languages",
+    "statArticlesVal": "16",
+    "statToolsVal": "65+",
+    "statCategoriesVal": "10",
+    "statLanguagesVal": "3",
+    "contactCtaTitle": "Suggest a tool, report an issue, ask a question",
+    "contactCtaDesc": "Our door is open — reach out for contributions, feedback, or collaboration.",
+    "contactCtaBtn": "Get in Touch"
   },
   "contact": {
     "pageTitle": "Contact",
-    "subtitle": "Reach out to us for questions, suggestions or collaboration.",
+    "subtitle": "Reach out to us for questions, suggestions or collaboration. Fill out the form or email us directly.",
     "nameLabel": "Name",
     "namePlaceholder": "Your Full Name",
     "emailLabel": "Email",
     "emailPlaceholder": "example@email.com",
+    "subjectLabel": "Subject",
+    "subjectPlaceholder": "Short subject line",
     "messageLabel": "Message",
     "messagePlaceholder": "Write your message...",
-    "send": "Send",
-    "successTitle": "Message Received!",
-    "successDesc": "We will get back to you as soon as possible."
+    "send": "Send via Email App",
+    "successTitle": "Your Email App Opened",
+    "successDesc": "Once you send the prepared message, we will get back to you as soon as possible.",
+    "directEmailLabel": "Direct Email",
+    "responseTimeLabel": "Response Time",
+    "responseTimeValue": "Usually within 1-3 business days",
+    "locationLabel": "Location",
+    "locationValue": "Istanbul, Türkiye",
+    "formDisclaimer": "Submitting the form opens your local email application. If your browser is not linked to a mail client, please use the email address below."
   },
   "newsletter": {
     "title": "Weekly DevOps Newsletter",
@@ -150,8 +187,155 @@
     "platform": "Platform",
     "categories": "Categories",
     "company": "Company",
+    "legal": "Legal",
     "description": "Discover, compare DevOps, AI and Software tools and make the right tooling decision.",
     "copyright": "DevOps ecosystem discovery & comparison platform"
+  },
+  "legal": {
+    "lastUpdated": "Last updated",
+    "effectiveDate": "April 20, 2026",
+    "contactPrompt": "For questions about this policy",
+    "contactEmail": "emreferitaslantas@gmail.com",
+    "privacy": {
+      "title": "Privacy Policy",
+      "intro": "At DevOpSelf (\"we\", \"the site\") we respect your privacy. This policy explains what data is collected when you visit devopself.com, how it is used, and your rights.",
+      "sections": [
+        {
+          "heading": "1. Data We Collect",
+          "body": "When you use the site, the following data may be collected:\n\n- **Usage data:** IP address (anonymized), browser type, operating system, pages visited, session duration, referring URL.\n- **Cookie data:** Identifiers placed by Google Analytics and Google AdSense.\n- **Form data:** Name and email you voluntarily submit through the contact form.\n- **Newsletter subscription:** Only your email address, if you subscribe."
+        },
+        {
+          "heading": "2. How We Use Data",
+          "body": "Collected data is used only to:\n\n- Understand site traffic and user behavior (analytics).\n- Improve content and user experience.\n- Send content updates if you are subscribed to the newsletter.\n- Respond to inquiries sent via the contact form.\n- Comply with legal obligations."
+        },
+        {
+          "heading": "3. Third-Party Services",
+          "body": "The site uses the following third-party services:\n\n- **Google Analytics:** Traffic measurement. Privacy: https://policies.google.com/privacy\n- **Google AdSense:** Ad delivery and personalization. Privacy: https://policies.google.com/technologies/ads\n- **Vercel / Hosting:** Site hosting.\n\nEach of these services is governed by its own privacy policy."
+        },
+        {
+          "heading": "4. Cookies",
+          "body": "The site uses cookies for essential functionality, analytics, and advertising. For details see our Cookie Policy. You can reject or delete cookies from your browser settings at any time."
+        },
+        {
+          "heading": "5. Your Rights (GDPR)",
+          "body": "Under applicable law you have the right to:\n\n- Request access to your data,\n- Request correction or deletion,\n- Object to processing,\n- Request data portability,\n- Withdraw consent.\n\nYou can send your requests via email."
+        },
+        {
+          "heading": "6. Data Security",
+          "body": "Your data is transmitted encrypted over HTTPS. However, no internet transmission or electronic storage is 100% secure."
+        },
+        {
+          "heading": "7. Children's Privacy",
+          "body": "The site is not intended for children under 13. We do not knowingly collect personal data from this age group."
+        },
+        {
+          "heading": "8. Policy Changes",
+          "body": "This policy may be updated from time to time. Significant changes will be announced on the site. The date of the current version is shown at the top of the page."
+        }
+      ]
+    },
+    "terms": {
+      "title": "Terms of Service",
+      "intro": "By visiting and using devopself.com (the \"Site\") you are deemed to have accepted the following terms. Please read carefully.",
+      "sections": [
+        {
+          "heading": "1. Description of Service",
+          "body": "DevOpSelf is an independent publication that introduces, compares, and provides guides on DevOps, AI, and software tools. All content is for informational purposes only."
+        },
+        {
+          "heading": "2. Acceptance",
+          "body": "Your use of the Site constitutes acceptance of these terms in full. If you do not agree to the terms, you must not use the Site."
+        },
+        {
+          "heading": "3. Intellectual Property",
+          "body": "The text, logos, images and code on the Site belong to DevOpSelf or are licensed to us. Content may be quoted for personal/educational purposes with clear attribution and a direct link. Prior written permission is required for commercial republication."
+        },
+        {
+          "heading": "4. Third-Party Trademarks",
+          "body": "The brands and logos of reviewed tools (Kubernetes, Docker, Terraform, etc.) belong to their respective owners. DevOpSelf does not claim any official partnership; unless explicitly stated, content represents independent evaluations."
+        },
+        {
+          "heading": "5. Affiliates and Ads",
+          "body": "The Site may display ads via Google AdSense, and some links may be affiliate links. This creates no additional cost for you; a purchase may earn the Site a small commission. This relationship does not affect our editorial independence."
+        },
+        {
+          "heading": "6. Disclaimer",
+          "body": "Site content is provided \"as is\". No express or implied warranty is given regarding accuracy, timeliness, or fitness for a particular purpose. Content does not substitute professional advice. Verify technical decisions independently before applying to production systems."
+        },
+        {
+          "heading": "7. User Conduct",
+          "body": "You may not use the Site for unlawful purposes, via automated scraping, in ways that compromise security, or in a manner that disrupts the service."
+        },
+        {
+          "heading": "8. Limitation of Liability",
+          "body": "DevOpSelf shall not be liable for any direct, indirect, incidental or consequential damages arising from your use of the Site."
+        },
+        {
+          "heading": "9. Changes",
+          "body": "These terms may be updated without notice. The current version is published on this page. Continued use of the Site constitutes acceptance of the updated terms."
+        },
+        {
+          "heading": "10. Governing Law",
+          "body": "These terms are governed by the laws of the Republic of Türkiye. The courts of Istanbul have jurisdiction over any disputes."
+        }
+      ]
+    },
+    "cookies": {
+      "title": "Cookie Policy",
+      "intro": "This cookie policy explains which cookies devopself.com uses, what they do, and how you can manage your preferences.",
+      "sections": [
+        {
+          "heading": "1. What is a Cookie?",
+          "body": "A cookie is a small text file placed in your browser when you visit a website. Cookies can store information such as session data, preferences, and anonymous usage statistics."
+        },
+        {
+          "heading": "2. Types of Cookies We Use",
+          "body": "**Essential Cookies:** Required for basic site functionality (language preference, security). These cannot be disabled.\n\n**Analytics Cookies:** Used by Google Analytics to measure visitor counts, popular pages, and session duration. Data is aggregated and anonymous.\n\n**Advertising Cookies:** Used by Google AdSense to show ads relevant to your interests, limit frequency, and measure ad performance."
+        },
+        {
+          "heading": "3. Third-Party Cookies",
+          "body": "- **Google Analytics** — _ga, _gid, _gat (analytics)\n- **Google AdSense** — __gads, IDE, NID (advertising)\n\nFor details on these cookies:\nhttps://policies.google.com/technologies/cookies"
+        },
+        {
+          "heading": "4. Managing Cookies",
+          "body": "You can reject, delete, or allow cookies only for specific sites from your browser settings at any time:\n\n- Chrome: Settings → Privacy and security → Cookies\n- Firefox: Settings → Privacy & Security\n- Safari: Preferences → Privacy\n- Edge: Settings → Cookies and site permissions\n\nFor Google-specific ad preferences: https://adssettings.google.com"
+        },
+        {
+          "heading": "5. Impact of Rejecting Cookies",
+          "body": "You can reject non-essential cookies; basic functions will continue to work but your experience will not be personalized."
+        }
+      ]
+    },
+    "disclaimer": {
+      "title": "Disclaimer",
+      "intro": "This page describes the limits of legal liability for the use of content on devopself.com.",
+      "sections": [
+        {
+          "heading": "1. General Notice",
+          "body": "All content on the site is for general informational purposes. While care is taken in preparing content, it is not guaranteed to be complete, up-to-date, or error-free."
+        },
+        {
+          "heading": "2. Not Professional Advice",
+          "body": "Articles do not substitute for legal, financial, security, or professional advice. Verify technical decisions for production with your own team and official documentation."
+        },
+        {
+          "heading": "3. External Links",
+          "body": "The site may contain links to third-party websites. We have no control over the content, privacy practices, or current state of those sites and cannot be held responsible for them."
+        },
+        {
+          "heading": "4. Affiliates and Ads",
+          "body": "Some links may be affiliate links that earn the site a commission. Ads are served by Google AdSense. These models do not influence the editorial independence of the content."
+        },
+        {
+          "heading": "5. Technology and Version Differences",
+          "body": "Software tools are updated rapidly. Even if an article was accurate on its publish date, version differences, API changes, or pricing updates may make information outdated over time."
+        },
+        {
+          "heading": "6. Liability for Damages",
+          "body": "DevOpSelf is not responsible for the outcomes of decisions you make based on information on this site. All implementations are at your own risk."
+        }
+      ]
+    }
   },
   "meta": {
     "siteTitle": "DevOpSelf - Dev, Ops & AI Tool Comparison Platform",
