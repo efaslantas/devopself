@@ -8,9 +8,21 @@ import ruDict from "@/lib/dictionaries/ru.json";
 
 const dicts = { tr: trDict, en: enDict, ru: ruDict };
 
+const NEWSLETTER_EMAIL = "emreferitaslantas@gmail.com";
+
 export function Newsletter({ locale = "tr" }: { locale?: string }) {
   const [submitted, setSubmitted] = useState(false);
+  const [email, setEmail] = useState("");
   const dict = dicts[locale as keyof typeof dicts] || trDict;
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email) return;
+    const subject = "Newsletter subscription — DevOpSelf";
+    const body = `DevOpSelf bültenine abone olmak istiyorum.\n\nE-posta: ${email}`;
+    window.location.href = `mailto:${NEWSLETTER_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    setSubmitted(true);
+  };
 
   return (
     <section className="holo-card relative overflow-hidden rounded-2xl border border-[#00f0ff]/15 bg-[#0a0f1c]/80 p-8 backdrop-blur-sm sm:p-12">
@@ -29,8 +41,8 @@ export function Newsletter({ locale = "tr" }: { locale?: string }) {
             <span className="font-semibold">{dict.newsletter.success}</span>
           </div>
         ) : (
-          <form onSubmit={(e) => { e.preventDefault(); setSubmitted(true); }} className="mx-auto flex max-w-md overflow-hidden rounded-xl border border-[#00f0ff]/15 bg-[#05080f]/60 backdrop-blur-sm transition-all duration-300 focus-within:border-[#00f0ff]/40 focus-within:shadow-[0_0_20px_#00f0ff15]">
-            <input type="email" placeholder={dict.newsletter.placeholder} required className="flex-1 bg-transparent px-4 py-3 text-sm text-white placeholder:text-slate-600 focus:outline-none" />
+          <form onSubmit={handleSubmit} className="mx-auto flex max-w-md overflow-hidden rounded-xl border border-[#00f0ff]/15 bg-[#05080f]/60 backdrop-blur-sm transition-all duration-300 focus-within:border-[#00f0ff]/40 focus-within:shadow-[0_0_20px_#00f0ff15]">
+            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder={dict.newsletter.placeholder} required className="flex-1 bg-transparent px-4 py-3 text-sm text-white placeholder:text-slate-600 focus:outline-none" />
             <button type="submit" className="neon-border bg-[#00f0ff]/15 px-6 py-3 text-sm font-semibold text-[#00f0ff] transition-all duration-300 hover:bg-[#00f0ff]/25 hover:shadow-[0_0_20px_#00f0ff30]">{dict.newsletter.subscribe}</button>
           </form>
         )}
