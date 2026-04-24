@@ -12,7 +12,7 @@ import {
   ArrowRight,
   Github,
 } from "lucide-react";
-import { locales, type Locale, getDictionary } from "@/lib/i18n";
+import { locales, type Locale, getDictionary, buildAlternates } from "@/lib/i18n";
 
 type Props = { params: Promise<{ locale: string }> };
 
@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: dict.about.pageTitle,
     description: dict.about.intro1,
-    alternates: { canonical: `/${locale}/about` },
+    alternates: buildAlternates(locale as Locale, "about"),
   };
 }
 

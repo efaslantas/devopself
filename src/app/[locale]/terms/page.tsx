@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { LegalPage } from "@/components/legal-page";
-import { locales, type Locale, getDictionary } from "@/lib/i18n";
+import { locales, type Locale, getDictionary, buildAlternates } from "@/lib/i18n";
 
 type Props = { params: Promise<{ locale: string }> };
 
@@ -14,7 +14,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: dict.legal.terms.title,
     description: dict.legal.terms.intro,
-    alternates: { canonical: `/${locale}/terms` },
+    alternates: buildAlternates(locale as Locale, "terms"),
   };
 }
 

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
-import { locales, type Locale, getDictionary } from "@/lib/i18n";
+import { locales, type Locale, getDictionary, buildAlternates } from "@/lib/i18n";
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     creator: "DevOpSelf",
     publisher: "DevOpSelf",
     metadataBase: new URL("https://devopself.com"),
-    alternates: { canonical: "/" },
+    alternates: buildAlternates(locale as Locale, ""),
     openGraph: {
       title: dict.meta.ogTitle,
       description: dict.meta.ogDescription,
@@ -61,6 +61,20 @@ export default async function LocaleLayout({ params, children }: Props) {
   return (
     <html lang={locale} className="dark">
       <head>
+        {/* RSS / Atom feed discovery for the current locale */}
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          title={`DevOpSelf — ${locale.toUpperCase()}`}
+          href={`/${locale}/feed.xml`}
+        />
+        <link
+          rel="alternate"
+          type="application/atom+xml"
+          title={`DevOpSelf — ${locale.toUpperCase()} (Atom)`}
+          href={`/${locale}/atom.xml`}
+        />
+
         {/* Google AdSense */}
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1080501458617699" crossOrigin="anonymous"></script>
 

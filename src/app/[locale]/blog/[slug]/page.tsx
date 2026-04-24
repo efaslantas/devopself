@@ -5,9 +5,10 @@ import { Newsletter } from "@/components/newsletter";
 import { AdSlot } from "@/components/ad-slot";
 import { BlogCard } from "@/components/blog-card";
 import { AuthorBox } from "@/components/author-box";
+import { AffiliateDisclosure } from "@/components/affiliate-disclosure";
 import { blogPosts, getBlogPosts } from "@/lib/data";
 import { getAllMarkdownPosts, getMarkdownPostBySlug, renderMarkdown, DEFAULT_AUTHOR_GITHUB } from "@/lib/markdown";
-import { locales, type Locale, getDictionary, dateLocales } from "@/lib/i18n";
+import { locales, type Locale, getDictionary, dateLocales, buildAlternates } from "@/lib/i18n";
 
 type Props = { params: Promise<{ locale: string; slug: string }> };
 
@@ -28,7 +29,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: mdPost.title,
       description: mdPost.excerpt,
       authors: [{ name: mdPost.author }],
-      alternates: { canonical: `/${locale}/blog/${slug}` },
+      alternates: buildAlternates(locale as Locale, `blog/${slug}`),
       openGraph: {
         title: mdPost.title,
         description: mdPost.excerpt,
@@ -175,6 +176,13 @@ export default async function BlogPostPage({ params }: Props) {
                 prose-blockquote:border-l-[#00f0ff]/30 prose-blockquote:bg-[#00f0ff]/[0.02] prose-blockquote:rounded-r-xl prose-blockquote:py-1 prose-blockquote:text-slate-400
                 prose-img:rounded-xl"
               dangerouslySetInnerHTML={{ __html: htmlContent }}
+            />
+
+            <AffiliateDisclosure
+              title={dict.blog.affiliateTitle}
+              body={dict.blog.affiliateBody}
+              termsLabel={dict.legal.terms.title}
+              locale={locale}
             />
 
             <AuthorBox

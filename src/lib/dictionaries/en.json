@@ -103,7 +103,9 @@
     "aboutAuthor": "About the Author",
     "authorBioShort": "An engineer working in Kubernetes, CI/CD, cloud infrastructure and observability in production environments for over a decade. Founder of the DevOpSelf platform.",
     "viewAllByAuthor": "All posts by this author",
-    "shareArticle": "Share Article"
+    "shareArticle": "Share Article",
+    "affiliateTitle": "Transparency Notice",
+    "affiliateBody": "This article is the result of independent editorial evaluation. It may contain affiliate links; if you make a purchase through such a link, the site may earn a small commission at no extra cost to you. Ads are served by Google AdSense. No brand can influence the content or recommendations of the article."
   },
   "categories": {
     "pageTitle": "Categories",

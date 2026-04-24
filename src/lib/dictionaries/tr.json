@@ -103,7 +103,9 @@
     "aboutAuthor": "Yazar Hakkında",
     "authorBioShort": "On yılı aşkın süredir Kubernetes, CI/CD, cloud infrastructure ve observability alanlarında production ortamlarda çalışan bir mühendis. DevOpSelf platformunun kurucusu.",
     "viewAllByAuthor": "Bu yazarın tüm yazıları",
-    "shareArticle": "Yazıyı Paylaş"
+    "shareArticle": "Yazıyı Paylaş",
+    "affiliateTitle": "Şeffaflık Notu",
+    "affiliateBody": "Bu yazı bağımsız editöryel değerlendirme sonucu hazırlanmıştır. İçerisinde affiliate (ortaklık) linkleri bulunabilir; tıkladığınız bir linkten satın alma yaptığınızda siteye küçük bir komisyon kazandırabilir ve bu sizin için ek maliyet yaratmaz. Reklamlar Google AdSense tarafından sunulur. Hiçbir marka yazının içeriğini veya tavsiyelerini etkileyemez."
   },
   "categories": {
     "pageTitle": "Kategoriler",

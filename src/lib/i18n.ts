@@ -35,3 +35,27 @@ export const dateLocales: Record<Locale, string> = {
   en: "en-US",
   ru: "ru-RU",
 };
+
+export const SITE_URL = "https://devopself.com";
+
+/**
+ * Build hreflang alternates + canonical for a given locale-aware path.
+ *
+ * @param locale - current locale
+ * @param subPath - path AFTER the locale prefix, e.g. "blog", "tools/jenkins".
+ *                 Leave empty for the locale root.
+ */
+export function buildAlternates(locale: Locale, subPath: string = "") {
+  const clean = subPath.replace(/^\/+|\/+$/g, "");
+  const suffix = clean ? `/${clean}` : "";
+  const languages: Record<string, string> = {};
+  for (const l of locales) {
+    languages[l] = `/${l}${suffix}`;
+  }
+  // x-default — prefer Turkish (primary audience)
+  languages["x-default"] = `/${defaultLocale}${suffix}`;
+  return {
+    canonical: `/${locale}${suffix}`,
+    languages,
+  };
+}

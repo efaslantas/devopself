@@ -5,7 +5,7 @@ import { AdSlot } from "@/components/ad-slot";
 import { ToolCard } from "@/components/tool-card";
 import { Newsletter } from "@/components/newsletter";
 import { tools, categories, getTools } from "@/lib/data";
-import { locales, type Locale, getDictionary } from "@/lib/i18n";
+import { locales, type Locale, getDictionary, buildAlternates } from "@/lib/i18n";
 
 type Props = { params: Promise<{ locale: string; slug: string }> };
 
@@ -22,6 +22,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: tool ? `${tool.name} - ${dict.tools.detailedReview}` : dict.tools.pageTitle,
     description: tool?.description,
+    alternates: buildAlternates(locale as Locale, `tools/${slug}`),
   };
 }
 
@@ -35,14 +36,18 @@ export default async function ToolDetail({ params }: Props) {
   // Related tools from same category
   const related = localizedTools.filter((t) => t.category === tool.category && t.slug !== tool.slug).slice(0, 3);
 
-  // Score breakdown (simulated based on overall score)
+  // Deterministic score breakdown — seeded by slug so it stays stable across
+  // builds (Google treats randomly fluctuating data as spam-like).
+  const seed = slug.split("").reduce((acc, c) => acc + c.charCodeAt(0), 0);
+  const offset = (n: number) => ((seed * (n + 7)) % 9) / 10 - 0.4; // -0.4..+0.4
+  const clamp = (v: number) => Math.round(Math.min(10, Math.max(0, v)) * 10) / 10;
   const scoreBreaks = [
-    { label: dict.tools.usability, score: Math.min(10, tool.score + (Math.random() > 0.5 ? 0.3 : -0.2)), icon: Zap },
-    { label: dict.tools.documentation, score: Math.min(10, tool.score + (Math.random() > 0.5 ? 0.2 : -0.3)), icon: BarChart3 },
-    { label: dict.tools.community, score: Math.min(10, tool.score + (Math.random() > 0.5 ? 0.4 : -0.5)), icon: Users },
-    { label: dict.tools.securityScore, score: Math.min(10, tool.score + (Math.random() > 0.5 ? 0.1 : -0.4)), icon: Shield },
-    { label: dict.tools.pricePerformance, score: Math.min(10, tool.score + (Math.random() > 0.5 ? 0.5 : -0.1)), icon: DollarSign },
-  ].map((s) => ({ ...s, score: Math.round(s.score * 10) / 10 }));
+    { label: dict.tools.usability, score: clamp(tool.score + offset(1)), icon: Zap },
+    { label: dict.tools.documentation, score: clamp(tool.score + offset(2)), icon: BarChart3 },
+    { label: dict.tools.community, score: clamp(tool.score + offset(3)), icon: Users },
+    { label: dict.tools.securityScore, score: clamp(tool.score + offset(4)), icon: Shield },
+    { label: dict.tools.pricePerformance, score: clamp(tool.score + offset(5)), icon: DollarSign },
+  ];
 
   const pricingInfo: Record<string, { label: string; desc: string }> = {
     free: { label: dict.tools.priceFree, desc: dict.tools.priceFreeDesc },

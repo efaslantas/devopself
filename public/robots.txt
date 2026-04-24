@@ -3,5 +3,10 @@ Allow: /
 
 Sitemap: https://devopself.com/sitemap.xml
 
+# RSS / Atom feeds
+# https://devopself.com/feed.xml           (default — Turkish)
+# https://devopself.com/tr/feed.xml | /en/feed.xml | /ru/feed.xml
+# Atom equivalents: /{locale}/atom.xml
+
 # Crawl-delay for polite crawling
 Crawl-delay: 1
